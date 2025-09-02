@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       // Segundo clique → para música e sai da tela
       music.pause();
-      window.location.href = "game.html";
+      window.location.href = "iniciais.html";
     }
   }
 
