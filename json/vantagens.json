@@ -1,0 +1,602 @@
+[
+    {
+        "Ataca": "Normal",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Normal",
+        "Atacado": "Rock",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Normal",
+        "Atacado": "Ghost",
+        "Impacto": "0,0"
+    },
+    {
+        "Ataca": "Fire",
+        "Atacado": "Fire",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fire",
+        "Atacado": "Water",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fire",
+        "Atacado": "Grass",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fire",
+        "Atacado": "Ice",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fire",
+        "Atacado": "Bug",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fire",
+        "Atacado": "Dragon",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fire",
+        "Atacado": "Rock",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fire",
+        "Atacado": "Steel",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Water",
+        "Atacado": "Fire",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Water",
+        "Atacado": "Ground",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Water",
+        "Atacado": "Rock",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Water",
+        "Atacado": "Water",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Water",
+        "Atacado": "Grass",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Water",
+        "Atacado": "Dragon",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Electric",
+        "Atacado": "Water",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Electric",
+        "Atacado": "Flying",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Electric",
+        "Atacado": "Electric",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Electric",
+        "Atacado": "Grass",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Electric",
+        "Atacado": "Dragon",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Electric",
+        "Atacado": "Ground",
+        "Impacto": "0,0"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Fire",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Grass",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Poison",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Flying",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Bug",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Dragon",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Water",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Ground",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Grass",
+        "Atacado": "Rock",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ice",
+        "Atacado": "Fire",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Ice",
+        "Atacado": "Water",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Ice",
+        "Atacado": "Ice",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Ice",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Ice",
+        "Atacado": "Grass",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ice",
+        "Atacado": "Ground",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ice",
+        "Atacado": "Dragon",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ice",
+        "Atacado": "Flying",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Normal",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Ice",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Ground",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Dark",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Steel",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Poison",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Flying",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Psychic",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Bug",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Fairy",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fighting",
+        "Atacado": "Ghost",
+        "Impacto": "0,0"
+    },
+    {
+        "Ataca": "Poison",
+        "Atacado": "Grass",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Poison",
+        "Atacado": "Fairy",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Poison",
+        "Atacado": "Poison",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Poison",
+        "Atacado": "Ground",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Poison",
+        "Atacado": "Rock",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Poison",
+        "Atacado": "Ghost",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Poison",
+        "Atacado": "Steel",
+        "Impacto": "0,0"
+    },
+    {
+        "Ataca": "Ground",
+        "Atacado": "Fire",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ground",
+        "Atacado": "Electric",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ground",
+        "Atacado": "Poison",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ground",
+        "Atacado": "Rock",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ground",
+        "Atacado": "Steel",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ground",
+        "Atacado": "Grass",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Ground",
+        "Atacado": "Bug",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Ground",
+        "Atacado": "Flying",
+        "Impacto": "0,0"
+    },
+    {
+        "Ataca": "Flying",
+        "Atacado": "Grass",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Flying",
+        "Atacado": "Fighting",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Flying",
+        "Atacado": "Bug",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Flying",
+        "Atacado": "Electric",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Flying",
+        "Atacado": "Rock",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Flying",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Psychic",
+        "Atacado": "Fighting",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Psychic",
+        "Atacado": "Poison",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Psychic",
+        "Atacado": "Psychic",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Psychic",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Psychic",
+        "Atacado": "Dark",
+        "Impacto": "0,0"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Fire",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Fighting",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Poison",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Flying",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Ghost",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Fairy",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Grass",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Psychic",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Bug",
+        "Atacado": "Dark",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Rock",
+        "Atacado": "Fire",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Rock",
+        "Atacado": "Ice",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Rock",
+        "Atacado": "Flying",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Rock",
+        "Atacado": "Bug",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Rock",
+        "Atacado": "Fighting",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Rock",
+        "Atacado": "Ground",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Rock",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Ghost",
+        "Atacado": "Normal",
+        "Impacto": "0,0"
+    },
+    {
+        "Ataca": "Ghost",
+        "Atacado": "Psychic",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ghost",
+        "Atacado": "Ghost",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Ghost",
+        "Atacado": "Dark",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Dragon",
+        "Atacado": "Dragon",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Dragon",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Dragon",
+        "Atacado": "Fairy",
+        "Impacto": "0,0"
+    },
+    {
+        "Ataca": "Dark",
+        "Atacado": "Fighting",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Dark",
+        "Atacado": "Dark",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Dark",
+        "Atacado": "Fairy",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Dark",
+        "Atacado": "Psychic",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Dark",
+        "Atacado": "Ghost",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Steel",
+        "Atacado": "Fire",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Steel",
+        "Atacado": "Water",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Steel",
+        "Atacado": "Electric",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Steel",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Steel",
+        "Atacado": "Ice",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Steel",
+        "Atacado": "Rock",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Steel",
+        "Atacado": "Fairy",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fairy",
+        "Atacado": "Fire",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fairy",
+        "Atacado": "Poison",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fairy",
+        "Atacado": "Steel",
+        "Impacto": "0,5"
+    },
+    {
+        "Ataca": "Fairy",
+        "Atacado": "Fighting",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fairy",
+        "Atacado": "Dragon",
+        "Impacto": "2,0"
+    },
+    {
+        "Ataca": "Fairy",
+        "Atacado": "Dark",
+        "Impacto": "2,0"
+    }
+]

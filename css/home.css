@@ -2,7 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background: linear-gradient(180deg, #c1f2e9, #a3e0ff);
+  background: url("../background/main.png") no-repeat center center fixed;
+  background-size: cover;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -11,33 +12,24 @@ body {
 
 .container {
   text-align: center;
+  width: 100%;
 }
 
 .logo {
   width: 70%;
-  max-width: 320px;
-  margin-bottom: 20px;
+  max-width: 300px;
+  margin-bottom: 40px;
 }
 
 .hint {
-  font-size: 1.1rem;
-  color: #333;
-  margin-bottom: 30px;
-  opacity: 0.8;
+  font-size: 1.3rem;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+  animation: blink 1.5s infinite;
 }
 
-button {
-  background: #ffcc00;
-  border: none;
-  padding: 15px 50px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
-}
-
-button:hover {
-  background: #ffd633;
-  transform: scale(1.05);
+/* Efeito de piscar */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
