@@ -1,7 +1,9 @@
-// qualquer clique ou tecla leva para o game.html
 function goToGame() {
   window.location.href = "game.html";
 }
 
-document.body.addEventListener("click", goToGame);
-document.body.addEventListener("keydown", goToGame);
+// garante que o DOM esteja pronto antes de registrar os eventos
+window.addEventListener("DOMContentLoaded", () => {
+  document.body.addEventListener("click", goToGame);
+  document.body.addEventListener("keydown", goToGame);
+});
