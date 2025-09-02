@@ -1,0 +1,198 @@
+[
+    {
+        "ID": 1,
+        "Type": "Rock"
+    },
+    {
+        "ID": 2,
+        "Type": "Water"
+    },
+    {
+        "ID": 3,
+        "Type": "Eletric"
+    },
+    {
+        "ID": 4,
+        "Type": "Grass"
+    },
+    {
+        "ID": 5,
+        "Type": "Poison"
+    },
+    {
+        "ID": 6,
+        "Type": "Psyquic"
+    },
+    {
+        "ID": 7,
+        "Type": "Fire"
+    },
+    {
+        "ID": 8,
+        "Type": "Ground"
+    },
+    {
+        "ID": 9,
+        "Type": "All"
+    },
+    {
+        "ID": 10,
+        "Type": "All"
+    },
+    {
+        "ID": 11,
+        "Type": "All"
+    },
+    {
+        "ID": 12,
+        "Type": "All"
+    },
+    {
+        "ID": 13,
+        "Type": "Flying"
+    },
+    {
+        "ID": 14,
+        "Type": "Bug"
+    },
+    {
+        "ID": 15,
+        "Type": "Normal"
+    },
+    {
+        "ID": 16,
+        "Type": "Ghost"
+    },
+    {
+        "ID": 17,
+        "Type": "Fighting"
+    },
+    {
+        "ID": 18,
+        "Type": "Steel"
+    },
+    {
+        "ID": 19,
+        "Type": "Ice"
+    },
+    {
+        "ID": 20,
+        "Type": "Dragon"
+    },
+    {
+        "ID": 21,
+        "Type": "Rock"
+    },
+    {
+        "ID": 22,
+        "Type": "Fighting"
+    },
+    {
+        "ID": 23,
+        "Type": "Eletric"
+    },
+    {
+        "ID": 24,
+        "Type": "Fire"
+    },
+    {
+        "ID": 25,
+        "Type": "Normal"
+    },
+    {
+        "ID": 26,
+        "Type": "Flying"
+    },
+    {
+        "ID": 27,
+        "Type": "Psyquic"
+    },
+    {
+        "ID": 28,
+        "Type": "Water"
+    },
+    {
+        "ID": 29,
+        "Type": "Rock"
+    },
+    {
+        "ID": 30,
+        "Type": "Grass"
+    },
+    {
+        "ID": 31,
+        "Type": "Fighting"
+    },
+    {
+        "ID": 32,
+        "Type": "Water"
+    },
+    {
+        "ID": 33,
+        "Type": "Ghost"
+    },
+    {
+        "ID": 34,
+        "Type": "Steel"
+    },
+    {
+        "ID": 35,
+        "Type": "ice"
+    },
+    {
+        "ID": 36,
+        "Type": "Eletric"
+    },
+    {
+        "ID": 37,
+        "Type": "Bug"
+    },
+    {
+        "ID": 38,
+        "Type": "Rock"
+    },
+    {
+        "ID": 39,
+        "Type": "Fighting"
+    },
+    {
+        "ID": 40,
+        "Type": "Grass"
+    },
+    {
+        "ID": 41,
+        "Type": "Eletric"
+    },
+    {
+        "ID": 42,
+        "Type": "Fairy"
+    },
+    {
+        "ID": 43,
+        "Type": "Psyquic"
+    },
+    {
+        "ID": 44,
+        "Type": "Ice"
+    },
+    {
+        "ID": 45,
+        "Type": "Grass"
+    },
+    {
+        "ID": 46,
+        "Type": "Flying"
+    },
+    {
+        "ID": 47,
+        "Type": "Normal"
+    },
+    {
+        "ID": 48,
+        "Type": "Ice"
+    },
+    {
+        "ID": 49,
+        "Type": "Ground"
+    }
+]
