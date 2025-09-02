@@ -194,5 +194,45 @@
     {
         "ID": 49,
         "Type": "Ground"
+    },
+    {
+        "ID": 50,
+        "Type": "Grass"
+    },
+    {
+        "ID": 51,
+        "Type": "Water"
+    },
+    {
+        "ID": 52,
+        "Type": "Fire"
+    },
+    {
+        "ID": 53,
+        "Type": "Fighting"
+    },
+    {
+        "ID": 54,
+        "Type": "Ghost"
+    },
+    {
+        "ID": 55,
+        "Type": "Fairy"
+    },
+    {
+        "ID": 56,
+        "Type": "Rock"
+    },
+    {
+        "ID": 57,
+        "Type": "Ice"
+    },
+    {
+        "ID": 58,
+        "Type": "Dark"
+    },
+    {
+        "ID": 59,
+        "Type": "Dragon"
     }
 ]
