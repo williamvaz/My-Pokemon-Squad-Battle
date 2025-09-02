@@ -1,9 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: url("../icons/bg.png") no-repeat center center fixed;
-  background-size: cover;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(180deg, #c1f2e9, #a3e0ff);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -12,36 +11,33 @@ body {
 
 .container {
   text-align: center;
-  width: 100%;
-  max-width: 400px;
-  margin: auto;
 }
 
 .logo {
   width: 70%;
-  max-width: 280px;
-  margin-bottom: 40px;
+  max-width: 320px;
+  margin-bottom: 20px;
 }
 
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.hint {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 30px;
+  opacity: 0.8;
 }
 
-.btn {
+button {
   background: #ffcc00;
-  color: #1a1a1a;
+  border: none;
+  padding: 15px 50px;
   font-size: 1.2rem;
   font-weight: bold;
-  padding: 15px;
-  border: none;
   border-radius: 30px;
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.btn:hover {
+button:hover {
   background: #ffd633;
   transform: scale(1.05);
 }
