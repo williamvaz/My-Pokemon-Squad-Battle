@@ -49,12 +49,20 @@ body {
   margin-top: 10px;
 }
 
-.type-icon {
-  width: 20px;
-  height: 20px;
-  margin: 2px;
-  vertical-align: middle;
+.pokemon-types {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 5px;
 }
+
+.type-icon {
+  width: 8px !important;
+  height: 8px !important;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
 
 .shiny-label {
   background: gold;
