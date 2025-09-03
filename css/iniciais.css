@@ -12,13 +12,11 @@ body {
 }
 
 .container {
-  background: rgba(0, 0, 0, 0.6);
   padding: 30px;
   border-radius: 20px;
   width: 90%;
   max-width: 900px;
   margin: 50px auto;
-  box-shadow: 0 0 20px #000;
 }
 
 .pokemon-container {
