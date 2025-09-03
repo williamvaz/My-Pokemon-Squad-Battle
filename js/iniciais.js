@@ -19,10 +19,10 @@ function formatId(id) {
 // Cria card HTML
 function createCard(pokemon, shiny) {
   // Proteção contra undefined ou ausência de Type
-  if (!pokemon || !pokemon.Type || !Array.isArray(pokemon.Type)) {
-    console.error("Pokémon inválido:", pokemon);
-    return document.createElement("div");
-  }
+if (!pokemon || !pokemon["Type 1"]) {
+  console.error("Pokémon inválido:", pokemon);
+  return document.createElement("div");
+}
 
   const idFormatado = pokemon.ID.toString().padStart(4, "0");
   const imgPath = shiny
@@ -34,10 +34,11 @@ function createCard(pokemon, shiny) {
   card.innerHTML = `
     <img src="${imgPath}" alt="${pokemon.Name}">
     <div class="pokemon-name">${pokemon.Name}</div>
-    <div class="pokemon-types">
-      <img src="types/${pokemon.Type[0]}.png" alt="${pokemon.Type[0]}" class="type-icon" />
-      ${pokemon.Type[1] && pokemon.Type[1] !== "" ? `<img src="types/${pokemon.Type[1]}.png" alt="${pokemon.Type[1]}" class="type-icon" />` : ""}
-    </div>
+<div class="pokemon-types">
+  <img src="types/${pokemon["Type 1"]}.png" alt="${pokemon["Type 1"]}" class="type-icon" />
+  ${pokemon["Type 2"] && pokemon["Type 2"] !== "" ? `<img src="types/${pokemon["Type 2"]}.png" alt="${pokemon["Type 2"]}" class="type-icon" />` : ""}
+</div>
+
     ${shiny ? `<div class="shiny-label">✨ Shiny!</div>` : ""}
   `;
   card.addEventListener("click", () => selectPokemon(pokemon, shiny));
