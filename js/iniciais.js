@@ -69,11 +69,14 @@ async function start() {
   const iniciais = await loadJSON("JSON/iniciais.json");
   const pokemons = await loadJSON("JSON/pokemons.json");
 
-  // Pega o grupo aleatório
-  const grupo = iniciais[Math.floor(Math.random() * iniciais.length)];
+  const container = document.getElementById("pokemonContainer");
 
-  // IDs de apenas 3 pokémons: "1", "2", "3"
-  const ids = [grupo["1"], grupo["2"], grupo["3"]];
+  // Sorteia 1 ID de cada grupo (3 grupos no JSON)
+  const ids = [
+    iniciais[0][(Math.floor(Math.random() * Object.keys(iniciais[0]).length) + 1).toString()],
+    iniciais[1][(Math.floor(Math.random() * Object.keys(iniciais[1]).length) + 1).toString()],
+    iniciais[2][(Math.floor(Math.random() * Object.keys(iniciais[2]).length) + 1).toString()],
+  ];
 
   for (let id of ids) {
     const poke = pokemons.find(p => p.ID == id);
@@ -81,6 +84,8 @@ async function start() {
       const shiny = isShiny();
       const card = createCard(poke, shiny);
       container.appendChild(card);
+    } else {
+      console.warn("ID não encontrado:", id);
     }
   }
 }
