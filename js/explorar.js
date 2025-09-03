@@ -21,6 +21,10 @@ window.onload = async () => {
   }, 1500);
 };
 
+function isShiny() {
+  return Math.random() < 0.002; // 0.2% de chance
+}
+
 // Sorteio principal
 async function startExploration() {
   const rewardsContainer = document.getElementById("rewards-container");
@@ -44,9 +48,11 @@ async function startExploration() {
 
     if (premio.tipo === "Pokemoedas") {
       pokecoins += premio.valor;
+      div.classList.add("pokemon");
       div.innerHTML = `<img src="itens/${premio.valor}_Pokemoedas.png"><div>${premio.valor} MOEDAS</div>`;
     } else if (premio.tipo === "Mega Rock") {
       megarocks += premio.valor;
+      div.classList.add("pokemon");
       div.innerHTML = `<img src="itens/${premio.valor}_MegaRock.png"><div>${premio.valor} MEGA ROCKS</div>`;
     } else if (premio.tipo === "Pokemon") {
       const tier = premio.valor.toString();
@@ -61,6 +67,10 @@ async function startExploration() {
       salvarPokemon(escolhido, shiny);
       div.classList.add("pokemon");
       div.innerHTML = `<img src="${img}"><div class="label">${escolhido.Name}</div>`;
+
+      if (shiny) {
+      div.classList.add("shiny");
+}
 
     }
 
