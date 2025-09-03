@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Explorar</title>
+  <link rel="stylesheet" href="css/explorar.css">
+</head>
+<body>
+  <div id="loading-screen">
+    <img src="https://cdn.dribbble.com/userupload/21195223/file/original-0fe6998669ea9812988f57d73d0afee9.gif" alt="Carregando..." />
+  </div>
+
+  <div class="hud">
+    <div class="resource"><img src="icons/pokecoin.png" alt="pokecoins"> <span id="pokecoins">0</span></div>
+    <div class="resource"><img src="icons/megastone.png" alt="mega rock"> <span id="megarocks">0</span></div>
+  </div>
+
+  <div class="container">
+    <h1>VOCÊ ENCONTROU:</h1>
+    <div id="rewards-container" class="rewards-container"></div>
+    <button id="proceedBtn">PROSSEGUIR</button>
+  </div>
+
+  <audio id="bgm" src="music/game-theme.mpeg" autoplay loop></audio>
+
+  <script src="js/explorar.js"></script>
+</body>
+</html>
