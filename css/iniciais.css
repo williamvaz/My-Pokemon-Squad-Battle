@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-image: url('assets/main.jpeg');
+  background: url("../background/inicial.jpeg") no-repeat center center fixed, linear-gradient(180deg, #c1f2e9, #a3e0ff);
   background-size: cover;
   background-position: center;
   height: 100vh;
