@@ -59,8 +59,7 @@ async function startExploration() {
       const img = shiny ? `pokemons/shiny/${id}-shiny.png` : `pokemons/normal/${id}.png`;
 
       salvarPokemon(escolhido, shiny);
-      div.classList.add("pokemon");
-      div.innerHTML = `<img src="${img}"><div class="label">${escolhido.Name}</div>`;
+      div.innerHTML = `<img src="${img}"><div>${escolhido.Name}</div>`;
     }
 
     rewardsContainer.appendChild(div);
