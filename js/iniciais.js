@@ -47,8 +47,8 @@ function selectPokemon(pokemon, shiny) {
 }
 
 async function start() {
-  const iniciais = await loadJSON("json/iniciais.json");
-  const pokemons = await loadJSON("json/pokemons.json");
+  const iniciais = await loadJSON("JSON/iniciais.json");
+  const pokemons = await loadJSON("JSON/pokemons.json");
 
   // Pega o grupo aleatório
   const grupo = iniciais[Math.floor(Math.random() * iniciais.length)];
