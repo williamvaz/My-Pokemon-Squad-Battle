@@ -1,41 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <!-- Icone da Pagina -->
-  <link rel="icon" type="image/png" href="icons/megastone.png">
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intervalo</title>
-  <link rel="stylesheet" href="css/intervalo.css" />
+  <link rel="stylesheet" href="intervalo.css" />
 </head>
 <body>
-  <div class="hud">
-    <div class="hud-item">
-      <img src="icons/pokecoin.png" alt="Pokemoedas">
-      <span id="pokecoins">0</span>
-    </div>
-    <div class="hud-item">
-      <img src="icons/megastone.png" alt="Mega Rocks">
-      <span id="megarocks">0</span>
-    </div>
-  </div>
+  <audio id="bgm" src="music/game-theme.mpeg" autoplay loop></audio>
 
-  <h1 class="title">DESCANSO</h1>
-
-  <div class="filters">
-    <div id="type-filters"></div>
-    <select id="sort-select">
-      <option value="CP">Ordenar por CP</option>
-      <option value="IV">Ordenar por IV</option>
-      <option value="ID">Ordenar por ID</option>
+  <div class="top-bar">
+    <select id="sortSelector">
+      <option value="CP-desc">CP ↓</option>
+      <option value="CP-asc">CP ↑</option>
+      <option value="IV-desc">IV ↓</option>
+      <option value="IV-asc">IV ↑</option>
+      <option value="ID-desc">ID ↓</option>
+      <option value="ID-asc">ID ↑</option>
     </select>
+    <div id="typeFilters" class="type-filters"></div>
   </div>
 
-  <div id="pokemon-grid" class="grid"></div>
+  <div id="mainScreen">
+    <div id="pokemonGrid" class="pokemon-grid"></div>
+    <button id="proceedBtn">Prosseguir</button>
+  </div>
 
-  <div id="details-screen" class="hidden"></div>
+  <div id="detailsScreen" style="display:none;"></div>
 
-  <script src="js/intervalo.js"></script>
+  <script src="intervalo.js"></script>
 </body>
 </html>
