@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Intervalo</title>
+  <link rel="stylesheet" href="intervalo.css" />
+</head>
+<body>
+  <div class="hud">
+    <div class="hud-item">
+      <img src="icons/pokecoin.png" alt="Pokemoedas">
+      <span id="pokecoins">0</span>
+    </div>
+    <div class="hud-item">
+      <img src="icons/megastone.png" alt="Mega Rocks">
+      <span id="megarocks">0</span>
+    </div>
+  </div>
+
+  <h1 class="title">DESCANSO</h1>
+
+  <div class="filters">
+    <div id="type-filters"></div>
+    <select id="sort-select">
+      <option value="CP">Ordenar por CP</option>
+      <option value="IV">Ordenar por IV</option>
+      <option value="ID">Ordenar por ID</option>
+    </select>
+  </div>
+
+  <div id="pokemon-grid" class="grid"></div>
+
+  <div id="details-screen" class="hidden"></div>
+
+  <script src="intervalo.js"></script>
+</body>
+</html>
