@@ -52,12 +52,57 @@ function selectPokemon(pokemon, shiny, cardElement) {
 }
 
 function proceedToNextPage() {
-  if (selectedPokemon) {
-    localStorage.setItem("pokemonInicial", JSON.stringify(selectedPokemon));
-    localStorage.setItem("isShiny", selectedIsShiny);
-    bgm.pause();
-    window.location.href = "explorar.html";
-  }
+  if (!selectedPokemon) return;
+
+  const rand = (min, max) => Math.random() * (max - min) + min;
+  const arred = (v) => Math.round(v);
+
+  const base = selectedPokemon;
+  const mod = {
+    HP: arred(base.HP * rand(0.10, 1.00)),
+    Attack: arred(base.Attack * rand(0.10, 1.00)),
+    Defense: arred(base.Defense * rand(0.10, 1.00)),
+    "Sp. Atk": arred(base["Sp. Atk"] * rand(0.20, 1.00)),
+    "Sp. Def": arred(base["Sp. Def"] * rand(0.20, 1.00)),
+    Speed: arred(base.Speed * rand(0.20, 1.00))
+  };
+
+  const total = mod.HP + mod.Attack + mod.Defense + mod["Sp. Atk"] + mod["Sp. Def"] + mod.Speed;
+
+  const cp = arred(((mod.HP + mod.Defense + mod["Sp. Def"]) / 3 +
+                    (mod.Attack + mod["Sp. Atk"] + mod.Speed) / 3 *
+                    (mod.HP + mod.Attack + mod.Defense) / 3 +
+                    (mod["Sp. Atk"] + mod["Sp. Def"] + mod.Speed) / 3) / 3 * 1.1);
+
+  const iv = +(cp / base.CP).toFixed(2);
+
+  const finalPokemon = {
+    ID: base.ID,
+    Pokedex: base.Pokedex,
+    Name: base.Name,
+    "Type 1": base["Type 1"],
+    "Type 2": base["Type 2"],
+    CP: cp,
+    IV: iv,
+    Total: total,
+    HP: mod.HP,
+    Attack: mod.Attack,
+    Defense: mod.Defense,
+    "Sp. Atk": mod["Sp. Atk"],
+    "Sp. Def": mod["Sp. Def"],
+    Speed: mod.Speed,
+    Tierlist: base.Tierlist,
+    "Golpe 1": "",
+    "Golpe 2": "",
+    Shiny: selectedIsShiny ? "Sim" : "Não"
+  };
+
+  const pokemons = JSON.parse(localStorage.getItem("pokemons") || "[]");
+  pokemons.push(finalPokemon);
+  localStorage.setItem("pokemons", JSON.stringify(pokemons));
+
+  bgm.pause();
+  window.location.href = "explorar.html";
 }
 
 function getRandomStarterID(grupo) {
