@@ -50,8 +50,8 @@ body {
 }
 
 .type-icon {
-  width: 6px;
-  height: 6px;
+  width: 20px;
+  height: 20px;
   margin: 2px;
   vertical-align: middle;
 }
@@ -77,21 +77,25 @@ body {
 #proceedBtn {
   display: none;
   margin-top: 30px;
-  padding: 10px 25px;
+  padding: 10px 30px;
   font-size: 18px;
   font-weight: bold;
-  background-color: #ffffffcc;
-  color: #000;
+  background-color: #0184C4;
+  color: #FFD700;
   border: none;
-  border-radius: 12px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 0 10px #000000aa;
+  font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px #00000080;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #proceedBtn:hover {
-  background-color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #FFD700;
 }
+
 
 .pokemon-card.selected {
   border: 3px solid gold;
