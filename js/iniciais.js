@@ -79,6 +79,13 @@ async function start() {
       console.warn("ID não encontrado:", id);
     }
   }
+
+  document.addEventListener("click", () => {
+  if (bgm.paused) {
+    bgm.play().catch(e => console.warn("Erro ao tentar tocar música:", e));
+  }
+}, { once: true });
+
 }
 
 start();
