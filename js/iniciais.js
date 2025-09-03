@@ -1,3 +1,7 @@
+let selectedCard = null;
+let selectedPokemon = null;
+let selectedIsShiny = false;
+
 const container = document.getElementById("pokemonContainer");
 const bgm = document.getElementById("bgm");
 
@@ -17,12 +21,7 @@ function formatId(id) {
 }
 
 // Cria card HTML
-function createCard(pokemon, shiny) {
-  // Proteção contra undefined ou ausência de Type
-if (!pokemon || !pokemon["Type 1"]) {
-  console.error("Pokémon inválido:", pokemon);
-  return document.createElement("div");
-}
+function createCard(pokemon, shiny) {card.addEventListener("click", () => selectPokemon(pokemon, shiny, card));
 
   const idFormatado = pokemon.ID.toString().padStart(4, "0");
   const imgPath = shiny
@@ -47,12 +46,24 @@ if (!pokemon || !pokemon["Type 1"]) {
 
 
 // Salva escolha e vai para explorar.html
-function selectPokemon(pokemon, shiny) {
-  localStorage.setItem("pokemonInicial", JSON.stringify(pokemon));
-  localStorage.setItem("isShiny", shiny);
-  bgm.pause();
-  window.location.href = "explorar.html";
+function selectPokemon(pokemon, shiny, cardElement) {
+  // Remove destaque anterior
+  if (selectedCard) {
+    selectedCard.classList.remove("selected");
+  }
+
+  // Marca o novo card
+  selectedCard = cardElement;
+  selectedCard.classList.add("selected");
+
+  // Guarda os dados do Pokémon escolhido
+  selectedPokemon = pokemon;
+  selectedIsShiny = shiny;
+
+  // Mostra o botão "Prosseguir"
+  document.getElementById("proceedBtn").style.display = "block";
 }
+
 
 async function start() {
   const iniciais = await loadJSON("JSON/iniciais.json");
@@ -73,5 +84,15 @@ async function start() {
     }
   }
 }
+
+function proceedToNextPage() {
+  if (selectedPokemon) {
+    localStorage.setItem("pokemonInicial", JSON.stringify(selectedPokemon));
+    localStorage.setItem("isShiny", selectedIsShiny);
+    bgm.pause();
+    window.location.href = "explorar.html";
+  }
+}
+
 
 start();

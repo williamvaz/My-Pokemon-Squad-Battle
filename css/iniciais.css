@@ -76,3 +76,27 @@ body {
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
+
+#proceedBtn {
+  display: none;
+  margin-top: 30px;
+  padding: 10px 25px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ffffffcc;
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 0 10px #000000aa;
+}
+
+#proceedBtn:hover {
+  background-color: #fff;
+}
+
+.pokemon-card.selected {
+  border: 3px solid gold;
+  box-shadow: 0 0 15px yellow;
+}
