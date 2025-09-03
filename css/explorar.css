@@ -44,7 +44,7 @@ body {
 }
 
 .resource img {
-  height: 50px;
+  height: 24px;
   margin-right: 6px;
 }
 
@@ -67,7 +67,7 @@ body {
 }
 
 .reward img {
-  height: 64px;
+  height: 100px;
 }
 
 #proceedBtn {
