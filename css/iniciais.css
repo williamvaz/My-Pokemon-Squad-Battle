@@ -53,3 +53,28 @@ body {
   font-weight: bold;
   margin-top: 10px;
 }
+
+.type-icon {
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+  vertical-align: middle;
+}
+
+.shiny-label {
+  background: gold;
+  color: black;
+  font-weight: bold;
+  margin-top: 6px;
+  border-radius: 6px;
+  padding: 3px 6px;
+  display: inline-block;
+  box-shadow: 0 0 8px yellow;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
