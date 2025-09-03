@@ -61,7 +61,7 @@ async function startExploration() {
 
       const escolhido = pokes[Math.floor(Math.random() * pokes.length)];
       const id = escolhido.ID.toString().padStart(4, "0");
-      const shiny = Math.random() < 0.002;
+      const shiny = Math.random() < 0.01;
       const img = shiny ? `pokemons/shiny/${id}-shiny.png` : `pokemons/normal/${id}.png`;
 
       salvarPokemon(escolhido, shiny);
