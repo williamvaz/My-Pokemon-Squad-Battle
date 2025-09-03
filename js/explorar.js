@@ -39,6 +39,7 @@ async function startExploration() {
   for (let premio of premios) {
     const div = document.createElement("div");
     div.className = "reward";
+    if (tipo === "Pokemon") div.classList.add("pokemon");
 
     if (!premio || !premio.tipo) continue;
 
