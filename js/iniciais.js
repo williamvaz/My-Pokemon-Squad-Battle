@@ -51,9 +51,10 @@ function selectPokemon(pokemon, shiny, cardElement) {
   document.getElementById("proceedBtn").style.display = "block";
 }
 
-function proceedToNextPage() {
+async function proceedToNextPage() {
   if (!selectedPokemon) return;
 
+  const golpes = await loadJSON("JSON/golpes.json");
   const rand = (min, max) => Math.random() * (max - min) + min;
   const arred = (v) => Math.round(v);
 
@@ -76,6 +77,17 @@ function proceedToNextPage() {
 
   const iv = +(cp / base.CP).toFixed(2);
 
+  const golpesCompatíveis = golpes.filter(g =>
+    g.Type === base["Type 1"] || g.Type === base["Type 2"]
+  );
+
+  const escolhidos = [];
+  while (escolhidos.length < 2 && golpesCompatíveis.length > 0) {
+    const i = Math.floor(Math.random() * golpesCompatíveis.length);
+    const golpe = golpesCompatíveis.splice(i, 1)[0].Attack;
+    if (!escolhidos.includes(golpe)) escolhidos.push(golpe);
+  }
+
   const finalPokemon = {
     ID: base.ID,
     Pokedex: base.Pokedex,
@@ -92,8 +104,8 @@ function proceedToNextPage() {
     "Sp. Def": mod["Sp. Def"],
     Speed: mod.Speed,
     Tierlist: base.Tierlist,
-    "Golpe 1": "",
-    "Golpe 2": "",
+    "Golpe 1": escolhidos[0] || "",
+    "Golpe 2": escolhidos[1] || "",
     Shiny: selectedIsShiny ? "Sim" : "Não"
   };
 

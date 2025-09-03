@@ -1,0 +1,1010 @@
+[
+  {
+    "Type": "Bug",
+    "Modo": "Padrão",
+    "Attack": "Ira de Bug",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Bug",
+    "Modo": "Padrão",
+    "Attack": "Infestação",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Bug",
+    "Modo": "Padrão",
+    "Attack": "Cortador de Fúria",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Bug",
+    "Modo": "Padrão",
+    "Attack": "Picada",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Bug",
+    "Modo": "Especial",
+    "Attack": "Zumbido de Bug",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Bug",
+    "Modo": "Especial",
+    "Attack": "Tesoura X",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Bug",
+    "Modo": "Especial",
+    "Attack": "Megachifre",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Bug",
+    "Modo": "Especial",
+    "Attack": "Ferrão Letal",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Dark",
+    "Modo": "Padrão",
+    "Attack": "Ataque Dissimulado",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Dark",
+    "Modo": "Padrão",
+    "Attack": "Rosnado",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Dark",
+    "Modo": "Padrão",
+    "Attack": "Mordida",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Dark",
+    "Modo": "Padrão",
+    "Attack": "Soco Enganador",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Dark",
+    "Modo": "Especial",
+    "Attack": "Balanço Violento",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Dark",
+    "Modo": "Especial",
+    "Attack": "Jogo Sujo",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Dark",
+    "Modo": "Especial",
+    "Attack": "Revide",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Dark",
+    "Modo": "Especial",
+    "Attack": "Talho Noturno",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Dragon",
+    "Modo": "Padrão",
+    "Attack": "Sopro de Dragon",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Dragon",
+    "Modo": "Padrão",
+    "Attack": "Ultraje",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Dragon",
+    "Modo": "Padrão",
+    "Attack": "Cauda de Dragon",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Dragon",
+    "Modo": "Padrão",
+    "Attack": "Golpe Deslizante",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Dragon",
+    "Modo": "Especial",
+    "Attack": "Laceração Espacial",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Dragon",
+    "Modo": "Especial",
+    "Attack": "Meteoro do Dragon",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Dragon",
+    "Modo": "Especial",
+    "Attack": "Garra de Dragon",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Dragon",
+    "Modo": "Especial",
+    "Attack": "Pulso do Dragon",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Electric",
+    "Modo": "Padrão",
+    "Attack": "Carga de Raio",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Electric",
+    "Modo": "Padrão",
+    "Attack": "Trovoada de Choques",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Electric",
+    "Modo": "Padrão",
+    "Attack": "Faísca",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Electric",
+    "Modo": "Padrão",
+    "Attack": "Presa Trovejante",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Electric",
+    "Modo": "Especial",
+    "Attack": "Descarga",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Electric",
+    "Modo": "Especial",
+    "Attack": "Relâmpago",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Electric",
+    "Modo": "Especial",
+    "Attack": "Ataque Selvagem",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Electric",
+    "Modo": "Especial",
+    "Attack": "Canhão Zap",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Fairy",
+    "Modo": "Padrão",
+    "Attack": "Vento de Fairy",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Fairy",
+    "Modo": "Padrão",
+    "Attack": "Voz Desarmante",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Fairy",
+    "Modo": "Padrão",
+    "Attack": "Encantar",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Fairy",
+    "Modo": "Padrão",
+    "Attack": "Geomancia",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Fairy",
+    "Modo": "Especial",
+    "Attack": "Clarão Deslumbrante",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Fairy",
+    "Modo": "Especial",
+    "Attack": "Explosão Lunar",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Fairy",
+    "Modo": "Especial",
+    "Attack": "Beijo Drenante",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Fairy",
+    "Modo": "Especial",
+    "Attack": "Jogo Duro",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Fighting",
+    "Modo": "Padrão",
+    "Attack": "Contra-atacar",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Fighting",
+    "Modo": "Padrão",
+    "Attack": "Rasteira",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Fighting",
+    "Modo": "Padrão",
+    "Attack": "Chute Duplo",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Fighting",
+    "Modo": "Padrão",
+    "Attack": "Golpe de Karate",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Fighting",
+    "Modo": "Especial",
+    "Attack": "Explosão Focalizada",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Fighting",
+    "Modo": "Especial",
+    "Attack": "Soco Dinâmico",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Fighting",
+    "Modo": "Especial",
+    "Attack": "Corpo-a-corpo",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Fighting",
+    "Modo": "Especial",
+    "Attack": "Quebra Telha",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Fire",
+    "Modo": "Padrão",
+    "Attack": "Incinerar",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Fire",
+    "Modo": "Padrão",
+    "Attack": "Chama Furacão",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Fire",
+    "Modo": "Padrão",
+    "Attack": "Brasa",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Fire",
+    "Modo": "Padrão",
+    "Attack": "Presas de Fire",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Fire",
+    "Modo": "Especial",
+    "Attack": "Lança-Chamas",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Fire",
+    "Modo": "Especial",
+    "Attack": "Rajada de Fire",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Fire",
+    "Modo": "Especial",
+    "Attack": "Ataque de Chamas",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Fire",
+    "Modo": "Especial",
+    "Attack": "Fire Místico",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Flying",
+    "Modo": "Padrão",
+    "Attack": "Golpe de Ar",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Flying",
+    "Modo": "Padrão",
+    "Attack": "LuFairy de Vento",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Flying",
+    "Modo": "Padrão",
+    "Attack": "Ataque de Asa",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Flying",
+    "Modo": "Padrão",
+    "Attack": "Bicada",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Flying",
+    "Modo": "Especial",
+    "Attack": "Furacão",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Flying",
+    "Modo": "Especial",
+    "Attack": "As do Ares",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Flying",
+    "Modo": "Especial",
+    "Attack": "Ataque do Céu",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Flying",
+    "Modo": "Especial",
+    "Attack": "Bico Broca",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Ghost",
+    "Modo": "Padrão",
+    "Attack": "Abismar",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Ghost",
+    "Modo": "Padrão",
+    "Attack": "Feitiço",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Ghost",
+    "Modo": "Padrão",
+    "Attack": "Garra Sombria",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Ghost",
+    "Modo": "Padrão",
+    "Attack": "Lambida",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Ghost",
+    "Modo": "Especial",
+    "Attack": "Bola Sombria",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Ghost",
+    "Modo": "Especial",
+    "Attack": "Vento Ominoso",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Ghost",
+    "Modo": "Especial",
+    "Attack": "Furtivamente nas Sombras",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Ghost",
+    "Modo": "Especial",
+    "Attack": "Sombra Noturna",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Grass",
+    "Modo": "Padrão",
+    "Attack": "Chicote de Vinha",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Grass",
+    "Modo": "Padrão",
+    "Attack": "Projétil de Semente",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Grass",
+    "Modo": "Padrão",
+    "Attack": "Folha Mágica",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Grass",
+    "Modo": "Padrão",
+    "Attack": "Folha Navalha",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Grass",
+    "Modo": "Especial",
+    "Attack": "Bola de Energia",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Grass",
+    "Modo": "Especial",
+    "Attack": "Raio Solar",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Grass",
+    "Modo": "Especial",
+    "Attack": "Bomba de Sementes",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Grass",
+    "Modo": "Especial",
+    "Attack": "Chicote Poderoso",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Ground",
+    "Modo": "Padrão",
+    "Attack": "Ataque de Areia",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Ground",
+    "Modo": "Padrão",
+    "Attack": "Poder da Ground",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Ground",
+    "Modo": "Padrão",
+    "Attack": "Tapa de Lama",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Ground",
+    "Modo": "Padrão",
+    "Attack": "Cavar",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Ground",
+    "Modo": "Especial",
+    "Attack": "Terremoto",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Ground",
+    "Modo": "Especial",
+    "Attack": "Fosso de Areia",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Ground",
+    "Modo": "Especial",
+    "Attack": "Areias Ardentes",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Ground",
+    "Modo": "Especial",
+    "Attack": "Bomba de Lama",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Ice",
+    "Modo": "Padrão",
+    "Attack": "Neve em Pó",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Ice",
+    "Modo": "Padrão",
+    "Attack": "Respiração de Ice",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Ice",
+    "Modo": "Padrão",
+    "Attack": "Caco de Ice",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Ice",
+    "Modo": "Padrão",
+    "Attack": "Presa de Ice",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Ice",
+    "Modo": "Especial",
+    "Attack": "Avalanche",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Ice",
+    "Modo": "Especial",
+    "Attack": "Nevasca",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Ice",
+    "Modo": "Especial",
+    "Attack": "Esfera Climática",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Ice",
+    "Modo": "Especial",
+    "Attack": "Raio Congelante",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Normal",
+    "Modo": "Padrão",
+    "Attack": "Ataque Rápido",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Normal",
+    "Modo": "Padrão",
+    "Attack": "Investida",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Normal",
+    "Modo": "Padrão",
+    "Attack": "Arranhão",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Normal",
+    "Modo": "Padrão",
+    "Attack": "Pancada",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Normal",
+    "Modo": "Especial",
+    "Attack": "Hiper-raio",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Normal",
+    "Modo": "Especial",
+    "Attack": "Pisotear",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Normal",
+    "Modo": "Especial",
+    "Attack": "Ataque Veloz",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Normal",
+    "Modo": "Especial",
+    "Attack": "Pancada Corporal",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Poison",
+    "Modo": "Padrão",
+    "Attack": "Ácido",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Poison",
+    "Modo": "Padrão",
+    "Attack": "Spray Ácido",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Poison",
+    "Modo": "Padrão",
+    "Attack": "Ferrão Poison",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Poison",
+    "Modo": "Padrão",
+    "Attack": "Golpe Envenenado",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Poison",
+    "Modo": "Especial",
+    "Attack": "Bomba de Lodo",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Poison",
+    "Modo": "Especial",
+    "Attack": "Onda de Lama",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Poison",
+    "Modo": "Especial",
+    "Attack": "Corte Veneno",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Poison",
+    "Modo": "Especial",
+    "Attack": "Presa Venenosa",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Psychic",
+    "Modo": "Padrão",
+    "Attack": "Extrassensorial",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Psychic",
+    "Modo": "Padrão",
+    "Attack": "Onda Psíquica",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Psychic",
+    "Modo": "Padrão",
+    "Attack": "Cabeçada Zen",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Psychic",
+    "Modo": "Padrão",
+    "Attack": "Confusão",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Psychic",
+    "Modo": "Especial",
+    "Attack": "Impulso Psychic",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Psychic",
+    "Modo": "Especial",
+    "Attack": "Visão do Futuro",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Psychic",
+    "Modo": "Especial",
+    "Attack": "Choque Psychic",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Psychic",
+    "Modo": "Especial",
+    "Attack": "Feixe Psychic",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Rock",
+    "Modo": "Padrão",
+    "Attack": "Lançamento de Rocha",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Rock",
+    "Modo": "Padrão",
+    "Attack": "Gume de Rock",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Rock",
+    "Modo": "Padrão",
+    "Attack": "Derrubada",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Rock",
+    "Modo": "Padrão",
+    "Attack": "Rolagem",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Rock",
+    "Modo": "Especial",
+    "Attack": "Explosão de Rocha",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Rock",
+    "Modo": "Especial",
+    "Attack": "Raio Meteórico",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Rock",
+    "Modo": "Especial",
+    "Attack": "Demolidor de Rocks",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Rock",
+    "Modo": "Especial",
+    "Attack": "Gema Poderosa",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Steel",
+    "Modo": "Padrão",
+    "Attack": "Cauda de Ferro",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Steel",
+    "Modo": "Padrão",
+    "Attack": "Garra de Metal",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Steel",
+    "Modo": "Padrão",
+    "Attack": "Asa de Aço",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Steel",
+    "Modo": "Padrão",
+    "Attack": "Soco Projétil",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Steel",
+    "Modo": "Especial",
+    "Attack": "Bomba Imã",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Steel",
+    "Modo": "Especial",
+    "Attack": "Meteoro Esmagador",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Steel",
+    "Modo": "Especial",
+    "Attack": "Cabeça de Ferro",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Steel",
+    "Modo": "Especial",
+    "Attack": "Canhão de Flash",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Water",
+    "Modo": "Padrão",
+    "Attack": "Bolha",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Water",
+    "Modo": "Padrão",
+    "Attack": "Cachoeira",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Water",
+    "Modo": "Padrão",
+    "Attack": "Revolver d'Água",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Water",
+    "Modo": "Padrão",
+    "Attack": "Estrela Ninja d'Água",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  },
+  {
+    "Type": "Water",
+    "Modo": "Especial",
+    "Attack": "Surfar",
+    "Damage": "0,5",
+    "Speed": "2,0"
+  },
+  {
+    "Type": "Water",
+    "Modo": "Especial",
+    "Attack": "Jato d'Água",
+    "Damage": "0,8",
+    "Speed": "1,2"
+  },
+  {
+    "Type": "Water",
+    "Modo": "Especial",
+    "Attack": "Aqua Cauda",
+    "Damage": "1,2",
+    "Speed": "0,8"
+  },
+  {
+    "Type": "Water",
+    "Modo": "Especial",
+    "Attack": "Aqua Jato",
+    "Damage": "2,0",
+    "Speed": "0,5"
+  }
+]
