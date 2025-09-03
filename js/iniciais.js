@@ -1,3 +1,4 @@
+
 let selectedCard = null;
 let selectedPokemon = null;
 let selectedIsShiny = false;
@@ -59,14 +60,20 @@ function proceedToNextPage() {
   }
 }
 
+function getRandomStarterID(grupo) {
+  const chaves = Object.keys(grupo).filter(key => key !== "Grupo");
+  const aleatoria = chaves[Math.floor(Math.random() * chaves.length)];
+  return grupo[aleatoria];
+}
+
 async function start() {
   const iniciais = await loadJSON("JSON/iniciais.json");
   const pokemons = await loadJSON("JSON/pokemons.json");
 
   const ids = [
-    iniciais[0][(Math.floor(Math.random() * Object.keys(iniciais[0]).length) + 1).toString()],
-    iniciais[1][(Math.floor(Math.random() * Object.keys(iniciais[1]).length) + 1).toString()],
-    iniciais[2][(Math.floor(Math.random() * Object.keys(iniciais[2]).length) + 1).toString()],
+    getRandomStarterID(iniciais[0]),
+    getRandomStarterID(iniciais[1]),
+    getRandomStarterID(iniciais[2])
   ];
 
   for (let id of ids) {
@@ -81,11 +88,10 @@ async function start() {
   }
 
   document.addEventListener("click", () => {
-  if (bgm.paused) {
-    bgm.play().catch(e => console.warn("Erro ao tentar tocar música:", e));
-  }
-}, { once: true });
-
+    if (bgm.paused) {
+      bgm.play().catch(e => console.warn("Erro ao tentar tocar música:", e));
+    }
+  }, { once: true });
 }
 
 start();
