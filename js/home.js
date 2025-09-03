@@ -11,7 +11,8 @@ window.addEventListener("DOMContentLoaded", () => {
     } else {
       // Segundo clique → para música e sai da tela
       music.pause();
-      window.location.href = "iniciais.html";
+localStorage.removeItem("pokemons");
+window.location.href = "iniciais.html";
     }
   }
 
