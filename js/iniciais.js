@@ -28,10 +28,10 @@ function createCard(pokemon, shiny) {
   card.innerHTML = `
     <img src="${imgPath}" alt="${pokemon.Nome}">
     <div class="pokemon-name">${pokemon.Nome}</div>
-    <div class="pokemon-types">
-      <img src="types/${pokemon.Tipo[0]}.png" alt="${pokemon.Tipo[0]}" class="type-icon" />
-      ${pokemon.Tipo[1] ? `<img src="types/${pokemon.Tipo[1]}.png" alt="${pokemon.Tipo[1]}" class="type-icon" />` : ""}
-    </div>
+<div class="pokemon-types">
+  <img src="types/${pokemon.Type[0]}.png" alt="${pokemon.Type[0]}" class="type-icon" />
+  ${pokemon.Type[1] && pokemon.Type[1] !== "" ? `<img src="types/${pokemon.Type[1]}.png" alt="${pokemon.Type[1]}" class="type-icon" />` : ""}
+</div>
     ${shiny ? `<div class="shiny-label">✨ Shiny!</div>` : ""}
   `;
   card.addEventListener("click", () => selectPokemon(pokemon, shiny));
