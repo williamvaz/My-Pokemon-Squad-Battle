@@ -111,5 +111,5 @@ document.getElementById("proceedBtn").addEventListener("click", () => {
   let rodada = Number(localStorage.getItem("rodadas_finalizadas")) || 0;
   rodada++;
   localStorage.setItem("rodadas_finalizadas", rodada);
-  window.location.href = rodada % 6 === 0 ? "intervalo.html" : "explorar.html";
+  window.location.href = rodada % 5 === 0 ? "intervalo.html" : "explorar.html";
 });
