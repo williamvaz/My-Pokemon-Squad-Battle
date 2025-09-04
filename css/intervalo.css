@@ -68,3 +68,13 @@ body {
 #details-screen.hidden {
   display: none;
 }
+.types {
+  margin: 5px 0;
+}
+
+.type-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0 2px;
+  vertical-align: middle;
+}
