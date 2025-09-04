@@ -92,13 +92,6 @@ main {
   display: none;
 }
 
-.types {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-  margin-top: 4px;
-}
-
 #pokemon-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -110,6 +103,13 @@ main {
 }
 
 /* Tamanho correto dos ícones dos tipos */
+
+.types {
+  justify-content: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
 .type-icon {
   width: 20px;
   height: 20px;
