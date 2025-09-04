@@ -120,6 +120,6 @@ main {
   height: 24px;
   object-fit: contain;
   border-radius: 5%;
-  box-shadow: 0 0 1px #0005;
+  box-shadow: 0 0 0px #0005;
 }
 
