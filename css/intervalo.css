@@ -77,26 +77,35 @@ main {
   word-break: break-word;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* antes era space-between */
+  justify-content: flex-start;
   height: 180px;
+  overflow: hidden;
 }
 
 .pokemon-card img {
   width: 100%;
   max-height: 80px;
   object-fit: contain;
-  margin-bottom: auto; /* empurra o restante para o final */
+  margin-bottom: 4px;
 }
 
+/* Nome do Pokémon */
+.pokemon-card .label {
+  margin-bottom: 30px; /* reserva espaço para o rodapé */
+}
+
+/* Rodapé fixo com tipo e CP */
 .card-footer {
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  padding: 0 4px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 0 4px 2px;
-  margin-top: auto;
-  box-sizing: border-box;
 }
+
 
 .types {
   display: flex;
