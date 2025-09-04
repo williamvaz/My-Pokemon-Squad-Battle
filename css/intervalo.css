@@ -78,10 +78,13 @@ main {
 
 .pokemon-card strong {
   display: block;
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.1;
-  margin: 4px 0;
+  margin: 6px 0 2px;
   word-break: break-word;
+  font-weight: bold;
+  color: #333;
+  text-shadow: 1px 1px 2px #fff8;
 }
 
 .pokemon-card img {
@@ -108,17 +111,15 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2px;
-  margin-top: 4px;
+  gap: 4px; /* ou até 2px, mas pode deixar mais natural */
+  margin-top: 2px;
 }
 
 .type-icon {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   object-fit: contain;
-  margin: 0;
-  vertical-align: middle;
   border-radius: 50%;
-  box-shadow: 0 0 2px #0006;
+  box-shadow: 0 0 1px #0005;
 }
 
