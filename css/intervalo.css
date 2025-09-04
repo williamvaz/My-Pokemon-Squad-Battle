@@ -99,14 +99,6 @@ main {
   margin-top: 4px;
 }
 
-
-.type-icon {
-  width: 20px;
-  height: 20px;
-  margin: 0 2px;
-  vertical-align: middle;
-}
-
 #pokemon-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
@@ -115,4 +107,13 @@ main {
   max-height: calc(100vh - 180px); /* ajusta conforme seu topo + título */
   overflow-y: auto;
   box-sizing: border-box;
+}
+
+/* Tamanho correto dos ícones dos tipos */
+.type-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  margin: 2px;
+  vertical-align: middle;
 }
