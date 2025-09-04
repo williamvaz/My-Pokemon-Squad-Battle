@@ -107,8 +107,6 @@ main {
   width: 28px;
   height: 28px;
   object-fit: contain;
-  border-radius: 0%;
-  box-shadow: 0 0 2px #0005;
 }
 
 .cp-value {
