@@ -111,7 +111,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px; /* ou até 2px, mas pode deixar mais natural */
+  gap: 1px; /* ou até 2px, mas pode deixar mais natural */
   margin-top: 2px;
 }
 
