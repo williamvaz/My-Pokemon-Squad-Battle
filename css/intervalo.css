@@ -66,7 +66,7 @@ main {
 
 .pokemon-card {
   position: relative;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 12px;
   padding: 6px;
   text-align: center;
@@ -75,53 +75,58 @@ main {
   min-width: 100px;
   max-width: 110px;
   word-break: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
 }
 
 .pokemon-card strong {
   display: block;
   font-size: 1rem;
-  line-height: 1.1;
-  margin: 6px 0 2px;
+  line-height: 1.2;
+  margin: 4px 0;
   word-break: break-word;
   font-weight: bold;
-  color: #333;
-  text-shadow: 1px 1px 2px #fff8;
+  color: white;
+  text-shadow: 1px 1px 2px #000;
+  max-height: 40px;
+  overflow: hidden;
 }
 
 .pokemon-card img {
-  width: 100px;
+  width: 100%;
+  max-height: 80px;
+  object-fit: contain;
 }
 
-#details-screen.hidden {
-  display: none;
-}
-
-#pokemon-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-gap: 10px;
-  padding: 10px;
-  max-height: calc(100vh - 180px); /* ajusta conforme seu topo + título */
-  overflow-y: auto;
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  padding: 0 4px 2px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   box-sizing: border-box;
 }
 
-/* Tamanho correto dos ícones dos tipos */
 .types {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 8px;  /* distância do fundo */
-  left: 50%;
-  gap: 1px; /* ou até 2px, mas pode deixar mais natural */
-  margin-top: 2px;
+  gap: 4px;
 }
 
 .type-icon {
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
   border-radius: 5%;
-  box-shadow: 0 0 0px #0005;
+  box-shadow: 0 0 2px #0005;
+}
+
+.cp-value {
+  font-size: 0.85rem;
+  color: white;
+  text-shadow: 1px 1px 2px #000;
 }
