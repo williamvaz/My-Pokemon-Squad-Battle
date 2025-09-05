@@ -47,14 +47,25 @@ async function startExploration() {
     if (!premio || !premio.tipo) continue;
 
     if (premio.tipo === "Pokemoedas") {
-      pokecoins += premio.valor;
-      div.classList.add("pokemon");
-      div.innerHTML = `<img src="itens/${premio.valor}_Pokemoedas.png"><div>${premio.valor} MOEDAS</div>`;
-    } else if (premio.tipo === "Mega Rock") {
-      megarocks += premio.valor;
-      div.classList.add("pokemon");
-      div.innerHTML = `<img src="itens/${premio.valor}_MegaRock.png"><div>${premio.valor} MEGA ROCKS</div>`;
-    } else if (premio.tipo === "Pokemon") {
+  pokecoins += premio.valor;
+  div.classList.add("pokemon");
+  div.innerHTML = `
+    <img src="itens/${premio.valor}_Pokemoedas.png">
+    <div>${premio.valor} MOEDAS</div>
+    <span class="tag" style="background:${premio.color}"></span>
+  `;
+}
+  else if (premio.tipo === "Mega Rock") {
+  megarocks += premio.valor;
+  div.classList.add("pokemon");
+  div.innerHTML = `
+    <img src="itens/${premio.valor}_MegaRock.png">
+    <div>${premio.valor} MEGA ROCKS</div>
+    <span class="tag" style="background:${premio.color}"></span>
+  `;
+}
+   
+    else if (premio.tipo === "Pokemon") {
       const tier = premio.valor.toString();
       const pokes = pokemons.filter(p => p.Tierlist === tier);
       if (pokes.length === 0) continue;
@@ -66,7 +77,12 @@ async function startExploration() {
 
       await salvarPokemon(escolhido, shiny);
       div.classList.add("pokemon");
-      div.innerHTML = `<img src="${img}"><div class="label">${escolhido.Name}</div>`;
+      div.innerHTML = `
+    <img src="${img}">
+    <div class="label">${escolhido.Name}</div>
+    <span class="tag" style="background:${premio.color}">Tier ${tier}</span>
+    `;
+
 
       if (shiny) {
       div.classList.add("shiny");
