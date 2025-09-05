@@ -147,7 +147,6 @@ main {
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
   border: 1px solid gold;
   display: inline-block;
-  box-shadow: 0 0 8px yellow;
   animation: pulse 1s infinite;
 }
 

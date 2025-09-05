@@ -287,43 +287,28 @@ details.querySelectorAll(".stat-add").forEach((btn, idx) => {
   }
 });
 
-// listener do '+'
-details.querySelectorAll(".stat-add").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const which = Number(btn.dataset.stat);
-    const [, key] = statDefs[which];
-    const max = statMaxFor(pokemon, key);
-    const current = Number(pokemon[key] ?? 0);
+// wiring do botão '+'
+details.querySelectorAll(".stat-add").forEach((btn, idx) => {
+  const [, key] = statDefs[idx];
+  const max = statMaxFor(pokemon, key);
+  const current = Number(pokemon[key] ?? 0);
 
-    if (current >= max) {
+  // nasce desabilitado se já estiver no teto
+  if (current >= max) btn.disabled = true;
+
+  btn.onclick = () => {
+    const cur = Number(pokemon[key] ?? 0);
+    if (cur >= max) {
       btn.disabled = true;
       return;
     }
-
-    // quando tiver a regra de upgrade, descomenta:
-    // pokemon[key] = current + 1;
+    // quando definir a regra de upgrade, descomente:
+    // pokemon[key] = cur + 1;
     // localStorage.setItem("pokemons", JSON.stringify(pokemons));
     // openDetails(pokemon);
-  });
+  };
 });
 
-  // bloquear + quando atingir o máximo (por enquanto só mostra no console)
-details.querySelectorAll(".stat-add").forEach(btn => {
-  btn.addEventListener("click", () => {
-    const which = Number(btn.dataset.stat);
-    const [, key] = statDefs[which];
-    const max = statMaxFor(pokemon, key);
-    const current = Number(pokemon[key] ?? 0);
-    if (current >= max) {
-      console.log(`${key} já está no máximo (${current}/${max})`);
-      return;
-    }
-    // Aqui entra a lógica de incremento/custo quando você definir:
-    // pokemon[key] = current + 1;
-    // localStorage.setItem("pokemons", JSON.stringify(pokemons));
-    // openDetails(pokemon);
-  });
-});
 
   // listeners básicos
   details.querySelector("#btn-close").onclick = () => details.classList.add("hidden");
