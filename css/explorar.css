@@ -60,17 +60,36 @@ body {
   margin-top: 20px;
 }
 
-.reward {
+/* base para TODOS os cards (pokémon e itens) */
+.reward{
+  position: relative;
+  overflow: hidden;
+
+  /* “vidro” escuro */
+  background: rgba(0,0,0,.30);
+  border-radius: 12px;
+  padding: 8px;
+
+  /* tamanho/coordenadas padrões */
+  width: 180px;
+  height: 180px;
+
+  /* layout interno */
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  overflow: hidden; /* garante que a tag respeite os cantos arredondados do card */
+  justify-content: center;
+  gap: 6px;
 
+  /* leve sombra */
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
 }
+
 
 .reward img {
   height: 100px;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 #proceedBtn {
@@ -112,20 +131,6 @@ body {
   max-width: 140px;
   text-align: center;
   line-height: 1.2;
-}
-
-/* 🖤 Fundo translúcido para cards de Pokémon */
-.reward.pokemon {
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  padding: 6px;
-  width: 180px; /* valor fixo */
-  height: 180px; /* valor fixo */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
 }
 
 /* Efeito visual especial para Pokémon shiny */
@@ -170,11 +175,12 @@ body {
   100% { transform: translateX(100%) rotate(25deg); }
 }
 
-/* Identificação tier */
+/* badge Tier no topo direito */
 .reward .tag{
   position: absolute;
+  top: 8px;     /* <- trocado de bottom para top */
   right: 8px;
-  bottom: 8px;
+  z-index: 2;
   padding: 4px 8px;
   border-radius: 8px;
   background: rgba(0,0,0,.55);
@@ -184,4 +190,5 @@ body {
   line-height: 1;
   pointer-events: none;
 }
+
 
