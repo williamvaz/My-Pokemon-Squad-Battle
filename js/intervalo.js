@@ -1,7 +1,4 @@
-
-// Este é o esqueleto inicial do JS
-// Ainda será completado com filtros, ordenações, interações, evoluções etc.
-
+/* ???????*/
 document.addEventListener("DOMContentLoaded", () => {
   const pokecoinsEl = document.getElementById("pokecoins");
   const megarocksEl = document.getElementById("megarocks");
