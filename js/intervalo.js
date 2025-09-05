@@ -165,16 +165,24 @@ async function openDetails(pokemon) {
   const g1 = MOVES_BY_NAME.get(pokemon["Golpe 1"]);
   const g2 = MOVES_BY_NAME.get(pokemon["Golpe 2"]);
 
-  const moveRow = (slot, name, meta) => `
-    <div class="moves-row">
-      <img src="types/${pokemon["Type 1"]}.png" class="type-icon" alt="">
-      <div>${name || "-"}</div>
-      <div class="pill">${meta?.Modo ?? "-"}</div>
-      <div class="pill">${meta?.Damage ?? "-"}</div>
-      <div class="pill">${meta?.Speed ?? "-"}</div>
-      <button class="btn-mini move-change" data-slot="${slot}">Trocar</button>
-    </div>
-  `;
+// helper para pegar o ícone do tipo do golpe (com fallback)
+const typeIconFor = (meta) => {
+  const t = meta?.Type;                 // ex: "Bug", "Steel", "Water"...
+  return t ? `types/${t}.png` : `types/${pokemon["Type 1"]}.png`;
+};
+
+// linha da tabela de golpes (usa o tipo do golpe!)
+const moveRow = (slot, name, meta) => `
+  <div class="moves-row">
+    <img src="${typeIconFor(meta)}" class="type-icon" alt="">
+    <div>${name || "-"}</div>
+    <div class="pill">${meta?.Modo ?? "-"}</div>
+    <div class="pill">${meta?.Damage ?? "-"}</div>
+    <div class="pill">${meta?.Speed ?? "-"}</div>
+    <button class="btn-mini move-change" data-slot="${slot}">Trocar</button>
+  </div>
+`;
+
 
   details.innerHTML = `
     <article class="details-card ${isShiny ? "shiny-card" : ""}">
