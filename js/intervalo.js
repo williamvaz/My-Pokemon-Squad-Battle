@@ -20,6 +20,22 @@ bgMusic.play().catch(err => {
 let MOVES_BY_NAME = null;
 let MOVES_LIST = null;
 
+// POKEDEX - MÁXIMO POR ATRIBUTOS
+let DEX_BY_POKEDEX = null;
+
+async function ensureDexLoaded() {
+  if (DEX_BY_POKEDEX) return;
+  try {
+    const res = await fetch("JSON/pokemons.json"); // ajuste o caminho se preciso
+    const arr = await res.json();
+    // Map por Pokedex (id como string)
+    DEX_BY_POKEDEX = new Map(arr.map(e => [String(e.Pokedex), e]));
+  } catch (e) {
+    console.warn("Não consegui carregar pokemons.json", e);
+    DEX_BY_POKEDEX = new Map();
+  }
+}
+
 async function ensureMovesLoaded() {
   if (MOVES_BY_NAME && MOVES_LIST) return; // já carregado
 
@@ -152,9 +168,20 @@ continueBtn.addEventListener("click", () => {
   }
 });
 
+// Máximo por atributo, usando o pokedex; fallback para um padrão se não achar
+const DEFAULT_STAT_CAP = 125;
+
+function statMaxFor(pokemon, key) {
+  const dex = DEX_BY_POKEDEX?.get(String(pokemon.Pokedex));
+  if (dex && dex[key] != null) {
+    return Number(dex[key]); // no JSON vem como string -> converte
+  }
+  return DEFAULT_STAT_CAP; // fallback
+}
+
 /* FUNÇÃO PARA ABRIR DETALHES DO POKÉMON */
 async function openDetails(pokemon) {
-  await ensureMovesLoaded();
+  await Promise.all([ ensureMovesLoaded(), ensureDexLoaded() ]);
 
   const details = document.getElementById("details-screen");
   const isShiny = pokemon.Shiny === "Sim";
@@ -183,6 +210,28 @@ const moveRow = (slot, name, meta) => `
   </div>
 `;
 
+const statDefs = [
+  ["HP",        "HP"],
+  ["Ataque",    "Attack"],
+  ["Defesa",    "Defense"],
+  ["Atk Esp.",  "Sp. Atk"],
+  ["Def Esp.",  "Sp. Def"],
+  ["Velocidade","Speed"],
+];
+
+const statsHtml = statDefs.map(([label, key], i) => {
+  const val = Number(pokemon[key] ?? 0);
+  const max = statMaxFor(pokemon, key); // usa o pokedex.json
+  return `
+    <div class="stat-row">
+      <div class="stat-label">${label}</div>
+      <div class="stat-value">
+        <span>${val}</span><span class="stat-max"> / ${max}</span>
+      </div>
+      <button class="stat-add" data-stat="${i}">＋</button>
+    </div>
+  `;
+}).join("");
 
   details.innerHTML = `
     <article class="details-card ${isShiny ? "shiny-card" : ""}">
@@ -218,22 +267,9 @@ const moveRow = (slot, name, meta) => `
       </div>
 
       <div class="section-title">Atributos</div>
-      <div class="base-stats">
-        ${[
-          ["HP",        pokemon.HP],
-          ["Ataque",    pokemon.Attack],
-          ["Defesa",    pokemon.Defense],
-          ["Atk Esp.",  pokemon["Sp. Atk"]],
-          ["Def Esp.",  pokemon["Sp. Def"]],
-          ["Velocidade",pokemon.Speed],
-        ].map(([label,val],i)=>`
-          <div class="stat-row">
-            <div class="stat-label">${label}</div>
-            <div class="stat-value">${val}</div>
-            <button class="stat-add" data-stat="${i}">＋</button>
-          </div>
-        `).join("")}
-      </div>
+<div class="base-stats">
+  ${statsHtml}
+</div>
 
       <div class="details-footer">
         <button class="btn btn-gray" id="btn-close">VOLTAR</button>
@@ -242,6 +278,52 @@ const moveRow = (slot, name, meta) => `
   `;
 
   details.classList.remove("hidden");
+
+  // desabilita de cara os '+' que já estão no máximo
+details.querySelectorAll(".stat-add").forEach((btn, idx) => {
+  const [, key] = statDefs[idx];
+  if (Number(pokemon[key]) >= statMaxFor(pokemon, key)) {
+    btn.disabled = true;
+  }
+});
+
+// listener do '+'
+details.querySelectorAll(".stat-add").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const which = Number(btn.dataset.stat);
+    const [, key] = statDefs[which];
+    const max = statMaxFor(pokemon, key);
+    const current = Number(pokemon[key] ?? 0);
+
+    if (current >= max) {
+      btn.disabled = true;
+      return;
+    }
+
+    // quando tiver a regra de upgrade, descomenta:
+    // pokemon[key] = current + 1;
+    // localStorage.setItem("pokemons", JSON.stringify(pokemons));
+    // openDetails(pokemon);
+  });
+});
+
+  // bloquear + quando atingir o máximo (por enquanto só mostra no console)
+details.querySelectorAll(".stat-add").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const which = Number(btn.dataset.stat);
+    const [, key] = statDefs[which];
+    const max = statMaxFor(pokemon, key);
+    const current = Number(pokemon[key] ?? 0);
+    if (current >= max) {
+      console.log(`${key} já está no máximo (${current}/${max})`);
+      return;
+    }
+    // Aqui entra a lógica de incremento/custo quando você definir:
+    // pokemon[key] = current + 1;
+    // localStorage.setItem("pokemons", JSON.stringify(pokemons));
+    // openDetails(pokemon);
+  });
+});
 
   // listeners básicos
   details.querySelector("#btn-close").onclick = () => details.classList.add("hidden");

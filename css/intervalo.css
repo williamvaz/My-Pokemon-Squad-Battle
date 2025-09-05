@@ -386,7 +386,17 @@ main {
   background:rgba(0,0,0,.15); border:1px solid rgba(255,255,255,.25); border-radius:10px; padding:6px 8px;
 }
 .stat-label{ text-align:left; font-weight:800; }
-.stat-value{ font-weight:900; }
+.stat-value { 
+  display: flex; 
+  align-items: center; 
+  gap: 4px; 
+  font-weight: 900; 
+}
+.stat-value .stat-max { 
+  opacity: .85; 
+  font-weight: 800; 
+}
+
 /* BOTÃO DE INCREMENTO (+) */
 .stat-add{
   width:28px; height:28px; border-radius:999px; border:none; cursor:pointer;
@@ -404,3 +414,10 @@ main {
 
 @keyframes pop-in{ from{ transform:scale(.92); opacity:0 } to{ transform:scale(1); opacity:1 } }
 @keyframes pulse{ 0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)} }
+
+/* DESABILITAR O + QUANDO ATRIBUTO MÁXIMO */
+.stat-add[disabled]{
+  filter: grayscale(1);
+  opacity: .6;
+  cursor: not-allowed;
+}
