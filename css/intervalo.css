@@ -6,7 +6,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: url("../background/pokedex.png") no-repeat center center fixed;
+  background: url("../background/pokedex.webp") no-repeat center center fixed;
   background-size: cover;
   color: white;
 }
