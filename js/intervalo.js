@@ -18,17 +18,24 @@ bgMusic.play().catch(err => {
 
 // CARREGAMENTO DO CATALOGO DE GOLPES PARA PREENCHER MODO/DANO/VELOCIDADE
 let MOVES_BY_NAME = null;
+let MOVES_LIST = null;
+
 async function ensureMovesLoaded() {
-  if (MOVES_BY_NAME) return;
+  if (MOVES_BY_NAME && MOVES_LIST) return; // já carregado
+
   try {
-    const res = await fetch("JSON/golpes.json");
+    const res = await fetch("JSON/golpes.json"); // mantém teu caminho
     const arr = await res.json();
-    MOVES_BY_NAME = new Map(arr.map(m => [m.Attack, m]));
+
+    MOVES_LIST = arr;                              // array completo (para listar/filtrar)
+    MOVES_BY_NAME = new Map(arr.map(m => [m.Attack, m])); // acesso rápido por nome
   } catch (e) {
-    console.warn("Não consegui carregar golpes.json, vou mostrar só os nomes.", e);
+    console.warn("Não consegui carregar golpes.json", e);
+    MOVES_LIST = [];
     MOVES_BY_NAME = new Map();
   }
 }
+
 
 /* GRID DE POKEMONS */
   const grid = document.getElementById("pokemon-grid"); // container (grid) onde os cards serão inseridos
@@ -155,18 +162,17 @@ async function openDetails(pokemon) {
     ? `pokemons/shiny/${pokemon.ID.padStart(4, "0")}-shiny.png`
     : `pokemons/normal/${pokemon.ID.padStart(4, "0")}.png`;
 
-  // PEGA LISTA DE GOLPES
   const g1 = MOVES_BY_NAME.get(pokemon["Golpe 1"]);
   const g2 = MOVES_BY_NAME.get(pokemon["Golpe 2"]);
 
-  // PREENCHE AS LINHAS DA TABELA
-  const moveRow = (name, meta) => `
+  const moveRow = (slot, name, meta) => `
     <div class="moves-row">
       <img src="types/${pokemon["Type 1"]}.png" class="type-icon" alt="">
       <div>${name || "-"}</div>
       <div class="pill">${meta?.Modo ?? "-"}</div>
       <div class="pill">${meta?.Damage ?? "-"}</div>
       <div class="pill">${meta?.Speed ?? "-"}</div>
+      <button class="btn-mini move-change" data-slot="${slot}">Trocar</button>
     </div>
   `;
 
@@ -197,10 +203,10 @@ async function openDetails(pokemon) {
       <div class="section-title">Golpes</div>
       <div class="moves">
         <div class="moves-row moves-head">
-          <div></div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div>
+          <div></div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div></div>
         </div>
-        ${moveRow(pokemon["Golpe 1"], g1)}
-        ${moveRow(pokemon["Golpe 2"], g2)}
+        ${moveRow(1, pokemon["Golpe 1"], g1)}
+        ${moveRow(2, pokemon["Golpe 2"], g2)}
       </div>
 
       <div class="section-title">Atributos</div>
@@ -229,20 +235,75 @@ async function openDetails(pokemon) {
 
   details.classList.remove("hidden");
 
-  // listeners de ação – por enquanto só placeholders
+  // listeners básicos
   details.querySelector("#btn-close").onclick = () => details.classList.add("hidden");
   details.querySelector("#btn-evolve").onclick = () => console.log("Evoluir:", pokemon.Name);
   details.querySelector("#btn-mega").onclick   = () => console.log("Mega Evoluir:", pokemon.Name);
-  details.querySelectorAll(".stat-add").forEach(btn=>{
-    btn.addEventListener("click", () => {
-      const which = btn.dataset.stat; // 0..5
-      console.log("Incrementar atributo", which, "de", pokemon.Name);
-      // aqui depois aplicamos sua regra de upgrade
-    });
+
+  // abrir seletor de golpes
+  details.querySelectorAll(".move-change").forEach(btn=>{
+    btn.addEventListener("click", ()=> openMovePicker(pokemon, Number(btn.dataset.slot)));
   });
 
-  // fecha ao clicar fora do card
+  // fecha clicando fora
   details.onclick = (e)=>{ if(e.target === details) details.classList.add("hidden"); };
+}
+
+function openMovePicker(pokemon, slot) {
+  const wrapper = document.getElementById("details-screen");
+
+  // monta painel
+  const picker = document.createElement("div");
+  picker.className = "move-picker";
+  picker.innerHTML = `
+    <h3>Trocar Golpe ${slot}</h3>
+    <input class="move-search" type="text" placeholder="Buscar golpe...">
+    <div class="move-list"></div>
+    <div class="picker-actions">
+      <button class="btn btn-gray" id="picker-cancel">Cancelar</button>
+    </div>
+  `;
+  wrapper.appendChild(picker);
+
+  const listEl = picker.querySelector(".move-list");
+  const searchEl = picker.querySelector(".move-search");
+
+  // (opcional) filtra por tipo do pokémon, se o golpe tiver campo Type
+  const typeSet = new Set([pokemon["Type 1"], pokemon["Type 2"]].filter(Boolean));
+  const baseList = MOVES_LIST.filter(m => !m.Type || typeSet.has(m.Type));
+
+  const renderList = (q="")=>{
+    const term = q.trim().toLowerCase();
+    const rows = (term ? baseList.filter(m => m.Attack.toLowerCase().includes(term)) : baseList)
+      .slice(0, 200) // segurança
+      .map(m => `
+        <button class="move-option" data-name="${m.Attack}">
+          <div>${m.Attack}</div>
+          <div class="pill">${m.Modo ?? "-"}</div>
+          <div class="pill">${m.Damage ?? "-"}</div>
+          <div class="pill">${m.Speed ?? "-"}</div>
+        </button>
+      `).join("");
+    listEl.innerHTML = rows || "<div>Nenhum golpe encontrado.</div>";
+    listEl.querySelectorAll(".move-option").forEach(b=>{
+      b.onclick = ()=>{
+        const name = b.dataset.name;
+        if (slot === 1) pokemon["Golpe 1"] = name;
+        else            pokemon["Golpe 2"] = name;
+
+        // salva no localStorage (pokemons vem do escopo do arquivo)
+        localStorage.setItem("pokemons", JSON.stringify(pokemons));
+
+        // fecha picker e reabre detalhes atualizado
+        picker.remove();
+        openDetails(pokemon);
+      };
+    });
+  };
+
+  renderList();
+  searchEl.oninput = ()=> renderList(searchEl.value);
+  picker.querySelector("#picker-cancel").onclick = ()=> picker.remove();
 }
 
 

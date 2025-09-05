@@ -251,14 +251,16 @@ main {
 
 /* ----------- DETALHES -----------  */
 
-/* FUNDO */
+/* ----------- DETALHES -----------  */
+
+/* FUNDO (overlay escuro atrás do card) */
 #details-screen{
   position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
   background:rgba(0,0,0,.7); z-index:1000;
 }
 #details-screen.hidden{ display:none; }
 
-/* ???? */
+/* CARD / CONTAINER PRINCIPAL */
 .details-card{
   width:min(420px,94vw);
   background:linear-gradient(180deg,#5aa0c2 0%, #4a88a6 100%);
@@ -268,114 +270,133 @@ main {
   animation:pop-in .18s ease-out;
 }
 
-/* DESTAQUE SHINY */
+/* DESTAQUE SHINY (borda/brilho) */
 .details-card.shiny-card{ box-shadow:0 0 0 2px gold, 0 12px 30px rgba(0,0,0,.6); }
 
-/* NOME DO POKEMON */
+/* NOME DO POKÉMON */
 .details-name{
   font-size:1.6rem; font-weight:900; letter-spacing:.5px; margin:2px 0 10px;
   text-shadow:2px 2px 0 #134, 0 0 6px rgba(0,0,0,.4);
 }
 
-/* IV E CP */
+/* GRID SUPERIOR (imagem à esquerda / CP/IV à direita) */
 .details-top{
   display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:center;
 }
 
-/* IMAGEM CONTAINER */
+/* BOX DA IMAGEM */
 .details-imgbox{
   background:rgba(0,0,0,.15); border-radius:12px; padding:10px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
 
-/* IMAGEM */
+/* IMAGEM DO POKÉMON */
 .details-image{ width:140px; max-width:100%; object-fit:contain; }
 
-/* TIPO CONTAINER */
+/* TIPOS (abaixo da imagem) */
 .details-types{ display:flex; gap:6px; margin-top:8px; }
-
-/* TIPO */
 .details-types img{ width:28px; height:28px; border-radius:50%; }
 
-/* ???? */
+/* COLUNA DE MINI-ESTATÍSTICAS (chips) */
 .mini-stats{ display:grid; gap:8px; }
 
-/* ???? */
+/* CHIP DE ESTATÍSTICA (CP/IV) */
 .stat-chip{
   background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.25);
   border-radius:10px; padding:8px 10px; text-align:left;
   display:flex; align-items:baseline; justify-content:space-between; font-weight:800;
 }
-
-/* ???? */
+/* RÓTULO DO CHIP (ex: "CP") */
 .stat-chip span{ opacity:.9; font-size:.85rem; }
-
-/* ???? */
+/* VALOR DO CHIP (ex: "1354") */
 .stat-chip strong{ font-size:1.3rem; text-shadow:1px 1px 0 #134; }
 
-/* ???? */
+/* AÇÕES (Evoluir / Mega Evoluir) */
 .details-actions{
   display:flex; gap:10px; justify-content:center; margin:12px 0 6px;
 }
 
-/* ???? */
+/* BOTÕES (estilo base) */
 .btn{
   padding:10px 16px; border-radius:10px; border:none; cursor:pointer;
   font-weight:900; letter-spacing:.4px; box-shadow:0 3px 0 rgba(0,0,0,.35);
   transition:transform .08s ease, filter .15s ease;
 }
-
-/* ???? */
 .btn:active{ transform:translateY(1px); }
 .btn-blue{ background:#2d6cdf; color:#ffd700; }
 .btn-red{  background:#d94141; color:#fff; }
 .btn-gray{ background:#ececec; color:#222; }
 
-/* ???? */
+/* TÍTULO DE SEÇÃO (Golpes, Atributos) */
 .section-title{
   margin:10px 0 6px; font-weight:900; text-align:left;
   text-shadow:1px 1px 0 #134; opacity:.95;
 }
 
-/* TABELA DE GOLPES */
+/* TABELA DE GOLPES (container) */
 .moves{
   background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.25);
   border-radius:12px; padding:10px; margin-top:4px;
 }
 
-/* ???? */
-.moves-row{ display:grid; grid-template-columns:26px 1fr auto auto auto; gap:6px; align-items:center; }
+/* LINHA DA TABELA DE GOLPES */
+.moves-row{  display:grid;  grid-template-columns: 26px 1fr auto auto auto auto; /* +1 coluna pro botão */  gap:6px; align-items:center;}
 .moves-head{ opacity:.85; font-size:.8rem; margin-bottom:6px; }
 .moves .pill{
   padding:2px 8px; border-radius:999px; background:rgba(0,0,0,.25);
   border:1px solid rgba(255,255,255,.2); font-weight:700;
 }
 
-/* ATRIBUTOS BASE */
+/* TROCAR O GOLPE */
+.btn-mini{
+  padding:6px 10px;
+  border-radius:999px;
+  border:none; cursor:pointer;
+  font-weight:900; font-size:.8rem;
+  background:#2d6cdf; color:#ffd700;
+  box-shadow:0 2px 0 rgba(0,0,0,.35);
+}
+
+/* MINI SELETOR DE GOLPES (popup dentro do modal) */
+.move-picker{
+  position:fixed; z-index:1100;
+  width:min(420px,94vw);
+  background:#eff6ff; color:#123;
+  border:2px solid #9ec3ff; border-radius:12px;
+  box-shadow:0 12px 30px rgba(0,0,0,.5);
+  padding:12px; inset:0; margin:auto; height:auto;
+}
+.move-picker h3{ margin:0 0 8px; font-weight:900; }
+.move-search{ width:100%; padding:8px 10px; border-radius:8px; border:1px solid #bcd; margin-bottom:8px; }
+.move-list{ max-height:260px; overflow:auto; display:grid; gap:6px; }
+.move-option{
+  display:grid; grid-template-columns:1fr auto auto auto; gap:8px; align-items:center;
+  background:#fff; border:1px solid #cfe1ff; border-radius:10px; padding:8px 10px;
+}
+.move-option .pill{ padding:2px 8px; border-radius:999px; background:#eef; font-weight:700; }
+.picker-actions{ display:flex; justify-content:flex-end; margin-top:8px; }
+
+
+/* ATRIBUTOS BASE (lista) */
 .base-stats{ margin-top:10px; display:grid; gap:6px; }
 
-/* ???? */
+/* LINHA DE ATRIBUTO (label, valor, botão +) */
 .stat-row{
   display:grid; grid-template-columns:1fr auto auto; gap:8px; align-items:center;
   background:rgba(0,0,0,.15); border:1px solid rgba(255,255,255,.25); border-radius:10px; padding:6px 8px;
 }
-
-/* ???? */
 .stat-label{ text-align:left; font-weight:800; }
-
-/* ???? */
 .stat-value{ font-weight:900; }
-
-/* ???? */
+/* BOTÃO DE INCREMENTO (+) */
 .stat-add{
   width:28px; height:28px; border-radius:999px; border:none; cursor:pointer;
   background:#2d6cdf; color:#ffd700; font-weight:900; box-shadow:0 2px 0 rgba(0,0,0,.35);
 }
 
-/* ???? */
+/* RODAPÉ (botão Voltar) */
 .details-footer{ margin-top:12px; display:flex; justify-content:center; }
 
-/* DESTAQUE SHINY */
+/* SELO SHINY */
 .shiny-label{
   background:gold; color:#000; font-weight:900; margin-top:6px; border-radius:6px;
   padding:3px 6px; display:inline-block; box-shadow:0 0 8px yellow; animation:pulse 1s infinite;
