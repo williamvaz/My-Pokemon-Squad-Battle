@@ -60,9 +60,9 @@ async function proceedToNextPage() {
 
   const base = selectedPokemon;
   const mod = {
-    HP: arred(base.HP * rand(0.10, 1.00)),
-    Attack: arred(base.Attack * rand(0.10, 1.00)),
-    Defense: arred(base.Defense * rand(0.10, 1.00)),
+    HP: arred(base.HP * rand(0.20, 1.00)),
+    Attack: arred(base.Attack * rand(0.20, 1.00)),
+    Defense: arred(base.Defense * rand(0.20, 1.00)),
     "Sp. Atk": arred(base["Sp. Atk"] * rand(0.20, 1.00)),
     "Sp. Def": arred(base["Sp. Def"] * rand(0.20, 1.00)),
     Speed: arred(base.Speed * rand(0.20, 1.00))

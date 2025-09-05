@@ -103,9 +103,9 @@ async function salvarPokemon(pokemon, shiny) {
   const arred = (v) => Math.round(v);
 
   const mod = {
-    HP: arred(pokemon.HP * rand(0.10, 1.00)),
-    Attack: arred(pokemon.Attack * rand(0.10, 1.00)),
-    Defense: arred(pokemon.Defense * rand(0.10, 1.00)),
+    HP: arred(pokemon.HP * rand(0.20, 1.00)),
+    Attack: arred(pokemon.Attack * rand(0.20, 1.00)),
+    Defense: arred(pokemon.Defense * rand(0.20, 1.00)),
     "Sp. Atk": arred(pokemon["Sp. Atk"] * rand(0.20, 1.00)),
     "Sp. Def": arred(pokemon["Sp. Def"] * rand(0.20, 1.00)),
     Speed: arred(pokemon.Speed * rand(0.20, 1.00))
