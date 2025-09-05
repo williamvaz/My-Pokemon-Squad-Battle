@@ -83,7 +83,12 @@ function applyFiltersAndSort() {
 }
 
 /* CRIAR FILTROS DE TIPOS */
-const types = ["Fire","Water","Grass","Electric","Psychic","Fighting","Dark","Steel","Fairy"];
+const types = [
+  "Normal","Fire","Water","Grass","Electric","Ice",
+  "Fighting","Poison","Ground","Flying",
+  "Psychic","Bug","Rock","Ghost",
+  "Dark","Steel","Dragon","Fairy"
+];
 types.forEach(type => {
   const img = document.createElement("img");
   img.src = `types/${type}.png`;
