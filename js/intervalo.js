@@ -3,20 +3,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* TOCAR MÚSICA DE FUNDO */
 const bgMusic = new Audio("music/main-theme.mpeg");
-bgMusic.loop = true;     // repete infinitamente
-bgMusic.volume = 0.5;    // volume (0.0 a 1.0)
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
 bgMusic.play().catch(err => {
   console.log("Autoplay bloqueado, esperando interação:", err);
-  document.body.addEventListener("click", () => {
-    bgMusic.play();
-  }, { once: true });
+  document.body.addEventListener("click", () => bgMusic.play(), { once: true });
 });
 
 /* BARRA SUPERIOR DE MOEDAS */
-  const pokecoinsEl = document.getElementById("pokecoins"); // span/div que mostra quantidade de Pokemoedas
-  const megarocksEl = document.getElementById("megarocks"); // span/div que mostra quantidade de Mega Rocks
+const pokecoinsEl = document.getElementById("pokecoins");
+const megarocksEl = document.getElementById("megarocks");
 
-// ----- MOEDAS -----
+/* ====== MOEDAS ====== */
 const COST_PER_POINT = 2;
 
 function getCoins() {
@@ -24,7 +22,7 @@ function getCoins() {
 }
 function setCoins(v) {
   localStorage.setItem("Pokemoedas", String(v));
-  pokecoinsEl.textContent = v; // atualiza HUD
+  pokecoinsEl.textContent = v;
 }
 function trySpendCoins(cost) {
   const c = getCoins();
@@ -33,10 +31,9 @@ function trySpendCoins(cost) {
   return true;
 }
 
-// ----- CUSTO DE GOLPES -----
-const MOVE_COST_SAME_TYPE = 30;  // golpe do mesmo tipo do Pokémon
-const MOVE_COST_DIFF_TYPE = 60;  // golpe de tipo diferente
-
+/* ====== CUSTO DE GOLPES ====== */
+const MOVE_COST_SAME_TYPE = 30;
+const MOVE_COST_DIFF_TYPE = 60;
 function moveCost(pokemon, moveMeta) {
   const mt = (moveMeta?.Type || "").toLowerCase();
   const t1 = (pokemon["Type 1"] || "").toLowerCase();
@@ -44,23 +41,36 @@ function moveCost(pokemon, moveMeta) {
   return mt && (mt === t1 || mt === t2) ? MOVE_COST_SAME_TYPE : MOVE_COST_DIFF_TYPE;
 }
 
-// CARREGAMENTO DO CATALOGO DE GOLPES PARA PREENCHER MODO/DANO/VELOCIDADE
+/* ====== GOLPES (catálogo) ====== */
 let MOVES_BY_NAME = null;
 let MOVES_LIST = null;
+async function ensureMovesLoaded() {
+  if (MOVES_BY_NAME && MOVES_LIST) return;
+  try {
+    const res = await fetch("JSON/golpes.json");
+    const arr = await res.json();
+    MOVES_LIST = arr;
+    MOVES_BY_NAME = new Map(arr.map(m => [m.Attack, m]));
+  } catch (e) {
+    console.warn("Não consegui carregar golpes.json", e);
+    MOVES_LIST = [];
+    MOVES_BY_NAME = new Map();
+  }
+}
 
-// ---------- POKEDEX ----------
+/* ====== DEX (espécies) ====== */
 let DEX_LIST = null;
-let DEX_BY_POKEDEX = null; // mantém se já usa em outros lugares
-let DEX_BY_ID = null;      // NOVO: índice por ID
+let DEX_BY_POKEDEX = null;
+let DEX_BY_ID = null;
 
 async function ensureDexLoaded() {
   if (DEX_LIST && DEX_BY_POKEDEX && DEX_BY_ID) return;
   try {
-    const res = await fetch("JSON/pokemons.json"); // ajuste caminho se preciso
+    const res = await fetch("JSON/pokemons.json");
     const arr = await res.json();
     DEX_LIST = arr;
     DEX_BY_POKEDEX = new Map(arr.map(e => [String(e.Pokedex), e]));
-    DEX_BY_ID      = new Map(arr.map(e => [String(e.ID),       e])); // <<< novo
+    DEX_BY_ID      = new Map(arr.map(e => [String(e.ID),       e]));
   } catch (e) {
     console.warn("Não consegui carregar pokemons.json", e);
     DEX_LIST = [];
@@ -69,11 +79,8 @@ async function ensureDexLoaded() {
   }
 }
 
-
-// ---- DERIVADAS (Total, IV, CP) ----
+/* ====== DERIVADAS (Total, IV, CP) ====== */
 const DERIVED_KEYS = ["HP","Attack","Defense","Sp. Atk","Sp. Def","Speed"];
-
-// ajuste se quiser um CP mais alto/baixo
 const CP_PER_POINT = 2.5;
 
 function maxTotalFromDex(dexEntry){
@@ -83,232 +90,82 @@ function maxTotalFromDex(dexEntry){
 }
 
 function recalcDerived(pokemon){
-  // soma os 6 atributos
   const total = DERIVED_KEYS.reduce((s,k)=> s + Number(pokemon[k] || 0), 0);
   pokemon.Total = total;
 
-  // pega os máximos da espécie pelo Pokedex
-  const dex = DEX_BY_POKEDEX?.get(String(pokemon.Pokedex));
+  const dex = (DEX_BY_ID && DEX_BY_ID.get(String(pokemon.ID))) ||
+              (DEX_BY_POKEDEX && DEX_BY_POKEDEX.get(String(pokemon.Pokedex)));
+
   const maxTotal = maxTotalFromDex(dex) || total || 1;
-
-  // IV como fração 0..1 (guarda com 4 casas; na UI você já exibe em %)
-  pokemon.IV = +(total / maxTotal).toFixed(4);
-
-  // CP proporcional ao total (ajustável via CP_PER_POINT)
+  pokemon.IV = +(total / maxTotal).toFixed(4);          // fração 0..1
   pokemon.CP = Math.round(total * CP_PER_POINT);
 }
 
-async function ensureMovesLoaded() {
-  if (MOVES_BY_NAME && MOVES_LIST) return; // já carregado
-
-  try {
-    const res = await fetch("JSON/golpes.json"); // mantém teu caminho
-    const arr = await res.json();
-
-    MOVES_LIST = arr;                              // array completo (para listar/filtrar)
-    MOVES_BY_NAME = new Map(arr.map(m => [m.Attack, m])); // acesso rápido por nome
-  } catch (e) {
-    console.warn("Não consegui carregar golpes.json", e);
-    MOVES_LIST = [];
-    MOVES_BY_NAME = new Map();
-  }
-}
-
-
-/* GRID DE POKEMONS */
-  const grid = document.getElementById("pokemon-grid"); // container (grid) onde os cards serão inseridos
-
-/* FILTROS E ORDENAÇÃO */
-  const typeFiltersEl = document.getElementById("type-filters");
-  const sortSelect = document.getElementById("sort-select");
-
-/* CARREGAR POKEMONS DO LOCALSTORAGE */
-  const pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
-
-/* ATUALIZAR QUANTIDADE DE MOEDAS */
-  pokecoinsEl.textContent = localStorage.getItem("Pokemoedas") || 0;
-  megarocksEl.textContent = localStorage.getItem("Mega Rock") || 0;
-
-function renderPokemons(list) {
-  grid.innerHTML = ""; // limpa grid
-
-  list.forEach(p => {
-    const div = document.createElement("div");
-    div.classList.add("pokemon-card");
-
-    // CARD COM TEMA SHINY
-    if (p.Shiny === "Sim") div.classList.add("shiny-card");
-
-    // IMAGENS DOS POKEMONS
-    const imagePath = p.Shiny === "Sim"
-      ? `pokemons/shiny/${p.ID.padStart(4, '0')}-shiny.png`
-      : `pokemons/normal/${p.ID.padStart(4, '0')}.png`;
-
-    // HTML DO CARD (COM SELO DOS POKEMONS SHINY)
-    div.innerHTML = `
-      <div class="pokemon-inner">
-        <img class="pokemon-image" src="${imagePath}" alt="${p.Name}">
-        <div class="pokemon-name">${p.Name}</div>
-        ${p.Shiny === "Sim" ? `<div class="shiny-label">✨ Shiny</div>` : ""}
-        <div class="pokemon-bottom">
-          <div class="types">
-            <img src="types/${p["Type 1"]}.png" alt="${p["Type 1"]}" class="type-icon">
-            ${p["Type 2"] && p["Type 2"] !== "" 
-              ? `<img src="types/${p["Type 2"]}.png" alt="${p["Type 2"]}" class="type-icon">`
-              : ""}
-          </div>
-          <div class="cp-label">CP: ${p.CP}</div>
-        </div>
-      </div>
-    `;
-
-    // ABIR DETALHES
-    div.addEventListener("click", () => openDetails(p));
-
-    grid.appendChild(div);
-  });
-}
-
-/* FILTRAR E ORDENAR */
-function applyFiltersAndSort() {
-  let filtered = [...pokemons];
-
-// TIPOS SELECIONADOS
-  const selectedTypes = [...typeFiltersEl.querySelectorAll("img.selected")].map(img => img.alt);
-
-  if (selectedTypes.length > 0) {
-    filtered = filtered.filter(p =>
-      selectedTypes.includes(p["Type 1"]) || selectedTypes.includes(p["Type 2"])
-    );
-  }
-
-// ORDENAÇÃO
-  const criterio = sortSelect.value;
-  filtered.sort((a, b) => {
-    if (criterio === "CP") return b.CP - a.CP;
-    if (criterio === "IV") return b.IV - a.IV;
-    if (criterio === "ID") return Number(a.ID) - Number(b.ID);
-  });
-
-  renderPokemons(filtered);
-}
-
-/* CRIAR FILTROS DE TIPOS */
-const types = [
-  "Normal","Fire","Water","Grass","Electric","Ice",
-  "Fighting","Poison","Ground","Flying",
-  "Psychic","Bug","Rock","Ghost",
-  "Dark","Steel","Dragon","Fairy"
-];
-types.forEach(type => {
-  const img = document.createElement("img");
-  img.src = `types/${type}.png`;
-  img.alt = type;
-  img.addEventListener("click", () => {
-    img.classList.toggle("selected");
-    applyFiltersAndSort();
-  });
-  typeFiltersEl.appendChild(img);
-});
-
-/* EVENTO DE ORDENAÇÃO */
-sortSelect.addEventListener("change", applyFiltersAndSort);
-
-/* EXIBIR TODOS INICIALMENTE */
-applyFiltersAndSort();
-
-/* BOTÃO CONTINUAR */
-const continueBtn = document.getElementById("continue-btn");
-
-continueBtn.addEventListener("click", () => {
-  const rodadas = parseInt(localStorage.getItem("rodadas_finalizadas")) || 0;
-
-  if (rodadas > 19) {
-    window.location.href = "time.html";     // mais de 19 rodadas → vai para montar time
-  } else {
-    window.location.href = "explorar.html"; // senão → continua explorando
-  }
-});
-
-// Máximo por atributo, usando o pokedex; fallback para um padrão se não achar
+/* ====== CAP POR ATRIBUTO (para exibir X / max) ====== */
 const DEFAULT_STAT_CAP = 125;
-
 function statMaxFor(pokemon, key) {
-  const dex = DEX_BY_POKEDEX?.get(String(pokemon.Pokedex));
-  if (dex && dex[key] != null) {
-    return Number(dex[key]); // no JSON vem como string -> converte
-  }
-  return DEFAULT_STAT_CAP; // fallback
+  const dex = DEX_BY_ID?.get(String(pokemon.ID)) || DEX_BY_POKEDEX?.get(String(pokemon.Pokedex));
+  if (dex && dex[key] != null) return Number(dex[key]);
+  return DEFAULT_STAT_CAP;
 }
 
-/* FUNÇÃO PARA ABRIR DETALHES DO POKÉMON */
-async function openDetails(pokemon) {
-  await Promise.all([ ensureMovesLoaded(), ensureDexLoaded() ]);
-
-  const details = document.getElementById("details-screen");
-  const isShiny = pokemon.Shiny === "Sim";
-  const imgPath = isShiny
-    ? `pokemons/shiny/${pokemon.ID.padStart(4, "0")}-shiny.png`
-    : `pokemons/normal/${pokemon.ID.padStart(4, "0")}.png`;
-
-  const g1 = MOVES_BY_NAME.get(pokemon["Golpe 1"]);
-  const g2 = MOVES_BY_NAME.get(pokemon["Golpe 2"]);
-
-// helper para pegar o ícone do tipo do golpe (com fallback)
-const typeIconFor = (meta) => {
-  const t = meta?.Type;                 // ex: "Bug", "Steel", "Water"...
-  return t ? `types/${t}.png` : `types/${pokemon["Type 1"]}.png`;
-};
-
-// CP máximo da espécie
+/* ====== EVOLUÇÃO / MEGA ====== */
 function cpMaxFromDex(dex) {
   if (!dex) return 1;
   const v = Number(dex.CP);
   return Number.isFinite(v) && v > 0 ? v : Math.round(maxTotalFromDex(dex) * CP_PER_POINT);
 }
-
-// Encontra candidatos de evolução pelo "Previous form" / "Previous megaform" = ID atual
 function findEvoCandidatesByID(currentID, isMega = false) {
   const key = isMega ? "Previous megaform" : "Previous form";
   const me = String(currentID);
   return DEX_LIST.filter(d => String(d[key]) === me);
 }
-
-// Custos
 function coinCostForEvolution(curDex, targetDex) {
   const cur = cpMaxFromDex(curDex);
   const tgt = cpMaxFromDex(targetDex);
-  // 120% - (CPmaxCur / CPmaxEvol) * 100, arredondado pra cima
   return Math.max(1, Math.ceil(120 - (cur / tgt) * 100));
 }
-
 function rockCostForMega(curDex, targetDex) {
-  // Mega: (coinCost / 10), arredondado pra cima — usa Mega Rock
-  const coinCost = coinCostForEvolution(curDex, targetDex);
-  return Math.max(1, Math.ceil(coinCost / 10));
+  return Math.max(1, Math.ceil(coinCostForEvolution(curDex, targetDex) / 10));
 }
-
-// aplica evolução no objeto do jogador mantendo IV aproximado
 function applyEvolution(pokemon, targetDex) {
-  const oldIV = Number(pokemon.IV ?? 0);
+  const curDex = DEX_BY_ID.get(String(pokemon.ID));
+  const keys = DERIVED_KEYS;
 
-  // troca identidade/espécie
-  pokemon.Name     = targetDex.Name;
-  pokemon.Pokedex  = String(targetDex.Pokedex);
-  pokemon.ID       = String(targetDex.ID);
-  pokemon["Type 1"] = targetDex["Type 1"] ?? pokemon["Type 1"];
-  pokemon["Type 2"] = targetDex["Type 2"] ?? "";
+  // % atual por atributo na forma atual
+  const ratios = Object.fromEntries(keys.map(k => {
+    const curVal = Number(pokemon[k] || 0);
+    const curMax = Number(curDex[k] || 1);
+    return [k, curVal / curMax];
+  }));
 
-  // reescala atributos pela fração do IV antigo
-  const KEYS = ["HP","Attack","Defense","Sp. Atk","Sp. Def","Speed"];
-  KEYS.forEach(k => {
-    const cap = Number(targetDex[k] ?? 0);
-    pokemon[k] = Math.max(1, Math.round(cap * oldIV));
-  });
+  // aplica mesmo % nos caps da forma nova
+  const newStats = Object.fromEntries(keys.map(k => {
+    const tgtMax = Number(targetDex[k] || 0);
+    return [k, Math.max(1, Math.round((ratios[k] || 0) * tgtMax))];
+  }));
 
-  recalcDerived(pokemon); // Total, IV, CP
+  // derivados
+  const newTotal = keys.reduce((s, k) => s + newStats[k], 0);
+  const maxTotal = Number(targetDex.Total || keys.reduce((s,k)=> s + Number(targetDex[k]||0), 0));
+  const newIV = maxTotal ? +(newTotal / maxTotal).toFixed(4) : 0;
+  const newCP = Math.max(1, Math.round(newIV * Number(targetDex.CP || 0)));
+
+  // aplicar espécie nova
+  pokemon.ID        = String(targetDex.ID);
+  pokemon.Pokedex   = String(targetDex.Pokedex);
+  pokemon.Name      = targetDex.Name;
+  pokemon["Type 1"] = targetDex["Type 1"];
+  pokemon["Type 2"] = targetDex["Type 2"];
+
+  // stats & derivados
+  keys.forEach(k => { pokemon[k] = newStats[k]; });
+  pokemon.Total = newTotal;
+  pokemon.IV    = newIV;   // 0..1
+  pokemon.CP    = newCP;
 }
 
+/* ====== POPUP DE CONFIRMAÇÃO ====== */
 function openConfirm(text, confirmLabel, onConfirm) {
   const wrapper = document.getElementById("details-screen");
   const box = document.createElement("div");
@@ -326,40 +183,145 @@ function openConfirm(text, confirmLabel, onConfirm) {
   box.querySelector("#ok").onclick = () => { box.remove(); onConfirm?.(); };
 }
 
-// linha da tabela de golpes (usa o tipo do golpe!)
-const moveRow = (slot, name, meta) => `
-  <div class="moves-row">
-    <img src="${typeIconFor(meta)}" class="type-icon" alt="">
-    <div>${name || "-"}</div>
-    <div class="pill">${meta?.Modo ?? "-"}</div>
-    <div class="pill">${meta?.Damage ?? "-"}</div>
-    <div class="pill">${meta?.Speed ?? "-"}</div>
-    <button class="btn-mini move-change" data-slot="${slot}">Trocar</button>
-  </div>
-`;
+/* ====== GRID / FILTROS / ORDENAÇÃO ====== */
+const grid = document.getElementById("pokemon-grid");
+const typeFiltersEl = document.getElementById("type-filters");
+const sortSelect = document.getElementById("sort-select");
+const pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
 
-const statDefs = [
-  ["HP",        "HP"],
-  ["Ataque",    "Attack"],
-  ["Defesa",    "Defense"],
-  ["Atk Esp.",  "Sp. Atk"],
-  ["Def Esp.",  "Sp. Def"],
-  ["Velocidade","Speed"],
-];
+pokecoinsEl.textContent = localStorage.getItem("Pokemoedas") || 0;
+megarocksEl.textContent = localStorage.getItem("Mega Rock") || 0;
 
-const statsHtml = statDefs.map(([label, key], i) => {
-  const val = Number(pokemon[key] ?? 0);
-  const max = statMaxFor(pokemon, key); // usa o pokedex.json
-  return `
-    <div class="stat-row">
-      <div class="stat-label">${label}</div>
-      <div class="stat-value">
-        <span>${val}</span><span class="stat-max"> / ${max}</span>
+function renderPokemons(list) {
+  grid.innerHTML = "";
+  list.forEach(p => {
+    const div = document.createElement("div");
+    div.classList.add("pokemon-card");
+    if (p.Shiny === "Sim") div.classList.add("shiny-card");
+
+    const imagePath = p.Shiny === "Sim"
+      ? `pokemons/shiny/${p.ID.padStart(4, '0')}-shiny.png`
+      : `pokemons/normal/${p.ID.padStart(4, '0')}.png`;
+
+    div.innerHTML = `
+      <div class="pokemon-inner">
+        <img class="pokemon-image" src="${imagePath}" alt="${p.Name}">
+        <div class="pokemon-name">${p.Name}</div>
+        ${p.Shiny === "Sim" ? `<div class="shiny-label">✨ Shiny</div>` : ""}
+        <div class="pokemon-bottom">
+          <div class="types">
+            <img src="types/${p["Type 1"]}.png" alt="${p["Type 1"]}" class="type-icon">
+            ${p["Type 2"] ? `<img src="types/${p["Type 2"]}.png" alt="${p["Type 2"]}" class="type-icon">` : ""}
+          </div>
+          <div class="cp-label">CP: ${p.CP}</div>
+        </div>
       </div>
-      <button class="stat-add" data-stat="${i}">＋</button>
+    `;
+    div.addEventListener("click", () => openDetails(p));
+    grid.appendChild(div);
+  });
+}
+
+function applyFiltersAndSort() {
+  let filtered = [...pokemons];
+  const selectedTypes = [...typeFiltersEl.querySelectorAll("img.selected")].map(img => img.alt);
+
+  if (selectedTypes.length > 0) {
+    filtered = filtered.filter(p =>
+      selectedTypes.includes(p["Type 1"]) || selectedTypes.includes(p["Type 2"])
+    );
+  }
+
+  const criterio = sortSelect.value;
+  filtered.sort((a, b) => {
+    if (criterio === "CP") return b.CP - a.CP;
+    if (criterio === "IV") return b.IV - a.IV;
+    if (criterio === "ID") return Number(a.ID) - Number(b.ID);
+  });
+
+  renderPokemons(filtered);
+}
+
+const types = [
+  "Normal","Fire","Water","Grass","Electric","Ice",
+  "Fighting","Poison","Ground","Flying",
+  "Psychic","Bug","Rock","Ghost",
+  "Dark","Steel","Dragon","Fairy"
+];
+types.forEach(type => {
+  const img = document.createElement("img");
+  img.src = `types/${type}.png`;
+  img.alt = type;
+  img.addEventListener("click", () => {
+    img.classList.toggle("selected");
+    applyFiltersAndSort();
+  });
+  typeFiltersEl.appendChild(img);
+});
+
+sortSelect.addEventListener("change", applyFiltersAndSort);
+applyFiltersAndSort();
+
+/* ====== BOTÃO CONTINUAR ====== */
+const continueBtn = document.getElementById("continue-btn");
+if (continueBtn) {
+  continueBtn.addEventListener("click", () => {
+    const rodadas = parseInt(localStorage.getItem("rodadas_finalizadas")) || 0;
+    if (rodadas > 19) window.location.href = "time.html";
+    else window.location.href = "explorar.html";
+  });
+}
+
+/* ====== DETALHES ====== */
+async function openDetails(pokemon) {
+  await Promise.all([ ensureMovesLoaded(), ensureDexLoaded() ]);
+
+  const details = document.getElementById("details-screen");
+  const isShiny = pokemon.Shiny === "Sim";
+  const imgPath = isShiny
+    ? `pokemons/shiny/${pokemon.ID.padStart(4, "0")}-shiny.png`
+    : `pokemons/normal/${pokemon.ID.padStart(4, "0")}.png`;
+
+  const g1 = MOVES_BY_NAME.get(pokemon["Golpe 1"]);
+  const g2 = MOVES_BY_NAME.get(pokemon["Golpe 2"]);
+
+  const typeIconFor = (meta) => {
+    const t = meta?.Type;
+    return t ? `types/${t}.png` : `types/${pokemon["Type 1"]}.png`;
+  };
+
+  const moveRow = (slot, name, meta) => `
+    <div class="moves-row">
+      <img src="${typeIconFor(meta)}" class="type-icon" alt="">
+      <div>${name || "-"}</div>
+      <div class="pill">${meta?.Modo ?? "-"}</div>
+      <div class="pill">${meta?.Damage ?? "-"}</div>
+      <div class="pill">${meta?.Speed ?? "-"}</div>
+      <button class="btn-mini move-change" data-slot="${slot}">Trocar</button>
     </div>
   `;
-}).join("");
+
+  const statDefs = [
+    ["HP",        "HP"],
+    ["Ataque",    "Attack"],
+    ["Defesa",    "Defense"],
+    ["Atk Esp.",  "Sp. Atk"],
+    ["Def Esp.",  "Sp. Def"],
+    ["Velocidade","Speed"],
+  ];
+  const statsHtml = statDefs.map(([label, key], i) => {
+    const val = Number(pokemon[key] ?? 0);
+    const max = statMaxFor(pokemon, key);
+    return `
+      <div class="stat-row">
+        <div class="stat-label">${label}</div>
+        <div class="stat-value">
+          <span>${val}</span><span class="stat-max"> / ${max}</span>
+        </div>
+        <button class="stat-add" data-stat="${i}">＋</button>
+      </div>
+    `;
+  }).join("");
 
   details.innerHTML = `
     <article class="details-card ${isShiny ? "shiny-card" : ""}">
@@ -395,9 +357,7 @@ const statsHtml = statDefs.map(([label, key], i) => {
       </div>
 
       <div class="section-title">Atributos</div>
-<div class="base-stats">
-  ${statsHtml}
-</div>
+      <div class="base-stats">${statsHtml}</div>
 
       <div class="details-footer">
         <button class="btn btn-gray" id="btn-close">VOLTAR</button>
@@ -407,117 +367,94 @@ const statsHtml = statDefs.map(([label, key], i) => {
 
   details.classList.remove("hidden");
 
-// '+' — nasce desabilitado se já estiver no teto e aplica custo de 2 Pokemoedas
-details.querySelectorAll(".stat-add").forEach((btn, idx) => {
-  const [, key] = statDefs[idx];
-  const max = statMaxFor(pokemon, key);
-  const current = Number(pokemon[key] ?? 0);
-  if (current >= max) btn.disabled = true;
+  /* '+' — custo 2 Pokemoedas, respeita o máximo e recalcula derivados */
+  details.querySelectorAll(".stat-add").forEach((btn, idx) => {
+    const [, key] = statDefs[idx];
+    const max = statMaxFor(pokemon, key);
+    const current = Number(pokemon[key] ?? 0);
+    if (current >= max) btn.disabled = true;
 
-  btn.onclick = () => {
-    const cur = Number(pokemon[key] ?? 0);
-    const cap = statMaxFor(pokemon, key);
+    btn.onclick = () => {
+      const cur = Number(pokemon[key] ?? 0);
+      const cap = statMaxFor(pokemon, key);
+      if (cur >= cap) { btn.disabled = true; return; }
+      if (!trySpendCoins(COST_PER_POINT)) {
+        btn.classList.add("deny");
+        setTimeout(() => btn.classList.remove("deny"), 350);
+        return;
+      }
+      pokemon[key] = cur + 1;
+      recalcDerived(pokemon);
+      localStorage.setItem("pokemons", JSON.stringify(pokemons));
+      openDetails(pokemon);
+    };
+  });
 
-    if (cur >= cap) { btn.disabled = true; return; }
-
-    // precisa ter 2 pokemoedas
-    if (!trySpendCoins(COST_PER_POINT)) {
-      btn.classList.add("deny");
-      setTimeout(() => btn.classList.remove("deny"), 350);
-      return;
-    }
-
-    // aplica +1 no atributo
-    pokemon[key] = cur + 1;
-
-    // 🔸 RECALCULA DERIVADAS
-    recalcDerived(pokemon);
-
-    // salva e rerenderiza
-    localStorage.setItem("pokemons", JSON.stringify(pokemons));
-    openDetails(pokemon);
-  };
-});
-
-  // listeners básicos
+  /* Fechar */
   details.querySelector("#btn-close").onclick = () => details.classList.add("hidden");
-// ----- EVOLUIR -----
-details.querySelector("#btn-evolve").onclick = () => {
-  const curDex = DEX_BY_ID.get(String(pokemon.ID));
-  const candidates = findEvoCandidatesByID(pokemon.ID, false);
-  if (!candidates.length) {
-    const b = details.querySelector("#btn-evolve"); b.classList.add("deny");
-    setTimeout(()=>b.classList.remove("deny"), 350);
-    return;
-  }
-  const target = candidates[Math.floor(Math.random()*candidates.length)];
-  const cost = coinCostForEvolution(curDex, target);
 
-  if (getCoins() < cost) {
-    const b = details.querySelector("#btn-evolve"); b.classList.add("deny");
-    setTimeout(()=>b.classList.remove("deny"), 350);
-    return;
-  }
+  /* EVOLUIR */
+  const evolveBtn = details.querySelector("#btn-evolve");
+  evolveBtn.onclick = () => {
+    const curDex = DEX_BY_ID.get(String(pokemon.ID));
+    const candidates = findEvoCandidatesByID(pokemon.ID, false);
+    if (!candidates.length) { evolveBtn.classList.add("deny"); setTimeout(()=>evolveBtn.classList.remove("deny"), 350); return; }
 
-  openConfirm(
-    `Deseja evoluir o seu <b>${pokemon.Name}</b> para <b>${target.Name}</b> por <b>${cost}</b> Pokemoedas?`,
-    "Evoluir",
-    () => {
-      if (!trySpendCoins(cost)) return;
-      applyEvolution(pokemon, target);
-      localStorage.setItem("pokemons", JSON.stringify(pokemons));
-      openDetails(pokemon);
-    }
-  );
-};
+    const target = candidates[Math.floor(Math.random()*candidates.length)];
+    const cost = coinCostForEvolution(curDex, target);
+    if (getCoins() < cost) { evolveBtn.classList.add("deny"); setTimeout(()=>evolveBtn.classList.remove("deny"), 350); return; }
 
-// ----- MEGA EVOLUIR -----
-details.querySelector("#btn-mega").onclick = () => {
-  const curDex = DEX_BY_ID.get(String(pokemon.ID));
-  const candidates = findEvoCandidatesByID(pokemon.ID, true);
-  if (!candidates.length) {
-    const b = details.querySelector("#btn-mega"); b.classList.add("deny");
-    setTimeout(()=>b.classList.remove("deny"), 350);
-    return;
-  }
-  const target = candidates[Math.floor(Math.random()*candidates.length)];
-  const cost = rockCostForMega(curDex, target); // = ceil((120 - (cur/tgt)*100)/10)
+    openConfirm(
+      `Deseja evoluir o seu <b>${pokemon.Name}</b> para <b>${target.Name}</b> por <b>${cost}</b> Pokemoedas?`,
+      "Evoluir",
+      () => {
+        if (!trySpendCoins(cost)) return;
+        applyEvolution(pokemon, target);
+        recalcDerived(pokemon);
+        localStorage.setItem("pokemons", JSON.stringify(pokemons));
+        openDetails(pokemon);
+      }
+    );
+  };
 
-  const rocks = parseInt(localStorage.getItem("Mega Rock") || "0", 10);
-  if (rocks < cost) {
-    const b = details.querySelector("#btn-mega"); b.classList.add("deny");
-    setTimeout(()=>b.classList.remove("deny"), 350);
-    return;
-  }
+  /* MEGA EVOLUIR */
+  const megaBtn = details.querySelector("#btn-mega");
+  megaBtn.onclick = () => {
+    const curDex = DEX_BY_ID.get(String(pokemon.ID));
+    const candidates = findEvoCandidatesByID(pokemon.ID, true);
+    if (!candidates.length) { megaBtn.classList.add("deny"); setTimeout(()=>megaBtn.classList.remove("deny"), 350); return; }
 
-  openConfirm(
-    `Deseja mega evoluir o seu <b>${pokemon.Name}</b> para <b>${target.Name}</b> por <b>${cost}</b> Mega Rocks?`,
-    "Mega Evoluir",
-    () => {
-      const newR = rocks - cost;
-      localStorage.setItem("Mega Rock", String(newR));
-      megarocksEl.textContent = newR;
+    const target = candidates[Math.floor(Math.random()*candidates.length)];
+    const cost = rockCostForMega(curDex, target);
+    const rocks = parseInt(localStorage.getItem("Mega Rock") || "0", 10);
+    if (rocks < cost) { megaBtn.classList.add("deny"); setTimeout(()=>megaBtn.classList.remove("deny"), 350); return; }
 
-      applyEvolution(pokemon, target);
-      localStorage.setItem("pokemons", JSON.stringify(pokemons));
-      openDetails(pokemon);
-    }
-  );
-};
+    openConfirm(
+      `Deseja mega evoluir o seu <b>${pokemon.Name}</b> para <b>${target.Name}</b> por <b>${cost}</b> Mega Rocks?`,
+      "Mega Evoluir",
+      () => {
+        localStorage.setItem("Mega Rock", String(rocks - cost));
+        megarocksEl.textContent = (rocks - cost);
+        applyEvolution(pokemon, target);
+        recalcDerived(pokemon);
+        localStorage.setItem("pokemons", JSON.stringify(pokemons));
+        openDetails(pokemon);
+      }
+    );
+  };
 
-  // abrir seletor de golpes
+  /* Troca de golpes (abre seletor) */
   details.querySelectorAll(".move-change").forEach(btn=>{
     btn.addEventListener("click", ()=> openMovePicker(pokemon, Number(btn.dataset.slot)));
   });
 
-  // fecha clicando fora
+  /* Fechar clicando fora */
   details.onclick = (e)=>{ if(e.target === details) details.classList.add("hidden"); };
 }
 
+/* ====== SELETOR DE GOLPES ====== */
 function openMovePicker(pokemon, slot) {
   const wrapper = document.getElementById("details-screen");
-
-  // painel
   const picker = document.createElement("div");
   picker.className = "move-picker";
   picker.innerHTML = `
@@ -536,13 +473,9 @@ function openMovePicker(pokemon, slot) {
   const listEl = picker.querySelector(".move-list");
   const searchEl = picker.querySelector(".move-search");
 
-  // renderizador (TODOS os golpes; filtra só por texto)
   const renderList = (q = "") => {
     const term = q.trim().toLowerCase();
-
-    const src = term
-      ? MOVES_LIST.filter(m => (m.Attack || "").toLowerCase().includes(term))
-      : MOVES_LIST;
+    const src = term ? MOVES_LIST.filter(m => (m.Attack || "").toLowerCase().includes(term)) : MOVES_LIST;
 
     const rows = src.slice(0, 400).map(m => {
       const cost = moveCost(pokemon, m);
@@ -562,7 +495,6 @@ function openMovePicker(pokemon, slot) {
 
     listEl.innerHTML = rows || `<div style="opacity:.7;padding:6px 2px;">Nenhum golpe encontrado.</div>`;
 
-    // ação: tentar comprar/trocar
     listEl.querySelectorAll(".move-select").forEach(btn => {
       btn.onclick = () => {
         const name = btn.dataset.name;
@@ -574,11 +506,9 @@ function openMovePicker(pokemon, slot) {
           return;
         }
 
-        // aplica golpe no slot
         if (slot === 1) pokemon["Golpe 1"] = name;
         else            pokemon["Golpe 2"] = name;
 
-        // salva e reabre detalhes
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
         picker.remove();
         openDetails(pokemon);
