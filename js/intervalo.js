@@ -1,6 +1,4 @@
-/* ==============================
-   INICIALIZAÇÃO DA PÁGINA
-   ============================== */
+/* INICIALIZAÇÃO DA PÁGINA */
 document.addEventListener("DOMContentLoaded", () => {
 
 /* BARRA SUPERIOR DE MOEDAS */
@@ -10,6 +8,10 @@ document.addEventListener("DOMContentLoaded", () => {
 /* GRID DE POKEMONS */
   const grid = document.getElementById("pokemon-grid"); // container (grid) onde os cards serão inseridos
 
+/* FILTROS E ORDENAÇÃO */
+  const typeFiltersEl = document.getElementById("type-filters");
+  const sortSelect = document.getElementById("sort-select");
+
 /* CARREGAR POKEMONS DO LOCALSTORAGE */
   const pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
 
@@ -17,8 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
   pokecoinsEl.textContent = localStorage.getItem("Pokemoedas") || 0;
   megarocksEl.textContent = localStorage.getItem("Mega Rock") || 0;
 
+/* FUNÇÃO PARA RENDERIZAR CARDS */
+function renderPokemons(list) {
+  grid.innerHTML = ""; // limpa grid
+
 /* EXIBIR POKEMONS NA TELA */
-  pokemons.forEach(p => {
+  list.forEach(p => {
     const div = document.createElement("div");
     div.classList.add("pokemon-card");
 
@@ -35,31 +41,64 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ESTRUTURA INTERNA DO CARD */
     div.innerHTML = `
       <div class="pokemon-inner">
-        <!-- Imagem do Pokémon -->
         <img class="pokemon-image" src="${imagePath}" alt="${p.Name}">
-        
-        <!-- Nome do Pokémon -->
         <div class="pokemon-name">${p.Name}</div>
-        
-        <!-- Parte inferior do card (tipos + CP) -->
         <div class="pokemon-bottom">
           <div class="types">
-            <!-- Tipo principal -->
             <img src="types/${p["Type 1"]}.png" alt="${p["Type 1"]}" class="type-icon">
-            
-            <!-- Tipo secundário (só aparece se existir) -->
             ${p["Type 2"] && p["Type 2"] !== "" 
               ? `<img src="types/${p["Type 2"]}.png" alt="${p["Type 2"]}" class="type-icon">` 
               : ""}
           </div>
-          
-          <!-- CP do Pokémon -->
           <div class="cp-label">CP: ${p.CP}</div>
         </div>
       </div>
     `;
-
     grid.appendChild(div);
   });
+}
+
+/* FILTRAR E ORDENAR */
+function applyFiltersAndSort() {
+  let filtered = [...pokemons];
+
+// TIPOS SELECIONADOS
+  const selectedTypes = [...typeFiltersEl.querySelectorAll("img.selected")].map(img => img.alt);
+
+  if (selectedTypes.length > 0) {
+    filtered = filtered.filter(p =>
+      selectedTypes.includes(p["Type 1"]) || selectedTypes.includes(p["Type 2"])
+    );
+  }
+
+// ORDENAÇÃO
+  const criterio = sortSelect.value;
+  filtered.sort((a, b) => {
+    if (criterio === "CP") return b.CP - a.CP;
+    if (criterio === "IV") return b.IV - a.IV;
+    if (criterio === "ID") return Number(a.ID) - Number(b.ID);
+  });
+
+  renderPokemons(filtered);
+}
+
+/* CRIAR FILTROS DE TIPOS */
+const types = ["Fire","Water","Grass","Electric","Psychic","Fighting","Dark","Steel","Fairy"];
+types.forEach(type => {
+  const img = document.createElement("img");
+  img.src = `types/${type}.png`;
+  img.alt = type;
+  img.addEventListener("click", () => {
+    img.classList.toggle("selected");
+    applyFiltersAndSort();
+  });
+  typeFiltersEl.appendChild(img);
+});
+
+/* EVENTO DE ORDENAÇÃO */
+sortSelect.addEventListener("change", applyFiltersAndSort);
+
+/* EXIBIR TODOS INICIALMENTE */
+applyFiltersAndSort();
 
 });

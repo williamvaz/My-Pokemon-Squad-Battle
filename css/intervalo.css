@@ -43,27 +43,75 @@ main {
   text-shadow: 2px 2px 3px #000;
 }
 
-/* FILTROS DOS TIPOS*/
+/* CONTAINER DE FILTROS*/
 .filters {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin-bottom: 10px;
+  align-items: center;
+  gap: 25px;
+  margin: 15px auto;
   flex-wrap: wrap;
+  padding: 10px 15px;
+  background: rgba(0,0,0,0.5);  /* fundo translúcido */
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
 
-/* ICONES E FILTROS DOS TIPOS*/
+/* FILTROS POR TIPO*/
 #type-filters img {
-  width: 32px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   border-radius: 50%;
   border: 2px solid transparent;
+  transition: all 0.2s ease-in-out;
 }
 
-/* ICONES E FILTROS DOS TIPOS SELECIONADO*/
-#type-filters img.selected {
-  border-color: #000;
+/* AO PASSAR O MOUSE SOBRE TIPO*/
+#type-filters img:hover {
+  transform: scale(1.15);
 }
+
+/* TIPO SELECIONADO*/
+#type-filters img.selected {
+  border-color: gold;
+  box-shadow: 0 0 6px gold;
+}
+
+/* CONTAINER DA ORDENAÇÃO*/
+.sort-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+/* RÓTULO DA ORDENAÇÃO (ex: "Ordenar por:")*/
+.sort-container label {
+  font-size: 0.9rem;
+}
+
+/* ESTILO DA ORDENAÇÃO (dropdown)*/
+#sort-select {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background: rgba(255, 215, 0, 0.2); /* leve dourado */
+  color: white;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* AO PASSAR O MOUSE*/
+#sort-select:hover {
+  background: rgba(255, 215, 0, 0.35);
+  border-color: gold;
+}
+
 
 /* CONTAINER PARA OS CARDS*/
 .grid {

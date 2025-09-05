@@ -36,18 +36,22 @@
   <h1 class="title">DIA DE DESCANSO</h1>
 
   <!-- FILTROS E ORDENAÇÃO -->
-  <div class="filters">
-
-    <!-- TIPO DOS POKEMONS -->
-    <div id="type-filters"></div>
-
-    <!-- ORDENAÇÃO DOS POKEMONS -->
+<div class="filters">
+  
+  <!-- FILTROS POR TIPO -->
+  <div id="type-filters" class="type-filters"></div>
+  
+  <!-- ORDENAÇÃO -->
+  <div class="sort-container">
+    <label for="sort-select">Ordenar por:</label>
     <select id="sort-select">
-      <option value="CP">Ordenar por CP</option>
-      <option value="IV">Ordenar por IV</option>
-      <option value="ID">Ordenar por ID</option>
+      <option value="CP">CP</option>
+      <option value="IV">IV</option>
+      <option value="ID">ID</option>
     </select>
   </div>
+
+</div>
 
   <!-- GRID DOS POKEMONS -->
   <div id="pokemon-grid" class="grid"></div>
