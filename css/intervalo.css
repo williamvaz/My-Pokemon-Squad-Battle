@@ -111,6 +111,12 @@ main {
 /* NOME DOS POKEMONS NOS CARDS*/
 .pokemon-card .label {
   margin-bottom: 30px;
+  color: rgb(255, 255, 255);
+}
+
+/* NOME DOS POKEMONS NOS CARDS SHINY*/
+.pokemon-card.shiny-card .label  {
+  color: rgb(0, 0, 0);
 }
 
 /* RODAPÉ DO CARD COM TIPO E CP DO POKEMON*/
@@ -148,4 +154,10 @@ main {
   color: white;
   font-weight: bold;
   text-shadow: 2px 2px 3px #000;
+}
+
+/* TEXTO DO CP SHINY*/
+.pokemon-card.shiny-card .cp-value {
+  color: rgb(0, 0, 0);
+  text-shadow: 2px 2px 3px #856010;
 }
