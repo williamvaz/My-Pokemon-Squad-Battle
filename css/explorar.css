@@ -125,16 +125,44 @@ body {
   gap: 5px;
 }
 
-/* Estilo visual de destaque para Pokémon shiny */
-.shiny {
-  box-shadow: 0 0 12px 5px gold;
-  border-radius: 10px;
-  animation: glow 1.5s infinite ease-in-out;
+/* Efeito visual especial para Pokémon shiny */
+.reward.shiny {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 0 15px 6px gold;
 }
 
-@keyframes glow {
-  0% { box-shadow: 0 0 10px 4px gold; }
-  50% { box-shadow: 0 0 15px 6px yellow; }
-  100% { box-shadow: 0 0 10px 4px gold; }
+/* Camada de brilho animado */
+.reward.shiny::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    130deg,
+    rgba(255, 255, 200, 0.2) 0%,
+    rgba(255, 255, 150, 0.5) 50%,
+    rgba(255, 255, 200, 0.2) 100%
+  );
+  animation: shineMove 2s linear infinite;
+  z-index: 1;
 }
 
+/* Texto “SHINY” */
+.reward.shiny::after {
+  content: "✨ SHINY ✨";
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: gold;
+  text-shadow: 0 0 6px black;
+  z-index: 2;
+}
+
+@keyframes shineMove {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
