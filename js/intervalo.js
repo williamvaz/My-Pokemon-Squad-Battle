@@ -89,17 +89,36 @@ function maxTotalFromDex(dexEntry){
   return DERIVED_KEYS.reduce((s,k)=> s + Number(dexEntry[k] || 0), 0);
 }
 
+// CP real a partir dos atributos (sua fórmula)
+function computeCPFromStats(p) {
+  const HP = +p.HP||0, ATK = +p.Attack||0, DEF = +p.Defense||0;
+  const SPA = +p["Sp. Atk"]||0, SPDf = +p["Sp. Def"]||0, SPE = +p.Speed||0;
+
+  const avg1 = (HP + DEF + SPDf) / 3;
+  const avg2 = (ATK + SPA + SPE) / 3;
+  const avg3 = (HP + ATK + DEF) / 3;
+  const avg4 = (SPA + SPDf + SPE) / 3;
+
+  // =ARRED( ((avg1 + avg2*avg3 + avg4)/3) * 1,1 ; 0 )
+  return Math.round(((avg1 + avg2 * avg3 + avg4) / 3) * 1.1);
+}
+
 function recalcDerived(pokemon){
-  const total = DERIVED_KEYS.reduce((s,k)=> s + Number(pokemon[k] || 0), 0);
+  // Total = soma dos 6 atributos
+  const total = ["HP","Attack","Defense","Sp. Atk","Sp. Def","Speed"]
+    .reduce((s,k)=> s + Number(pokemon[k] || 0), 0);
   pokemon.Total = total;
 
+  // IV = total / totalMáximoDaEspécie (fração 0..1)
   const dex = (DEX_BY_ID && DEX_BY_ID.get(String(pokemon.ID))) ||
               (DEX_BY_POKEDEX && DEX_BY_POKEDEX.get(String(pokemon.Pokedex)));
-
   const maxTotal = maxTotalFromDex(dex) || total || 1;
-  pokemon.IV = +(total / maxTotal).toFixed(4);          // fração 0..1
-  pokemon.CP = Math.round(total * CP_PER_POINT);
+  pokemon.IV = +(total / maxTotal).toFixed(4);
+
+  // CP pela fórmula “forte”
+  pokemon.CP = computeCPFromStats(pokemon);
 }
+
 
 /* ====== CAP POR ATRIBUTO (para exibir X / max) ====== */
 const DEFAULT_STAT_CAP = 125;
@@ -149,7 +168,6 @@ function applyEvolution(pokemon, targetDex) {
   const newTotal = keys.reduce((s, k) => s + newStats[k], 0);
   const maxTotal = Number(targetDex.Total || keys.reduce((s,k)=> s + Number(targetDex[k]||0), 0));
   const newIV = maxTotal ? +(newTotal / maxTotal).toFixed(4) : 0;
-  const newCP = Math.max(1, Math.round(newIV * Number(targetDex.CP || 0)));
 
   // aplicar espécie nova
   pokemon.ID        = String(targetDex.ID);
