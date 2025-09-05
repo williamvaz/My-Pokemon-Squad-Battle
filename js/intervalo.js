@@ -180,23 +180,18 @@ function applyEvolution(pokemon, targetDex) {
   }));
 
   // derivados
-  const newTotal = keys.reduce((s, k) => s + newStats[k], 0);
-  const maxTotal = Number(targetDex.Total || keys.reduce((s,k)=> s + Number(targetDex[k]||0), 0));
-  const newIV = maxTotal ? +(newTotal / maxTotal).toFixed(4) : 0;
+// aplica espécie nova
+pokemon.ID        = String(targetDex.ID);
+pokemon.Pokedex   = String(targetDex.Pokedex);
+pokemon.Name      = targetDex.Name;
+pokemon["Type 1"] = targetDex["Type 1"];
+pokemon["Type 2"] = targetDex["Type 2"];
 
-  // aplicar espécie nova
-  pokemon.ID        = String(targetDex.ID);
-  pokemon.Pokedex   = String(targetDex.Pokedex);
-  pokemon.Name      = targetDex.Name;
-  pokemon["Type 1"] = targetDex["Type 1"];
-  pokemon["Type 2"] = targetDex["Type 2"];
+// aplica os novos atributos
+keys.forEach(k => { pokemon[k] = newStats[k]; });
 
-  // stats & derivados
-  keys.forEach(k => { pokemon[k] = newStats[k]; });
-  pokemon.Total = newTotal;
-  pokemon.IV    = newIV;   // 0..1
-  pokemon.CP    = newCP;
-}
+// agora deixa a recalcDerived calcular Total, IV e CP corretamente
+recalcDerived(pokemon);
 
 /* ====== POPUP DE CONFIRMAÇÃO ====== */
 function openConfirm(text, confirmLabel, onConfirm) {
