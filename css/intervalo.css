@@ -338,9 +338,33 @@ main {
   border-radius:12px; padding:10px; margin-top:4px;
 }
 
-/* LINHA DA TABELA DE GOLPES */
-.moves-row{  display:grid;  grid-template-columns: 26px 1fr auto auto auto auto; /* +1 coluna pro botão */  gap:6px; align-items:center;}
-.moves-head{ opacity:.85; font-size:.8rem; margin-bottom:6px; }
+/* DETALHES: header e linhas com o MESMO grid (alinhamento 1:1) */
+.moves-row,
+.moves-row.moves-head{
+  display: grid;
+  /* ícone | nome | modo | dano | speed | botão */
+  grid-template-columns: 28px minmax(0,1fr) 68px 56px 56px auto;
+  gap: 6px;
+  align-items: center;
+}
+
+/* centraliza os “pills” e ancora o botão à direita */
+.moves-row .pill{ justify-self: center; }
+.moves-row .btn-mini{ justify-self: end; }
+
+/* estilo do cabeçalho */
+.moves-row.moves-head{
+  font-size: .85rem;
+  font-weight: 700;
+  opacity: .9;
+  margin-bottom: 6px;
+}
+
+/* reserva colunas no header para bater com as linhas */
+.moves-row.moves-head > :first-child{ width: 28px; }     /* ícone */
+.moves-row.moves-head > :last-child{ visibility: hidden; } /* espaço do botão */
+.moves-row.moves-head > div:nth-child(2){ text-align: left; }  /* nome */
+.moves-row.moves-head > div:not(:nth-child(2)){ text-align: center; }
 .moves .pill{
   padding:2px 8px; border-radius:999px; background:rgba(0,0,0,.25);
   border:1px solid rgba(255,255,255,.2); font-weight:700;
@@ -477,6 +501,19 @@ main {
   .move-option .pill, .price-pill{ font-size:.78rem; padding:2px 6px; }
   .btn-mini{ padding:5px 9px; font-size:.76rem; }
 }
+
+/* alinhar colunas do picker */
+.move-option .pill,
+.price-pill{ justify-self: center; }
+.move-option .btn-mini{ justify-self: end; }
+
+/* reservar colunas “sem conteúdo” no cabeçalho */
+.move-head > :first-child{ width: 28px; }          /* ícone */
+.move-head > :last-child{ visibility: hidden; }    /* espaço do botão */
+
+/* alinhamento de textos no header */
+.move-head > div:nth-child(2){ text-align: left; } /* nome */
+.move-head > div:not(:nth-child(2)){ text-align: center; }
 
 /* POPUP DE EVOLUÇÃO E MEGA EVOLUÇÃO */
 .confirm-box{
