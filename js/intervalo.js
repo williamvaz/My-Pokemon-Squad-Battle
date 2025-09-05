@@ -386,6 +386,7 @@ async function openDetails(pokemon) {
       pokemon[key] = cur + 1;
       recalcDerived(pokemon);
       localStorage.setItem("pokemons", JSON.stringify(pokemons));
+      applyFiltersAndSort();
       openDetails(pokemon);
     };
   });
@@ -412,6 +413,7 @@ async function openDetails(pokemon) {
         applyEvolution(pokemon, target);
         recalcDerived(pokemon);
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
+        applyFiltersAndSort();
         openDetails(pokemon);
       }
     );
@@ -438,6 +440,7 @@ async function openDetails(pokemon) {
         applyEvolution(pokemon, target);
         recalcDerived(pokemon);
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
+        applyFiltersAndSort();
         openDetails(pokemon);
       }
     );
@@ -510,6 +513,7 @@ function openMovePicker(pokemon, slot) {
         else            pokemon["Golpe 2"] = name;
 
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
+        applyFiltersAndSort();
         picker.remove();
         openDetails(pokemon);
       };
