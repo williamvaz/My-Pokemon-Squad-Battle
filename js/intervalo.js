@@ -33,6 +33,17 @@ function trySpendCoins(cost) {
   return true;
 }
 
+// ----- CUSTO DE GOLPES -----
+const MOVE_COST_SAME_TYPE = 30;  // golpe do mesmo tipo do Pokémon
+const MOVE_COST_DIFF_TYPE = 60;  // golpe de tipo diferente
+
+function moveCost(pokemon, moveMeta) {
+  const mt = (moveMeta?.Type || "").toLowerCase();
+  const t1 = (pokemon["Type 1"] || "").toLowerCase();
+  const t2 = (pokemon["Type 2"] || "").toLowerCase();
+  return mt && (mt === t1 || mt === t2) ? MOVE_COST_SAME_TYPE : MOVE_COST_DIFF_TYPE;
+}
+
 // CARREGAMENTO DO CATALOGO DE GOLPES PARA PREENCHER MODO/DANO/VELOCIDADE
 let MOVES_BY_NAME = null;
 let MOVES_LIST = null;
@@ -350,12 +361,15 @@ details.querySelectorAll(".stat-add").forEach((btn, idx) => {
 function openMovePicker(pokemon, slot) {
   const wrapper = document.getElementById("details-screen");
 
-  // monta painel
+  // painel
   const picker = document.createElement("div");
   picker.className = "move-picker";
   picker.innerHTML = `
     <h3>Trocar Golpe ${slot}</h3>
     <input class="move-search" type="text" placeholder="Buscar golpe...">
+    <div class="move-head">
+      <div></div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div>Valor</div><div></div>
+    </div>
     <div class="move-list"></div>
     <div class="picker-actions">
       <button class="btn btn-gray" id="picker-cancel">Cancelar</button>
@@ -366,33 +380,50 @@ function openMovePicker(pokemon, slot) {
   const listEl = picker.querySelector(".move-list");
   const searchEl = picker.querySelector(".move-search");
 
-  // (opcional) filtra por tipo do pokémon, se o golpe tiver campo Type
-  const typeSet = new Set([pokemon["Type 1"], pokemon["Type 2"]].filter(Boolean));
-  const baseList = MOVES_LIST.filter(m => !m.Type || typeSet.has(m.Type));
-
-  const renderList = (q="")=>{
+  // renderizador (TODOS os golpes; filtra só por texto)
+  const renderList = (q = "") => {
     const term = q.trim().toLowerCase();
-    const rows = (term ? baseList.filter(m => m.Attack.toLowerCase().includes(term)) : baseList)
-      .slice(0, 200) // segurança
-      .map(m => `
-        <button class="move-option" data-name="${m.Attack}">
+
+    const src = term
+      ? MOVES_LIST.filter(m => (m.Attack || "").toLowerCase().includes(term))
+      : MOVES_LIST;
+
+    const rows = src.slice(0, 400).map(m => {
+      const cost = moveCost(pokemon, m);
+      const typeIcon = m.Type ? `types/${m.Type}.png` : `types/${pokemon["Type 1"]}.png`;
+      return `
+        <div class="move-option" data-name="${m.Attack}" data-cost="${cost}">
+          <img src="${typeIcon}" class="type-icon" alt="${m.Type || ""}">
           <div>${m.Attack}</div>
           <div class="pill">${m.Modo ?? "-"}</div>
           <div class="pill">${m.Damage ?? "-"}</div>
           <div class="pill">${m.Speed ?? "-"}</div>
-        </button>
-      `).join("");
-    listEl.innerHTML = rows || "<div>Nenhum golpe encontrado.</div>";
-    listEl.querySelectorAll(".move-option").forEach(b=>{
-      b.onclick = ()=>{
-        const name = b.dataset.name;
+          <div class="price-pill">${cost}</div>
+          <button class="btn-mini move-select" data-name="${m.Attack}" data-cost="${cost}">Trocar</button>
+        </div>
+      `;
+    }).join("");
+
+    listEl.innerHTML = rows || `<div style="opacity:.7;padding:6px 2px;">Nenhum golpe encontrado.</div>`;
+
+    // ação: tentar comprar/trocar
+    listEl.querySelectorAll(".move-select").forEach(btn => {
+      btn.onclick = () => {
+        const name = btn.dataset.name;
+        const cost = Number(btn.dataset.cost);
+
+        if (!trySpendCoins(cost)) {
+          btn.classList.add("deny");
+          setTimeout(() => btn.classList.remove("deny"), 350);
+          return;
+        }
+
+        // aplica golpe no slot
         if (slot === 1) pokemon["Golpe 1"] = name;
         else            pokemon["Golpe 2"] = name;
 
-        // salva no localStorage (pokemons vem do escopo do arquivo)
+        // salva e reabre detalhes
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
-
-        // fecha picker e reabre detalhes atualizado
         picker.remove();
         openDetails(pokemon);
       };
@@ -400,9 +431,8 @@ function openMovePicker(pokemon, slot) {
   };
 
   renderList();
-  searchEl.oninput = ()=> renderList(searchEl.value);
-  picker.querySelector("#picker-cancel").onclick = ()=> picker.remove();
+  searchEl.oninput = () => renderList(searchEl.value);
+  picker.querySelector("#picker-cancel").onclick = () => picker.remove();
 }
-
 
 });
