@@ -22,6 +22,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const div = document.createElement("div");
     div.classList.add("pokemon-card");
 
+// Se for shiny, aplica classe especial
+    if (p.Shiny === "Sim") {
+      div.classList.add("shiny-card");
+    }
+
     // Definir imagem correta (normal ou shiny)
     const imagePath = p.Shiny === "Sim"
       ? `pokemons/shiny/${p.ID.padStart(4, '0')}-shiny.png`
