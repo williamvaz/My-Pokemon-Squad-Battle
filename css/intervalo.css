@@ -238,3 +238,86 @@ main {
   transform: scale(1.05);
   box-shadow: 0 6px 10px rgba(0,0,0,0.6);
 }
+
+/* ----------- DETALHES -----------  */
+
+/* SOBREPOSIÇÃO DOS DETALHES (fundo escuro atrás do card) */
+#details-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ESCONDE OS DETALHES */
+#details-screen.hidden {
+  display: none;
+}
+
+/* CARD DOS DETALHES */
+.details-card {
+  background: #f5f5f5;
+  color: #222;
+  border-radius: 12px;
+  padding: 20px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  animation: pop-in 0.2s ease-in-out;
+}
+
+/* TÍTULO DO NOME DO POKÉMON */
+.details-card h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* ESTILO DAS LINHAS DE ATRIBUTOS */
+.details-card p {
+  margin: 4px 0;
+}
+
+/* AUMENTA IMAGEM */
+.details-image {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+/* CONTAINER DOS BOTÕES */
+.details-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+/* ESTILO BASE DOS BOTÕES */
+.details-actions button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* BOTÃO DE USAR */
+#use-btn {
+  background: #1E90FF;
+  color: #FFD700;
+}
+
+/* BOTÃO DE FECHAR DETALHES */
+#close-btn {
+  background: #ccc;
+  color: #222;
+}
+
+/* EFEITO AO ABRIR DETALHES */
+@keyframes pop-in {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

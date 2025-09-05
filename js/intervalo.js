@@ -34,6 +34,11 @@ bgMusic.play().catch(err => {
 function renderPokemons(list) {
   grid.innerHTML = ""; // limpa grid
 
+  // Ao clicar no card, abre a tela de detalhes
+div.addEventListener("click", () => {
+  openDetails(p);
+});
+
 /* EXIBIR POKEMONS NA TELA */
   list.forEach(p => {
     const div = document.createElement("div");
@@ -129,5 +134,51 @@ continueBtn.addEventListener("click", () => {
     window.location.href = "explorar.html"; // senão → continua explorando
   }
 });
+
+/* FUNÇÃO PARA ABRIR DETALHES DO POKÉMON */
+function openDetails(pokemon) {
+  const details = document.getElementById("details-screen");
+
+  // CAMINHO DA IMAGEM
+  const imagePath = pokemon.Shiny === "Sim"
+    ? `pokemons/shiny/${pokemon.ID.padStart(4, '0')}-shiny.png`
+    : `pokemons/normal/${pokemon.ID.padStart(4, '0')}.png`;
+
+  // CONTEÚDO DO POPUP
+  details.innerHTML = `
+    <div class="details-card ${pokemon.Shiny === "Sim" ? "shiny-card" : ""}">
+      <img src="${imagePath}" alt="${pokemon.Name}" class="details-image">
+      <h2>${pokemon.Name}</h2>
+      <p><strong>CP:</strong> ${pokemon.CP}</p>
+      <p><strong>IV:</strong> ${(pokemon.IV * 100).toFixed(0)}%</p>
+      <p><strong>HP:</strong> ${pokemon.HP}</p>
+      <p><strong>Ataque:</strong> ${pokemon.Attack}</p>
+      <p><strong>Defesa:</strong> ${pokemon.Defense}</p>
+      <p><strong>Sp. Atk:</strong> ${pokemon["Sp. Atk"]}</p>
+      <p><strong>Sp. Def:</strong> ${pokemon["Sp. Def"]}</p>
+      <p><strong>Speed:</strong> ${pokemon.Speed}</p>
+      <div class="details-actions">
+        <button id="use-btn">Usar</button>
+        <button id="close-btn">Fechar</button>
+      </div>
+    </div>
+  `;
+
+  // MOSTRAR O POPUP
+  details.classList.remove("hidden");
+
+  // FECHAR O POPUP
+  document.getElementById("close-btn").addEventListener("click", () => {
+    details.classList.add("hidden");
+  });
+
+  // USAR
+  document.getElementById("use-btn").addEventListener("click", () => {
+    console.log("Pokémon usado:", pokemon.Name);
+
+  // SALVAR
+    details.classList.add("hidden");
+  });
+}
 
 });
