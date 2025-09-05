@@ -120,6 +120,9 @@ main {
 .types {
   display: flex;
   gap: 4px;
+  min-width: 50px;
+  max-width: 50px;
+  align-items: center;
 }
 
 /* ICONE DOS TIPOS DO POKEMON*/
