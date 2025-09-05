@@ -122,7 +122,7 @@ main {
 /* CONTAINER DOS TIPOS DO POKEMON*/
 .types {
   display: flex;
-  gap: 4px;
+  gap: 1px;
   width: 100%;
   justify-content: center;
   align-items: center;
