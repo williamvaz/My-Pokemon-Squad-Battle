@@ -49,7 +49,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 25px;
-  margin: 15px auto;
+  margin: 5px auto;
   flex-wrap: wrap;
   padding: 10px 15px;
   background: rgba(0,0,0,0.5);  /* fundo translúcido */
@@ -61,6 +61,7 @@ main {
 #type-filters img {
   width: 36px;
   height: 36px;
+  justify-content: center; 
   cursor: pointer;
   border-radius: 50%;
   border: 2px solid transparent;
