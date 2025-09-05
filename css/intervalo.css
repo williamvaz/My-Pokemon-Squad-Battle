@@ -109,13 +109,13 @@ main {
 }
 
 /* NOME DOS POKEMONS NOS CARDS*/
-.pokemon-card .label {
+.pokemon-card .pokemon-name {
   margin-bottom: 30px;
   color: rgb(255, 255, 255);
 }
 
 /* NOME DOS POKEMONS NOS CARDS SHINY*/
-.pokemon-card.shiny-card .label  {
+.pokemon-card.shiny-card .pokemon-name {
   color: rgb(0, 0, 0);
 }
 
@@ -149,7 +149,7 @@ main {
 }
 
 /* TEXTO DO CP*/
-.cp-value {
+.cp-label {
   font-size: 1.6rem;
   color: white;
   font-weight: bold;
@@ -157,7 +157,7 @@ main {
 }
 
 /* TEXTO DO CP SHINY*/
-.pokemon-card.shiny-card .cp-value {
+.pokemon-card.shiny-card .cp-label {
   color: rgb(0, 0, 0);
   text-shadow: 2px 2px 3px #856010;
 }
