@@ -1,6 +1,17 @@
 /* INICIALIZAÇÃO DA PÁGINA */
 document.addEventListener("DOMContentLoaded", () => {
 
+/* TOCAR MÚSICA DE FUNDO */
+const bgMusic = new Audio("music/main-theme.mpeg");
+bgMusic.loop = true;     // repete infinitamente
+bgMusic.volume = 0.5;    // volume (0.0 a 1.0)
+bgMusic.play().catch(err => {
+  console.log("Autoplay bloqueado, esperando interação:", err);
+  document.body.addEventListener("click", () => {
+    bgMusic.play();
+  }, { once: true });
+});
+
 /* BARRA SUPERIOR DE MOEDAS */
   const pokecoinsEl = document.getElementById("pokecoins"); // span/div que mostra quantidade de Pokemoedas
   const megarocksEl = document.getElementById("megarocks"); // span/div que mostra quantidade de Mega Rocks
