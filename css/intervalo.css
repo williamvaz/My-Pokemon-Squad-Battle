@@ -420,3 +420,11 @@ main {
   opacity: .6;
   cursor: not-allowed;
 }
+
+/* NÃO TEM MOEDA PARA POWER UP */
+.stat-add.deny { animation: shake .35s linear; }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25%     { transform: translateX(-2px); }
+  75%     { transform: translateX( 2px); }
+}

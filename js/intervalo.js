@@ -16,6 +16,23 @@ bgMusic.play().catch(err => {
   const pokecoinsEl = document.getElementById("pokecoins"); // span/div que mostra quantidade de Pokemoedas
   const megarocksEl = document.getElementById("megarocks"); // span/div que mostra quantidade de Mega Rocks
 
+// ----- MOEDAS -----
+const COST_PER_POINT = 2;
+
+function getCoins() {
+  return parseInt(localStorage.getItem("Pokemoedas") || "0", 10);
+}
+function setCoins(v) {
+  localStorage.setItem("Pokemoedas", String(v));
+  pokecoinsEl.textContent = v; // atualiza HUD
+}
+function trySpendCoins(cost) {
+  const c = getCoins();
+  if (c < cost) return false;
+  setCoins(c - cost);
+  return true;
+}
+
 // CARREGAMENTO DO CATALOGO DE GOLPES PARA PREENCHER MODO/DANO/VELOCIDADE
 let MOVES_BY_NAME = null;
 let MOVES_LIST = null;
@@ -279,36 +296,42 @@ const statsHtml = statDefs.map(([label, key], i) => {
 
   details.classList.remove("hidden");
 
-  // desabilita de cara os '+' que já estão no máximo
-details.querySelectorAll(".stat-add").forEach((btn, idx) => {
-  const [, key] = statDefs[idx];
-  if (Number(pokemon[key]) >= statMaxFor(pokemon, key)) {
-    btn.disabled = true;
-  }
-});
-
-// wiring do botão '+'
+// '+' — nasce desabilitado se já estiver no teto e aplica custo de 2 Pokemoedas
 details.querySelectorAll(".stat-add").forEach((btn, idx) => {
   const [, key] = statDefs[idx];
   const max = statMaxFor(pokemon, key);
   const current = Number(pokemon[key] ?? 0);
 
-  // nasce desabilitado se já estiver no teto
   if (current >= max) btn.disabled = true;
 
   btn.onclick = () => {
     const cur = Number(pokemon[key] ?? 0);
-    if (cur >= max) {
+    const cap = statMaxFor(pokemon, key);
+
+    // já no máximo
+    if (cur >= cap) {
       btn.disabled = true;
       return;
     }
-    // quando definir a regra de upgrade, descomente:
-    // pokemon[key] = cur + 1;
-    // localStorage.setItem("pokemons", JSON.stringify(pokemons));
-    // openDetails(pokemon);
+
+    // não tem moedas suficientes
+    if (!trySpendCoins(COST_PER_POINT)) {
+      // feedback visual simples
+      btn.classList.add("deny");
+      setTimeout(() => btn.classList.remove("deny"), 350);
+      return;
+    }
+
+    // aplica upgrade
+    pokemon[key] = cur + 1;
+
+    // persiste
+    localStorage.setItem("pokemons", JSON.stringify(pokemons));
+
+    // reabre o modal para atualizar valores e estado dos botões
+    openDetails(pokemon);
   };
 });
-
 
   // listeners básicos
   details.querySelector("#btn-close").onclick = () => details.classList.add("hidden");
