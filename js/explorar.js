@@ -41,58 +41,63 @@ async function startExploration() {
   let megarocks = Number(localStorage.getItem("Mega Rock")) || 0;
 
   for (let premio of premios) {
-    const div = document.createElement("div");
-    div.className = "reward";
-
     if (!premio || !premio.tipo) continue;
 
+    const card = document.createElement("div");
+    card.className = "reward";
+
+    // ----------------- ITENS -----------------
     if (premio.tipo === "Pokemoedas") {
-  pokecoins += premio.valor;
-  div.classList.add("pokemon");
-  div.innerHTML = `
-    <img src="itens/${premio.valor}_Pokemoedas.png">
-    <div>${premio.valor} MOEDAS</div>
-    <span class="tag" style="background:${premio.color}"></span>
-  `;
-}
-  else if (premio.tipo === "Mega Rock") {
-  megarocks += premio.valor;
-  div.classList.add("pokemon");
-  div.innerHTML = `
-    <img src="itens/${premio.valor}_MegaRock.png">
-    <div>${premio.valor} MEGA ROCKS</div>
-    <span class="tag" style="background:${premio.color}"></span>
-  `;
-}
-   
+      pokecoins += premio.valor;
+      card.classList.add("coin");
+      card.innerHTML = `
+        <img src="itens/${premio.valor}_Pokemoedas.png" alt="${premio.valor} Pokemoedas">
+        <div class="label">${premio.valor} MOEDAS</div>
+      `;
+    } else if (premio.tipo === "Mega Rock") {
+      megarocks += premio.valor;
+      card.classList.add("megarock");
+      card.innerHTML = `
+        <img src="itens/${premio.valor}_MegaRock.png" alt="${premio.valor} Mega Rocks">
+        <div class="label">${premio.valor} MEGA ROCKS</div>
+      `;
+    }
+    // ----------------- POKÉMON -----------------
     else if (premio.tipo === "Pokemon") {
-      const tier = premio.valor.toString();
+      const tier = String(premio.valor);
       const pokes = pokemons.filter(p => p.Tierlist === tier);
       if (pokes.length === 0) continue;
 
       const escolhido = pokes[Math.floor(Math.random() * pokes.length)];
-      const id = escolhido.ID.toString().padStart(4, "0");
-      const shiny = Math.random() < 0.01;
-      const img = shiny ? `pokemons/shiny/${id}-shiny.png` : `pokemons/normal/${id}.png`;
+      const id = String(escolhido.ID).padStart(4, "0");
+      const shiny = isShiny();
+      const img = shiny ? `pokemons/shiny/${id}-shiny.png`
+                        : `pokemons/normal/${id}.png`;
 
+      // salva o mon sorteado no inventário do jogador
       await salvarPokemon(escolhido, shiny);
-      div.classList.add("pokemon");
-      div.innerHTML = `
-    <img src="${img}">
-    <div class="label">${escolhido.Name}</div>
-    <span class="tag" style="background:${premio.color}">Tier ${tier}</span>
-    `;
 
+      card.classList.add("pokemon");
+      card.innerHTML = `
+        <img src="${img}" alt="${escolhido.Name}">
+        <div class="label">${escolhido.Name}</div>
+      `;
 
-      if (shiny) {
-      div.classList.add("shiny");
-}
+      // aplica classe shiny visualmente
+      if (shiny) card.classList.add("shiny");
 
+      // ---- badge de TIER (DENTRO do card .reward) ----
+      const tierEl = document.createElement("span");
+      tierEl.className = "tag";
+      tierEl.textContent = `Tier ${tier}`;
+      if (premio.color) tierEl.style.background = premio.color; // opcional
+      card.appendChild(tierEl);
     }
 
-    rewardsContainer.appendChild(div);
+    rewardsContainer.appendChild(card);
   }
 
+  // atualiza HUD e persiste
   document.getElementById("pokecoins").textContent = pokecoins;
   document.getElementById("megarocks").textContent = megarocks;
   localStorage.setItem("Pokemoedas", pokecoins);
@@ -172,7 +177,6 @@ async function salvarPokemon(pokemon, shiny) {
   lista.push(finalPokemon);
   localStorage.setItem("pokemons", JSON.stringify(lista));
 }
-
 
 // Prossegue para a próxima tela
 document.getElementById("proceedBtn").addEventListener("click", () => {
