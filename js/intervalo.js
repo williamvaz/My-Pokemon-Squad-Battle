@@ -16,6 +16,20 @@ bgMusic.play().catch(err => {
   const pokecoinsEl = document.getElementById("pokecoins"); // span/div que mostra quantidade de Pokemoedas
   const megarocksEl = document.getElementById("megarocks"); // span/div que mostra quantidade de Mega Rocks
 
+// CARREGAMENTO DO CATALOGO DE GOLPES PARA PREENCHER MODO/DANO/VELOCIDADE
+let MOVES_BY_NAME = null;
+async function ensureMovesLoaded() {
+  if (MOVES_BY_NAME) return;
+  try {
+    const res = await fetch("JSON/golpes.json");
+    const arr = await res.json();
+    MOVES_BY_NAME = new Map(arr.map(m => [m.Attack, m]));
+  } catch (e) {
+    console.warn("Não consegui carregar golpes.json, vou mostrar só os nomes.", e);
+    MOVES_BY_NAME = new Map();
+  }
+}
+
 /* GRID DE POKEMONS */
   const grid = document.getElementById("pokemon-grid"); // container (grid) onde os cards serão inseridos
 
@@ -132,49 +146,104 @@ continueBtn.addEventListener("click", () => {
 });
 
 /* FUNÇÃO PARA ABRIR DETALHES DO POKÉMON */
-function openDetails(pokemon) {
+async function openDetails(pokemon) {
+  await ensureMovesLoaded();
+
   const details = document.getElementById("details-screen");
+  const isShiny = pokemon.Shiny === "Sim";
+  const imgPath = isShiny
+    ? `pokemons/shiny/${pokemon.ID.padStart(4, "0")}-shiny.png`
+    : `pokemons/normal/${pokemon.ID.padStart(4, "0")}.png`;
 
-  // CAMINHO DA IMAGEM
-  const imagePath = pokemon.Shiny === "Sim"
-    ? `pokemons/shiny/${pokemon.ID.padStart(4, '0')}-shiny.png`
-    : `pokemons/normal/${pokemon.ID.padStart(4, '0')}.png`;
+  // PEGA LISTA DE GOLPES
+  const g1 = MOVES_BY_NAME.get(pokemon["Golpe 1"]);
+  const g2 = MOVES_BY_NAME.get(pokemon["Golpe 2"]);
 
-  // CONTEÚDO DO POPUP
-  details.innerHTML = `
-    <div class="details-card ${pokemon.Shiny === "Sim" ? "shiny-card" : ""}">
-      <img src="${imagePath}" alt="${pokemon.Name}" class="details-image">
-      <h2>${pokemon.Name}</h2>
-      <p><strong>CP:</strong> ${pokemon.CP}</p>
-      <p><strong>IV:</strong> ${(pokemon.IV * 100).toFixed(0)}%</p>
-      <p><strong>HP:</strong> ${pokemon.HP}</p>
-      <p><strong>Ataque:</strong> ${pokemon.Attack}</p>
-      <p><strong>Defesa:</strong> ${pokemon.Defense}</p>
-      <p><strong>Sp. Atk:</strong> ${pokemon["Sp. Atk"]}</p>
-      <p><strong>Sp. Def:</strong> ${pokemon["Sp. Def"]}</p>
-      <p><strong>Speed:</strong> ${pokemon.Speed}</p>
-      <div class="details-actions">
-        <button id="use-btn">Usar</button>
-        <button id="close-btn">Fechar</button>
-      </div>
+  // PREENCHE AS LINHAS DA TABELA
+  const moveRow = (name, meta) => `
+    <div class="moves-row">
+      <img src="types/${pokemon["Type 1"]}.png" class="type-icon" alt="">
+      <div>${name || "-"}</div>
+      <div class="pill">${meta?.Modo ?? "-"}</div>
+      <div class="pill">${meta?.Damage ?? "-"}</div>
+      <div class="pill">${meta?.Speed ?? "-"}</div>
     </div>
   `;
 
-  // MOSTRAR O POPUP
+  details.innerHTML = `
+    <article class="details-card ${isShiny ? "shiny-card" : ""}">
+      <h2 class="details-name">${pokemon.Name.toUpperCase()}</h2>
+
+      <div class="details-top">
+        <div class="details-imgbox">
+          <img src="${imgPath}" alt="${pokemon.Name}" class="details-image">
+          <div class="details-types">
+            <img src="types/${pokemon["Type 1"]}.png" alt="${pokemon["Type 1"]}">
+            ${pokemon["Type 2"] ? `<img src="types/${pokemon["Type 2"]}.png" alt="${pokemon["Type 2"]}">` : ""}
+          </div>
+          ${isShiny ? `<span class="shiny-label">Shiny</span>` : ""}
+        </div>
+
+        <div class="mini-stats">
+          <div class="stat-chip"><span>CP</span><strong>${pokemon.CP}</strong></div>
+          <div class="stat-chip"><span>IV</span><strong>${Math.round(pokemon.IV * 100)}%</strong></div>
+          <div class="details-actions">
+            <button class="btn btn-blue" id="btn-evolve">EVOLUIR</button>
+            <button class="btn btn-red"  id="btn-mega">MEGA EVOLUIR</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title">Golpes</div>
+      <div class="moves">
+        <div class="moves-row moves-head">
+          <div></div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div>
+        </div>
+        ${moveRow(pokemon["Golpe 1"], g1)}
+        ${moveRow(pokemon["Golpe 2"], g2)}
+      </div>
+
+      <div class="section-title">Atributos</div>
+      <div class="base-stats">
+        ${[
+          ["HP",        pokemon.HP],
+          ["Ataque",    pokemon.Attack],
+          ["Defesa",    pokemon.Defense],
+          ["Atk Esp.",  pokemon["Sp. Atk"]],
+          ["Def Esp.",  pokemon["Sp. Def"]],
+          ["Velocidade",pokemon.Speed],
+        ].map(([label,val],i)=>`
+          <div class="stat-row">
+            <div class="stat-label">${label}</div>
+            <div class="stat-value">${val}</div>
+            <button class="stat-add" data-stat="${i}">＋</button>
+          </div>
+        `).join("")}
+      </div>
+
+      <div class="details-footer">
+        <button class="btn btn-gray" id="btn-close">VOLTAR</button>
+      </div>
+    </article>
+  `;
+
   details.classList.remove("hidden");
 
-  // FECHAR O POPUP
-  document.getElementById("close-btn").addEventListener("click", () => {
-    details.classList.add("hidden");
+  // listeners de ação – por enquanto só placeholders
+  details.querySelector("#btn-close").onclick = () => details.classList.add("hidden");
+  details.querySelector("#btn-evolve").onclick = () => console.log("Evoluir:", pokemon.Name);
+  details.querySelector("#btn-mega").onclick   = () => console.log("Mega Evoluir:", pokemon.Name);
+  details.querySelectorAll(".stat-add").forEach(btn=>{
+    btn.addEventListener("click", () => {
+      const which = btn.dataset.stat; // 0..5
+      console.log("Incrementar atributo", which, "de", pokemon.Name);
+      // aqui depois aplicamos sua regra de upgrade
+    });
   });
 
-  // USAR
-  document.getElementById("use-btn").addEventListener("click", () => {
-    console.log("Pokémon usado:", pokemon.Name);
-
-  // SALVAR
-    details.classList.add("hidden");
-  });
+  // fecha ao clicar fora do card
+  details.onclick = (e)=>{ if(e.target === details) details.classList.add("hidden"); };
 }
+
 
 });
