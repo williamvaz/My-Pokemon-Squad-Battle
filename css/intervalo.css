@@ -112,7 +112,7 @@ main {
   right: 0;
   padding: 0 4px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
