@@ -4,7 +4,12 @@ body {
   font-family: 'Arial', sans-serif;
   background: url("../background/main.webp") no-repeat center center fixed, linear-gradient(180deg, #c1f2e9, #a3e0ff);
   background-size: cover;
-  height: 100vh;
+
+  /* ocupa a altura real do viewport, inclusive no mobile */
+min-height: 100vh;   /* fallback */
+min-height: 100svh;  /* iOS Safari */
+min-height: 100dvh;  /* Chrome/Android, iOS 16+ */
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,6 +18,9 @@ body {
 .container {
   text-align: center;
   width: 100%;
+  max-width: 640px;                 /* evita ficar largo demais */
+  padding: clamp(12px, 4vh, 28px);  /* espaçamento elástico */
+  transform-origin: top center;     /* origem da escala lá em cima */
 }
 
 .logo {
@@ -22,7 +30,7 @@ body {
 }
 
 .hint {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 2.6vh, 1.3rem);
   color: white;
   text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
   animation: blink 1.5s infinite;
@@ -32,4 +40,34 @@ body {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
+}
+
+/* auto-scale baseado na ALTURA do dispositivo (sem JS) */
+:root{ --home-scale: 1; }
+
+.container{
+  transform: scale(var(--home-scale));
+}
+
+/* aparelhos um pouco baixos */
+@media (max-height: 740px){
+  :root{ --home-scale: .96; }
+}
+
+/* ainda mais baixos (ex. alguns 6" com barra de navegação) */
+@media (max-height: 680px){
+  :root{ --home-scale: .92; }
+}
+
+/* muito baixos */
+@media (max-height: 630px){
+  :root{ --home-scale: .88; }
+}
+
+@media (max-height: 580px){
+  :root{ --home-scale: .84; }
+}
+
+@media (max-width: 768px){
+  body{ background-attachment: scroll !important; }
 }
