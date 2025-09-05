@@ -99,7 +99,7 @@ main {
   border-radius: 8px;
   border: 1px solid #555;
   background: rgba(255, 215, 0, 0.2); /* leve dourado */
-  color: white;
+  color: rgb(21, 11, 75);
   font-weight: bold;
   outline: none;
   cursor: pointer;
