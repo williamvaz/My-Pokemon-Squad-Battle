@@ -370,40 +370,42 @@ main {
   background:#fff;
 }
 
-/* Cabeçalho da tabela */
+/* Cabeçalho da tabela do seletor */
 .move-head{
-  display:grid; grid-template-columns:28px 1fr auto auto auto auto auto;
-  gap:8px; align-items:center;
+  display:grid;
+  /* icon | nome flex | modo | dano | speed | valor | botão */
+  grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto;
+  gap:6px; align-items:center;
   font-weight:900; font-size:.82rem; color:#2b4d7a; opacity:.9; margin:4px 0 6px;
 }
 
-/* Lista */
-.move-list{ max-height:340px; overflow:auto; display:grid; gap:6px; }
+/* Lista de opções */
+.move-list{ max-height:340px; overflow-y:auto; overflow-x:hidden; display:grid; gap:6px; }
 
 /* Linha de opção */
 .move-option{
-  display:grid; grid-template-columns:28px 1fr auto auto auto auto auto;
-  gap:8px; align-items:center;
+  display:grid;
+  grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto;
+  gap:6px; align-items:center;
   background:#fff; border:1px solid #cfe1ff; border-radius:12px; padding:8px 10px;
   transition:transform .08s ease, box-shadow .15s ease;
 }
 .move-option:hover{ transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,0,0,.15); }
 
-.move-option .type-icon{ width:24px; height:24px; border-radius:50%; }
-.move-option .pill{
-  padding:2px 8px; border-radius:999px; background:#eef; font-weight:700; white-space:nowrap;
-}
-.price-pill{
-  padding:2px 8px; border-radius:999px; background:rgba(255,215,0,.25);
-  border:1px solid gold; font-weight:900; color:#7a5a00;
+/* MUITO IMPORTANTE: permitir o nome encolher sem criar scroll horizontal */
+.move-option > :nth-child(2),
+.move-head   > :nth-child(2){
+  min-width:0;                 /* libera o encurtamento */
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
-/* Botão “Trocar” */
-.btn-mini{
-  padding:6px 10px; border-radius:999px; border:none; cursor:pointer;
-  font-weight:900; font-size:.8rem;
-  background:#2d6cdf; color:#ffd700; box-shadow:0 2px 0 rgba(0,0,0,.35);
-}
+.move-option .type-icon{ width:24px; height:24px; border-radius:50%; }
+.move-option .pill{ padding:2px 8px; border-radius:999px; background:#eef; font-weight:700; white-space:nowrap; font-size:.82rem; }
+.price-pill{ padding:2px 8px; border-radius:999px; background:rgba(255,215,0,.25); border:1px solid gold; font-weight:900; color:#7a5a00; white-space:nowrap; }
+.btn-mini{ padding:6px 10px; border-radius:999px; border:none; cursor:pointer; font-weight:900; font-size:.8rem; background:#2d6cdf; color:#ffd700; box-shadow:0 2px 0 rgba(0,0,0,.35); }
+
 
 /* feedback de falta de moedas */
 .move-select.deny{ animation: shake .35s linear; }
@@ -465,4 +467,13 @@ main {
   0%,100% { transform: translateX(0); }
   25%     { transform: translateX(-2px); }
   75%     { transform: translateX( 2px); }
+}
+
+@media (max-width: 360px){
+  .move-head, .move-option{
+    grid-template-columns: 24px minmax(0,1fr) 64px 48px 48px 54px auto;
+    gap:4px;
+  }
+  .move-option .pill, .price-pill{ font-size:.78rem; padding:2px 6px; }
+  .btn-mini{ padding:5px 9px; font-size:.76rem; }
 }
