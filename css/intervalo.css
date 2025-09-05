@@ -210,3 +210,32 @@ main {
   color: rgb(0, 0, 0);
   text-shadow: 2px 2px 3px #856010;
 }
+
+/* CONTAINER DO BOTÃO DE PROSSEGUIR*/
+.continue-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+/* BOTÃO PARA PROSSEGUIR*/
+#continue-btn {
+  background: #1E90FF;
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 12px 24px;
+  border: 3px solid #FFD700;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  text-shadow: 1px 1px 2px #000;
+  transition: all 0.2s ease-in-out;
+}
+
+/* ANIMAÇÃO DO BOTÃO AO PASSAR O MOUSE */
+#continue-btn:hover {
+  background: #4682B4;
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.6);
+}
