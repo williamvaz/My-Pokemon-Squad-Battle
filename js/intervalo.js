@@ -109,16 +109,15 @@ function recalcDerived(pokemon){
     .reduce((s,k)=> s + Number(pokemon[k] || 0), 0);
   pokemon.Total = total;
 
-  // 2) Buscamos o dex da espécie atual
+  // 2) Dex atual
   const dex = (DEX_BY_ID && DEX_BY_ID.get(String(pokemon.ID))) ||
               (DEX_BY_POKEDEX && DEX_BY_POKEDEX.get(String(pokemon.Pokedex)));
 
-  // 3) CP com a sua fórmula "forte"
+  // 3) CP com a fórmula “forte”
   const cpNow = computeCPFromStats(pokemon);   // CP atual
   pokemon.CP = cpNow;
 
-  // 4) CP máximo da espécie (recalculado a partir dos caps do dex)
-  //    Assim garante que IV sempre é proporcional ao CP, como você quer.
+  // 4) CP máximo da espécie (recalculado pelos caps da espécie)
   let cpMax = 1;
   if (dex) {
     cpMax = computeCPFromStats({
@@ -131,7 +130,7 @@ function recalcDerived(pokemon){
     });
   }
 
-  // 5) IV baseado em CP (0..1). A UI já exibe em %.
+  // 5) IV baseado em CP (0..1)
   pokemon.IV = +(cpNow / (cpMax || 1)).toFixed(4);
 }
 
@@ -163,39 +162,35 @@ function rockCostForMega(curDex, targetDex) {
   return Math.max(1, Math.ceil(coinCostForEvolution(curDex, targetDex) / 10));
 }
 function applyEvolution(pokemon, targetDex) {
+  const keys = ["HP","Attack","Defense","Sp. Atk","Sp. Def","Speed"];
   const curDex = DEX_BY_ID.get(String(pokemon.ID));
-  const keys = DERIVED_KEYS;
 
   // % atual por atributo na forma atual
   const ratios = Object.fromEntries(keys.map(k => {
     const curVal = Number(pokemon[k] || 0);
-    const curMax = Number(curDex[k] || 1);
-    return [k, curVal / curMax];
+    const curMax = Number(curDex?.[k] || 1);
+    const frac = curMax > 0 ? curVal / curMax : 0;
+    return [k, Math.min(1, Math.max(0, frac))];
   }));
 
-  // aplica mesmo % nos caps da forma nova
+  // aplica o mesmo % nos caps da forma nova
   const newStats = Object.fromEntries(keys.map(k => {
-    const tgtMax = Number(targetDex[k] || 0);
+    const tgtMax = Number(targetDex?.[k] || 0);
     return [k, Math.max(1, Math.round((ratios[k] || 0) * tgtMax))];
   }));
 
-  // derivados
-  const newTotal = keys.reduce((s, k) => s + newStats[k], 0);
-  const maxTotal = Number(targetDex.Total || keys.reduce((s,k)=> s + Number(targetDex[k]||0), 0));
-  const newIV = maxTotal ? +(newTotal / maxTotal).toFixed(4) : 0;
-
-  // aplicar espécie nova
+  // aplica espécie nova
   pokemon.ID        = String(targetDex.ID);
   pokemon.Pokedex   = String(targetDex.Pokedex);
   pokemon.Name      = targetDex.Name;
   pokemon["Type 1"] = targetDex["Type 1"];
-  pokemon["Type 2"] = targetDex["Type 2"];
+  pokemon["Type 2"] = targetDex["Type 2"] || "";
 
-  // stats & derivados
+  // aplica os novos atributos
   keys.forEach(k => { pokemon[k] = newStats[k]; });
-  pokemon.Total = newTotal;
-  pokemon.IV    = newIV;   // 0..1
-  pokemon.CP    = newCP;
+
+  // recalcula Total, IV e CP com a fórmula nova
+  recalcDerived(pokemon);
 }
 
 /* ====== POPUP DE CONFIRMAÇÃO ====== */
@@ -444,7 +439,7 @@ async function openDetails(pokemon) {
       () => {
         if (!trySpendCoins(cost)) return;
         applyEvolution(pokemon, target);
-        recalcDerived(pokemon);
+        // recalcDerived já foi chamado dentro de applyEvolution
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
         applyFiltersAndSort();
         openDetails(pokemon);
@@ -471,7 +466,7 @@ async function openDetails(pokemon) {
         localStorage.setItem("Mega Rock", String(rocks - cost));
         megarocksEl.textContent = (rocks - cost);
         applyEvolution(pokemon, target);
-        recalcDerived(pokemon);
+        // recalcDerived já foi chamado dentro de applyEvolution
         localStorage.setItem("pokemons", JSON.stringify(pokemons));
         applyFiltersAndSort();
         openDetails(pokemon);
