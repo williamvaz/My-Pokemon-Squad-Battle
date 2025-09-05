@@ -1,64 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <!-- Ícone da aba do navegador -->
+  <!-- ICONE DO NAVEGADOR-->
   <link rel="icon" type="image/png" href="icons/megastone.png">
 
-  <!-- Configurações básicas -->
+  <!-- CONFIGURAÇÕES BÁSICAS PADRÕES -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- Título da página -->
+  <!-- TÍTULO DA PÁGINA -->
   <title>Intervalo</title>
 
-  <!-- CSS específico dessa tela -->
+  <!-- CSS UTILIZADO -->
   <link rel="stylesheet" href="css/intervalo.css" />
 </head>
 <body>
   
-  <!-- ================= HUD SUPERIOR ================= -->
+  <!-- POKEMOEDAS E MEGAROCKS NO SUPERIOR -->
   <div class="hud">
-    <!-- Pokemoedas -->
+
+    <!-- POKEMOEDAS -->
     <div class="hud-item">
       <img src="icons/pokecoin.png" alt="Pokemoedas">
       <span id="pokecoins">0</span>
     </div>
 
-    <!-- Mega Rocks -->
+    <!-- MEGA ROCKS -->
     <div class="hud-item">
       <img src="icons/megastone.png" alt="Mega Rocks">
       <span id="megarocks">0</span>
     </div>
   </div>
-  <!-- ================================================ -->
 
-  <!-- Título principal da tela -->
+  <!-- TÍTULO DA PÁGINA -->
   <h1 class="title">DIA DE DESCANSO</h1>
 
-  <!-- ================= FILTROS E ORDENAÇÃO ================= -->
+  <!-- FILTROS E ORDENAÇÃO -->
   <div class="filters">
-    <!-- Filtros por tipo de Pokémon -->
+
+    <!-- TIPO DOS POKEMONS -->
     <div id="type-filters"></div>
 
-    <!-- Opções de ordenação -->
+    <!-- ORDENAÇÃO DOS POKEMONS -->
     <select id="sort-select">
       <option value="CP">Ordenar por CP</option>
       <option value="IV">Ordenar por IV</option>
       <option value="ID">Ordenar por ID</option>
     </select>
   </div>
-  <!-- ======================================================== -->
 
-  <!-- ================= GRID DE POKÉMONS ================= -->
+  <!-- GRID DOS POKEMONS -->
   <div id="pokemon-grid" class="grid"></div>
-  <!-- ==================================================== -->
-
-  <!-- ================= DETALHES DO POKÉMON ================= -->
-  <!-- Essa div será exibida como "popup" ao clicar em um card -->
+  
+  <!-- DETALHES DOS POKEMONS -->
   <div id="details-screen" class="hidden"></div>
-  <!-- ======================================================= -->
 
-  <!-- Script JS dessa tela -->
-  <script src="js/intervalo.js"></script>
+  <!-- JS UTILIZADO -->
+  <script src="js/intervalo.js"></script> 
 </body>
 </html>

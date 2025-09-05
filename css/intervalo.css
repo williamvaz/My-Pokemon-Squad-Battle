@@ -95,8 +95,8 @@ main {
 
 /* ESTILO GERAL DOS CARDS SHINY*/
 .pokemon-card.shiny-card {
-  background-color: rgba(218, 165, 32, 0.35); /* dourado translúcido */
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* brilho dourado */
+  background-color: rgba(218, 165, 32, 0.35);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
   border: 1px solid gold;
 }
 

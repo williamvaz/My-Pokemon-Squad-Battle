@@ -3,36 +3,36 @@
    ============================== */
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* -------- HUD (pokecoins e megarocks) -------- */
+/* BARRA SUPERIOR DE MOEDAS */
   const pokecoinsEl = document.getElementById("pokecoins"); // span/div que mostra quantidade de Pokemoedas
   const megarocksEl = document.getElementById("megarocks"); // span/div que mostra quantidade de Mega Rocks
 
-  /* -------- GRID DE POKÉMONS -------- */
+/* GRID DE POKEMONS */
   const grid = document.getElementById("pokemon-grid"); // container (grid) onde os cards serão inseridos
 
-  /* -------- CARREGAR DADOS DO LOCALSTORAGE -------- */
+/* CARREGAR POKEMONS DO LOCALSTORAGE */
   const pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
 
-  // Atualiza HUD
+/* ATUALIZAR QUANTIDADE DE MOEDAS */
   pokecoinsEl.textContent = localStorage.getItem("Pokemoedas") || 0;
   megarocksEl.textContent = localStorage.getItem("Mega Rock") || 0;
 
-  /* -------- EXIBIR POKÉMONS NA TELA -------- */
+/* EXIBIR POKEMONS NA TELA */
   pokemons.forEach(p => {
     const div = document.createElement("div");
     div.classList.add("pokemon-card");
 
-// Se for shiny, aplica classe especial
+/* EXIBIR POKEMONS SHINY NA TELA */
     if (p.Shiny === "Sim") {
       div.classList.add("shiny-card");
     }
 
-    // Definir imagem correta (normal ou shiny)
+/* DEFINIÇÃO DA IMAGEM DO POKEMON */
     const imagePath = p.Shiny === "Sim"
       ? `pokemons/shiny/${p.ID.padStart(4, '0')}-shiny.png`
       : `pokemons/normal/${p.ID.padStart(4, '0')}.png`;
 
-    // Estrutura interna do card
+/* ESTRUTURA INTERNA DO CARD */
     div.innerHTML = `
       <div class="pokemon-inner">
         <!-- Imagem do Pokémon -->
