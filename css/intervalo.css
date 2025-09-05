@@ -81,15 +81,14 @@ main {
   text-align: center;
   font-family: 'Arial Rounded MT Bold', sans-serif;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  min-width: 100px;
-  max-width: 110px;
-  word-break: break-word;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 180px;
+  word-break: break-word;
   overflow: hidden;
+  aspect-ratio: 2 / 3;
 }
+
 
 /* IMAGEM DOS POKEMONS NOS CARDS*/
 .pokemon-card img {
