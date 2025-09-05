@@ -104,21 +104,36 @@ function computeCPFromStats(p) {
 }
 
 function recalcDerived(pokemon){
-  // Total = soma dos 6 atributos
+  // 1) Total ainda é útil para outras coisas
   const total = ["HP","Attack","Defense","Sp. Atk","Sp. Def","Speed"]
     .reduce((s,k)=> s + Number(pokemon[k] || 0), 0);
   pokemon.Total = total;
 
-  // IV = total / totalMáximoDaEspécie (fração 0..1)
+  // 2) Buscamos o dex da espécie atual
   const dex = (DEX_BY_ID && DEX_BY_ID.get(String(pokemon.ID))) ||
               (DEX_BY_POKEDEX && DEX_BY_POKEDEX.get(String(pokemon.Pokedex)));
-  const maxTotal = maxTotalFromDex(dex) || total || 1;
-  pokemon.IV = +(total / maxTotal).toFixed(4);
 
-  // CP pela fórmula “forte”
-  pokemon.CP = computeCPFromStats(pokemon);
+  // 3) CP com a sua fórmula "forte"
+  const cpNow = computeCPFromStats(pokemon);   // CP atual
+  pokemon.CP = cpNow;
+
+  // 4) CP máximo da espécie (recalculado a partir dos caps do dex)
+  //    Assim garante que IV sempre é proporcional ao CP, como você quer.
+  let cpMax = 1;
+  if (dex) {
+    cpMax = computeCPFromStats({
+      HP: +dex.HP || 0,
+      Attack: +dex.Attack || 0,
+      Defense: +dex.Defense || 0,
+      "Sp. Atk": +dex["Sp. Atk"] || 0,
+      "Sp. Def": +dex["Sp. Def"] || 0,
+      Speed: +dex.Speed || 0,
+    });
+  }
+
+  // 5) IV baseado em CP (0..1). A UI já exibe em %.
+  pokemon.IV = +(cpNow / (cpMax || 1)).toFixed(4);
 }
-
 
 /* ====== CAP POR ATRIBUTO (para exibir X / max) ====== */
 const DEFAULT_STAT_CAP = 125;
