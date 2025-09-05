@@ -89,7 +89,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 220px;
+  height: 250px;
   overflow: hidden;
 }
 
@@ -110,6 +110,7 @@ main {
 
 /* NOME DOS POKEMONS NOS CARDS*/
 .pokemon-card .pokemon-name {
+  margin-bottom: 3px;
   color: rgb(255, 255, 255);
 }
 
