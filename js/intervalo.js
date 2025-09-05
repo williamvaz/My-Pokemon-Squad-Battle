@@ -24,32 +24,35 @@ document.addEventListener("DOMContentLoaded", () => {
     const div = document.createElement("div");
     div.classList.add("pokemon-card");
 
-    // Estrutura interna do card (HTML montado dinamicamente)
-    div.innerHTML = `
-      <div class="pokemon-inner">
-        <!-- Imagem do Pokémon -->
-        <img class="pokemon-image" src="pokemons/normal/${p.ID.padStart(4, '0')}.png" alt="${p.Name}">
+// Estrutura interna do card (HTML montado dinamicamente)
+div.innerHTML = `
+  <div class="pokemon-inner">
+    <!-- Imagem do Pokémon -->
+    <img class="pokemon-image" 
+         src="pokemons/${p.Shiny === 'Sim' ? 'shiny' : 'normal'}/${p.ID.padStart(4, '0')}.png" 
+         alt="${p.Name}">
+    
+    <!-- Nome do Pokémon -->
+    <div class="pokemon-name">${p.Name}</div>
+    
+    <!-- Parte inferior do card (tipos + CP) -->
+    <div class="pokemon-bottom">
+      <div class="types">
+        <!-- Tipo principal -->
+        <img src="types/${p["Type 1"]}.png" alt="${p["Type 1"]}" class="type-icon">
         
-        <!-- Nome do Pokémon -->
-        <div class="pokemon-name">${p.Name}</div>
-        
-        <!-- Parte inferior do card (tipos + CP) -->
-        <div class="pokemon-bottom">
-          <div class="types">
-            <!-- Tipo principal -->
-            <img src="types/${p["Type 1"]}.png" alt="${p["Type 1"]}" class="type-icon">
-            
-            <!-- Tipo secundário (só aparece se existir) -->
-            ${p["Type 2"] && p["Type 2"] !== "" 
-              ? `<img src="types/${p["Type 2"]}.png" alt="${p["Type 2"]}" class="type-icon">` 
-              : ""}
-          </div>
-          
-          <!-- CP do Pokémon -->
-          <div class="cp-label">CP: ${p.CP}</div>
-        </div>
+        <!-- Tipo secundário (só aparece se existir) -->
+        ${p["Type 2"] && p["Type 2"] !== "" 
+          ? `<img src="types/${p["Type 2"]}.png" alt="${p["Type 2"]}" class="type-icon">` 
+          : ""}
       </div>
-    `;
+      
+      <!-- CP do Pokémon -->
+      <div class="cp-label">CP: ${p.CP}</div>
+    </div>
+  </div>
+`;
+
 
     // Inserir card pronto dentro do grid
     grid.appendChild(div);
