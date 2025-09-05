@@ -146,6 +146,16 @@ main {
   background-color: rgba(218, 165, 32, 0.35);
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
   border: 1px solid gold;
+  display: inline-block;
+  box-shadow: 0 0 8px yellow;
+  animation: pulse 1s infinite;
+}
+
+/* SHINY PULSAR*/
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
 }
 
 /* IMAGEM DOS POKEMONS NOS CARDS*/

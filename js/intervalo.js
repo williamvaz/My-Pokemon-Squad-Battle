@@ -30,46 +30,42 @@ bgMusic.play().catch(err => {
   pokecoinsEl.textContent = localStorage.getItem("Pokemoedas") || 0;
   megarocksEl.textContent = localStorage.getItem("Mega Rock") || 0;
 
-/* FUNÇÃO PARA RENDERIZAR CARDS */
 function renderPokemons(list) {
   grid.innerHTML = ""; // limpa grid
 
-  // Ao clicar no card, abre a tela de detalhes
-div.addEventListener("click", () => {
-  openDetails(p);
-});
-
-/* EXIBIR POKEMONS NA TELA */
   list.forEach(p => {
     const div = document.createElement("div");
     div.classList.add("pokemon-card");
 
-/* EXIBIR POKEMONS SHINY NA TELA */
-    if (p.Shiny === "Sim") {
-      div.classList.add("shiny-card");
-    }
+    // CARD COM TEMA SHINY
+    if (p.Shiny === "Sim") div.classList.add("shiny-card");
 
-/* DEFINIÇÃO DA IMAGEM DO POKEMON */
+    // IMAGENS DOS POKEMONS
     const imagePath = p.Shiny === "Sim"
       ? `pokemons/shiny/${p.ID.padStart(4, '0')}-shiny.png`
       : `pokemons/normal/${p.ID.padStart(4, '0')}.png`;
 
-/* ESTRUTURA INTERNA DO CARD */
+    // HTML DO CARD (COM SELO DOS POKEMONS SHINY)
     div.innerHTML = `
       <div class="pokemon-inner">
         <img class="pokemon-image" src="${imagePath}" alt="${p.Name}">
         <div class="pokemon-name">${p.Name}</div>
+        ${p.Shiny === "Sim" ? `<div class="shiny-label">✨ Shiny</div>` : ""}
         <div class="pokemon-bottom">
           <div class="types">
             <img src="types/${p["Type 1"]}.png" alt="${p["Type 1"]}" class="type-icon">
             ${p["Type 2"] && p["Type 2"] !== "" 
-              ? `<img src="types/${p["Type 2"]}.png" alt="${p["Type 2"]}" class="type-icon">` 
+              ? `<img src="types/${p["Type 2"]}.png" alt="${p["Type 2"]}" class="type-icon">`
               : ""}
           </div>
           <div class="cp-label">CP: ${p.CP}</div>
         </div>
       </div>
     `;
+
+    // ABIR DETALHES
+    div.addEventListener("click", () => openDetails(p));
+
     grid.appendChild(div);
   });
 }

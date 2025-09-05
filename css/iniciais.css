@@ -63,7 +63,6 @@ body {
   image-rendering: auto;
 }
 
-
 .shiny-label {
   background: gold;
   color: black;
@@ -103,7 +102,6 @@ body {
   transform: scale(1.05);
   box-shadow: 0 0 15px #FFD700;
 }
-
 
 .pokemon-card.selected {
   border: 3px solid gold;
