@@ -1,4 +1,4 @@
-
+/* CORPO DA TELA */
 body {
   margin: 0;
   padding: 0;
@@ -8,14 +8,16 @@ body {
   flex-direction: column;
   background: url("../background/pokedex.png") no-repeat center center fixed;
   background-size: cover;
-  color: white; /* deixa os textos legíveis */
+  color: white;
 }
 
+/* ALÉM DA TELA (ROLAGEM) */
 main {
   flex: 1;
   overflow-y: auto;
 }
 
+/* BARRA SUPERIOR DE MOEDAS */
 .hud {
   display: flex;
   justify-content: center;
@@ -25,18 +27,21 @@ main {
   padding: 10px 0;
 }
 
+/* ICONES DA BARRA SUPERIOR DE MOEDAS */
 .hud-item img {
   width: 24px;
   vertical-align: middle;
   margin-right: 5px;
 }
 
+/* TÍTULO DA PÁGINA*/
 .title {
   text-align: center;
   font-size: 2rem;
   margin: 10px 0;
 }
 
+/* FILTROS DOS TIPOS*/
 .filters {
   display: flex;
   justify-content: center;
@@ -45,6 +50,7 @@ main {
   flex-wrap: wrap;
 }
 
+/* ICONES E FILTROS DOS TIPOS*/
 #type-filters img {
   width: 32px;
   cursor: pointer;
@@ -52,10 +58,12 @@ main {
   border: 2px solid transparent;
 }
 
+/* ICONES E FILTROS DOS TIPOS SELECIONADO*/
 #type-filters img.selected {
   border-color: #000;
 }
 
+/* CONTAINER PARA OS CARDS*/
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -64,6 +72,7 @@ main {
   overflow-y: auto;
 }
 
+/* ESTILO GERAL DOS CARDS*/
 .pokemon-card {
   position: relative;
   background-color: rgba(0, 0, 0, 0.4);
@@ -82,6 +91,7 @@ main {
   overflow: hidden;
 }
 
+/* IMAGEM DOS POKEMONS NOS CARDS*/
 .pokemon-card img {
   width: 100%;
   max-height: 80px;
@@ -89,12 +99,12 @@ main {
   margin-bottom: 4px;
 }
 
-/* Nome do Pokémon */
+/* NOME DOS POKEMONS NOS CARDS*/
 .pokemon-card .label {
-  margin-bottom: 30px; /* reserva espaço para o rodapé */
+  margin-bottom: 30px;
 }
 
-/* Rodapé fixo com tipo e CP */
+/* RODAPÉ DO CARD COM TIPO E CP DO POKEMON*/
 .card-footer {
   position: absolute;
   bottom: 4px;
@@ -106,18 +116,20 @@ main {
   align-items: center;
 }
 
-
+/* CONTAINER DOS TIPOS DO POKEMON*/
 .types {
   display: flex;
   gap: 4px;
 }
 
+/* ICONE DOS TIPOS DO POKEMON*/
 .type-icon {
   width: 28px;
   height: 28px;
   object-fit: contain;
 }
 
+/* TEXTO DO CP*/
 .cp-value {
   font-size: 0.85rem;
   color: white;
