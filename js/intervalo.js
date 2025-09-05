@@ -117,4 +117,17 @@ sortSelect.addEventListener("change", applyFiltersAndSort);
 /* EXIBIR TODOS INICIALMENTE */
 applyFiltersAndSort();
 
+/* BOTÃO CONTINUAR */
+const continueBtn = document.getElementById("continue-btn");
+
+continueBtn.addEventListener("click", () => {
+  const rodadas = parseInt(localStorage.getItem("rodadas_finalizadas")) || 0;
+
+  if (rodadas > 19) {
+    window.location.href = "time.html";     // mais de 19 rodadas → vai para montar time
+  } else {
+    window.location.href = "explorar.html"; // senão → continua explorando
+  }
+});
+
 });
