@@ -94,7 +94,7 @@ main {
 /* IMAGEM DOS POKEMONS NOS CARDS*/
 .pokemon-card img {
   width: 100%;
-  max-height: 80px;
+  max-height: 90px;
   object-fit: contain;
   margin-bottom: 4px;
 }
