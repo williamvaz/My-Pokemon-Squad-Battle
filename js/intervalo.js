@@ -443,8 +443,8 @@ details.querySelectorAll(".stat-add").forEach((btn, idx) => {
   details.querySelector("#btn-close").onclick = () => details.classList.add("hidden");
 // ----- EVOLUIR -----
 details.querySelector("#btn-evolve").onclick = () => {
-  const curDex = DEX_BY_POKEDEX.get(String(pokemon.Pokedex));
-  const candidates = findEvoCandidates(pokemon.Pokedex, false);
+  const curDex = DEX_BY_ID.get(String(pokemon.ID));
+  const candidates = findEvoCandidatesByID(pokemon.ID, false);
   if (!candidates.length) {
     const b = details.querySelector("#btn-evolve"); b.classList.add("deny");
     setTimeout(()=>b.classList.remove("deny"), 350);
@@ -453,35 +453,36 @@ details.querySelector("#btn-evolve").onclick = () => {
   const target = candidates[Math.floor(Math.random()*candidates.length)];
   const cost = coinCostForEvolution(curDex, target);
 
-  // saldo suficiente?
   if (getCoins() < cost) {
     const b = details.querySelector("#btn-evolve"); b.classList.add("deny");
     setTimeout(()=>b.classList.remove("deny"), 350);
     return;
   }
 
-  openConfirm(`Deseja evoluir o seu <b>${pokemon.Name}</b> para <b>${target.Name}</b> por <b>${cost}</b> Pokemoedas?`,
-              "Evoluir", () => {
-    if (!trySpendCoins(cost)) return; // recheck
-    applyEvolution(pokemon, target);
-    localStorage.setItem("pokemons", JSON.stringify(pokemons));
-    openDetails(pokemon);
-  });
+  openConfirm(
+    `Deseja evoluir o seu <b>${pokemon.Name}</b> para <b>${target.Name}</b> por <b>${cost}</b> Pokemoedas?`,
+    "Evoluir",
+    () => {
+      if (!trySpendCoins(cost)) return;
+      applyEvolution(pokemon, target);
+      localStorage.setItem("pokemons", JSON.stringify(pokemons));
+      openDetails(pokemon);
+    }
+  );
 };
 
 // ----- MEGA EVOLUIR -----
 details.querySelector("#btn-mega").onclick = () => {
-  const curDex = DEX_BY_POKEDEX.get(String(pokemon.Pokedex));
-  const candidates = findEvoCandidates(pokemon.Pokedex, true);
+  const curDex = DEX_BY_ID.get(String(pokemon.ID));
+  const candidates = findEvoCandidatesByID(pokemon.ID, true);
   if (!candidates.length) {
     const b = details.querySelector("#btn-mega"); b.classList.add("deny");
     setTimeout(()=>b.classList.remove("deny"), 350);
     return;
   }
   const target = candidates[Math.floor(Math.random()*candidates.length)];
-  const cost = rockCostForMega(curDex, target);
+  const cost = rockCostForMega(curDex, target); // = ceil((120 - (cur/tgt)*100)/10)
 
-  // saldo suficiente?
   const rocks = parseInt(localStorage.getItem("Mega Rock") || "0", 10);
   if (rocks < cost) {
     const b = details.querySelector("#btn-mega"); b.classList.add("deny");
@@ -489,19 +490,20 @@ details.querySelector("#btn-mega").onclick = () => {
     return;
   }
 
-  openConfirm(`Deseja mega evoluir o seu <b>${pokemon.Name}</b> para <b>${target.Name}</b> por <b>${cost}</b> Mega Rocks?`,
-              "Mega Evoluir", () => {
-    // debita rocks
-    const newR = rocks - cost;
-    localStorage.setItem("Mega Rock", String(newR));
-    megarocksEl.textContent = newR;
+  openConfirm(
+    `Deseja mega evoluir o seu <b>${pokemon.Name}</b> para <b>${target.Name}</b> por <b>${cost}</b> Mega Rocks?`,
+    "Mega Evoluir",
+    () => {
+      const newR = rocks - cost;
+      localStorage.setItem("Mega Rock", String(newR));
+      megarocksEl.textContent = newR;
 
-    applyEvolution(pokemon, target);
-    localStorage.setItem("pokemons", JSON.stringify(pokemons));
-    openDetails(pokemon);
-  });
+      applyEvolution(pokemon, target);
+      localStorage.setItem("pokemons", JSON.stringify(pokemons));
+      openDetails(pokemon);
+    }
+  );
 };
-
 
   // abrir seletor de golpes
   details.querySelectorAll(".move-change").forEach(btn=>{
