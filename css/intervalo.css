@@ -477,3 +477,18 @@ main {
   .move-option .pill, .price-pill{ font-size:.78rem; padding:2px 6px; }
   .btn-mini{ padding:5px 9px; font-size:.76rem; }
 }
+
+/* POPUP DE EVOLUÇÃO E MEGA EVOLUÇÃO */
+.confirm-box{
+  position: fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:1100;
+  background: rgba(0,0,0,.35);
+}
+.confirm-card{
+  width:min(360px, 90vw);
+  background:#f7fbff; color:#123; border:2px solid #9ec3ff; border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
+  padding:14px;
+  text-align:center;
+}
+.confirm-card p{ margin:6px 0 12px; }
+.confirm-actions{ display:flex; gap:8px; justify-content:center; }
