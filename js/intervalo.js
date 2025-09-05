@@ -64,6 +64,34 @@ async function ensureDexLoaded() {
   }
 }
 
+// ---- DERIVADAS (Total, IV, CP) ----
+const DERIVED_KEYS = ["HP","Attack","Defense","Sp. Atk","Sp. Def","Speed"];
+
+// ajuste se quiser um CP mais alto/baixo
+const CP_PER_POINT = 2.5;
+
+function maxTotalFromDex(dexEntry){
+  if (!dexEntry) return 0;
+  if (dexEntry.Total != null) return Number(dexEntry.Total);
+  return DERIVED_KEYS.reduce((s,k)=> s + Number(dexEntry[k] || 0), 0);
+}
+
+function recalcDerived(pokemon){
+  // soma os 6 atributos
+  const total = DERIVED_KEYS.reduce((s,k)=> s + Number(pokemon[k] || 0), 0);
+  pokemon.Total = total;
+
+  // pega os máximos da espécie pelo Pokedex
+  const dex = DEX_BY_POKEDEX?.get(String(pokemon.Pokedex));
+  const maxTotal = maxTotalFromDex(dex) || total || 1;
+
+  // IV como fração 0..1 (guarda com 4 casas; na UI você já exibe em %)
+  pokemon.IV = +(total / maxTotal).toFixed(4);
+
+  // CP proporcional ao total (ajustável via CP_PER_POINT)
+  pokemon.CP = Math.round(total * CP_PER_POINT);
+}
+
 async function ensureMovesLoaded() {
   if (MOVES_BY_NAME && MOVES_LIST) return; // já carregado
 
@@ -312,34 +340,29 @@ details.querySelectorAll(".stat-add").forEach((btn, idx) => {
   const [, key] = statDefs[idx];
   const max = statMaxFor(pokemon, key);
   const current = Number(pokemon[key] ?? 0);
-
   if (current >= max) btn.disabled = true;
 
   btn.onclick = () => {
     const cur = Number(pokemon[key] ?? 0);
     const cap = statMaxFor(pokemon, key);
 
-    // já no máximo
-    if (cur >= cap) {
-      btn.disabled = true;
-      return;
-    }
+    if (cur >= cap) { btn.disabled = true; return; }
 
-    // não tem moedas suficientes
+    // precisa ter 2 pokemoedas
     if (!trySpendCoins(COST_PER_POINT)) {
-      // feedback visual simples
       btn.classList.add("deny");
       setTimeout(() => btn.classList.remove("deny"), 350);
       return;
     }
 
-    // aplica upgrade
+    // aplica +1 no atributo
     pokemon[key] = cur + 1;
 
-    // persiste
-    localStorage.setItem("pokemons", JSON.stringify(pokemons));
+    // 🔸 RECALCULA DERIVADAS
+    recalcDerived(pokemon);
 
-    // reabre o modal para atualizar valores e estado dos botões
+    // salva e rerenderiza
+    localStorage.setItem("pokemons", JSON.stringify(pokemons));
     openDetails(pokemon);
   };
 });
