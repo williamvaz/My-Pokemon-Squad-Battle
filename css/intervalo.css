@@ -112,16 +112,19 @@ main {
   right: 0;
   padding: 0 4px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2px;
 }
 
 /* CONTAINER DOS TIPOS DO POKEMON*/
 .types {
   display: flex;
   gap: 4px;
-  min-width: 50px;
+    min-width: 50px;
   max-width: 50px;
+  justify-content: center;
   align-items: center;
 }
 
