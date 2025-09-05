@@ -87,7 +87,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  height: 180px;
+  height: 220px;
   overflow: hidden;
 }
 
