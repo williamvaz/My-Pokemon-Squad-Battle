@@ -39,6 +39,8 @@ main {
   text-align: center;
   font-size: 2rem;
   margin: 10px 0;
+  font-weight: bold;
+  text-shadow: 2px 2px 3px #000;
 }
 
 /* FILTROS DOS TIPOS*/
