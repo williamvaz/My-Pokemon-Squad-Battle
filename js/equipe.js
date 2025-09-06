@@ -93,7 +93,6 @@ function renderTeam() {
     card.dataset.uid = uid;
 
     card.innerHTML = `
-      <button class="drag-handle">≡</button>
       <button class="remove-btn">×</button>
       <img src="${pokeImg(mon)}" alt="${mon.Name}">
       <div class="team-name">${mon.Name}</div>

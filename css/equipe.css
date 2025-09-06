@@ -72,7 +72,6 @@ body {
   box-shadow: 0 2px 0 rgba(0,0,0,.35);
 }
 .remove-btn { right: 6px; background:#d94141; color:#fff; }
-.drag-handle { left: 6px; background:#2d6cdf; color:#ffd700; }
 .team-card[draggable="true"] { cursor: grab; }
 
 /* Toolbar */
@@ -127,3 +126,5 @@ body {
 @media (max-width: 380px){
   .team, .inventory { grid-template-columns: repeat(2, 1fr); }
 }
+
+.drag-handle { display: none !important; }
