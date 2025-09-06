@@ -360,17 +360,14 @@ main {
 .moves-row .pill{ justify-self: center; }
 .moves-row .btn-mini{ justify-self: end; }
 
-/* reserva colunas 'vazias' no header para bater com as linhas */
-/* 1ª coluna (Tp) centralizada e com largura do ícone */
-.moves-head > :first-child{ width: 28px; justify-self: center; }
-
-/* última coluna (Ação) visível e alinhada com o botão das linhas */
-.moves-head > :last-child{ justify-self: end; visibility: visible; }
-
-/* numéricos do cabeçalho centralizados */
+/* HEADER do card: alinhar por flex para bater com as pills das linhas */
+.moves-head > *{ display:flex; align-items:center; } /* base */
+.moves-head > :first-child{ justify-content:center; width:28px; } /* Tp */
+.moves-head > :nth-child(2){ justify-content:flex-start; }        /* Golpe (esq.) */
 .moves-head > :nth-child(3),
 .moves-head > :nth-child(4),
-.moves-head > :nth-child(5){ text-align: center; }
+.moves-head > :nth-child(5){ justify-content:center; }            /* Modo/Dano/Speed */
+.moves-head > :last-child{ justify-content:flex-end; }            /* Ação (dir.) */
 
 /* evita quebra feia do nome do golpe */
 .moves-head > :nth-child(2),
@@ -523,19 +520,15 @@ main {
 .price-pill{ justify-self: center; }
 .move-option .btn-mini{ justify-self: end; }
 
-/* reservar colunas “sem conteúdo” no cabeçalho */
-.move-head > :first-child{ width: 28px; justify-self: center; } /* “Tp” centralizado */
-.move-head > :last-child{ justify-self: end; visibility: visible; } /* “Ação” visível e à direita */
-
-/* centraliza os pill numéricos no cabeçalho */
+/* HEADER do picker: mesma lógica de alinhamento */
+.move-head > *{ display:flex; align-items:center; }               /* base */
+.move-head > :first-child{ justify-content:center; width:28px; }  /* Tp */
+.move-head > :nth-child(2){ justify-content:flex-start; }         /* Golpe (esq.) */
 .move-head > :nth-child(3),
 .move-head > :nth-child(4),
 .move-head > :nth-child(5),
-.move-head > :nth-child(6){ text-align: center; }
-
-/* alinhamento de textos no header */
-.move-head > div:nth-child(2){ text-align: left; } /* nome */
-.move-head > div:not(:nth-child(2)){ text-align: center; }
+.move-head > :nth-child(6){ justify-content:center; }             /* Modo/Dano/Speed/Valor */
+.move-head > :last-child{ justify-content:flex-end; }             /* Ação (dir.) */
 
 /* POPUP DE EVOLUÇÃO E MEGA EVOLUÇÃO */
 .confirm-box{
