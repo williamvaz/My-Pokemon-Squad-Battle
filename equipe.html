@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Ícone -->
+  <link rel="icon" type="image/png" href="icons/megastone.png">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Equipe</title>
+
+  <link rel="stylesheet" href="css/equipe.css" />
+</head>
+<body>
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-item">
+      <img src="icons/pokecoin.png" alt="Pokemoedas">
+      <span id="pokecoins">0</span>
+    </div>
+    <div class="hud-item">
+      <img src="icons/megastone.png" alt="Mega Rocks">
+      <span id="megarocks">0</span>
+    </div>
+  </div>
+
+  <main class="page">
+    <h1 class="title">EQUIPE</h1>
+
+    <!-- Área da equipe (6 slots) -->
+    <section class="team" id="team">
+      <!-- slots são preenchidos via JS -->
+    </section>
+
+    <!-- Barra de ferramentas do inventário -->
+    <div class="toolbar">
+      <input id="search" placeholder="Buscar Pokémon..." />
+      <select id="sort">
+        <option value="CP">Ordenar por CP</option>
+        <option value="IV">Ordenar por IV</option>
+        <option value="Name">Ordenar por Nome</option>
+      </select>
+    </div>
+
+    <!-- Inventário -->
+    <section class="inventory" id="inventory">
+      <!-- cards preenchidos via JS -->
+    </section>
+
+    <!-- Ações -->
+    <div class="actions">
+      <button id="save" class="btn btn-blue">SALVAR E SAIR</button>
+      <button id="back" class="btn btn-gray">VOLTAR</button>
+    </div>
+  </main>
+
+  <script src="js/equipe.js"></script>
+</body>
+</html>
