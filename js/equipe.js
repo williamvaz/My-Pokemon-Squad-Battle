@@ -148,9 +148,10 @@ function renderInventory() {
   // ordenar
   const key = sortEl.value;
   notInTeam.sort((a,b) => {
-    if (key === "CP")  return b.CP - a.CP;
-    if (key === "IV")  return (b.IV||0) - (a.IV||0);
-    if (key === "Name") return a.Name.localeCompare(b.Name);
+    if (key === "CP")  return b.CP - a.CP;                       // desc
+    if (key === "IV")  return (b.IV||0) - (a.IV||0);             // desc
+    if (key === "ID")  return Number(a.ID) - Number(b.ID);       // asc
+
     return 0;
   });
 

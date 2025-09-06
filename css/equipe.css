@@ -42,7 +42,7 @@ body {
   background: rgba(0,0,0,.35);
   border: 1px solid rgba(255,255,255,.25);
   border-radius: 12px;
-  height: 130px;       /* altura fixa p/ caber na dobra */
+  height: 200px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
@@ -58,7 +58,7 @@ body {
 /* Card na equipe */
 .team-card { padding: 6px; text-align: center; }
 .team-card img {
-  width: 100%; max-height: 68px; object-fit: contain; display:block; margin: 2px auto 4px;
+  width: 100%; max-height: 100px; object-fit: contain; display:block; margin: 2px auto 4px;
 }
 .team-name { font-size: .9rem; font-weight: 800; text-shadow: 1px 1px 2px #000; }
 .team-meta { font-size: .8rem; opacity:.95; display:flex; gap:6px; justify-content:center; }
@@ -97,10 +97,10 @@ body {
   background: rgba(0,0,0,.35);
   border: 1px solid rgba(255,255,255,.25);
   border-radius: 12px;
-  height: 150px; overflow: hidden; padding: 6px; text-align: center;
+  height: 220px; overflow: hidden; padding: 6px; text-align: center;
   box-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
-.inv-card img { width: 100%; max-height: 78px; object-fit: contain; margin-bottom: 4px; }
+.inv-card img { width: 100%; max-height: 120px; object-fit: contain; margin-bottom: 4px; }
 .inv-name { font-size: .9rem; font-weight: 800; }
 .inv-meta { font-size:.8rem; opacity:.95; }
 
