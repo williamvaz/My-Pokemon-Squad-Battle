@@ -376,13 +376,13 @@ async function openDetails(pokemon) {
       </div>
 
       <div class="section-title">Golpes</div>
-      <div class="moves">
-        <div class="moves-row moves-head">
-          <div></div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div></div>
-        </div>
-        ${moveRow(1, pokemon["Golpe 1"], g1)}
-        ${moveRow(2, pokemon["Golpe 2"], g2)}
-      </div>
+<div class="moves">
+  <div class="moves-row moves-head">
+    <div></div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div></div>
+  </div>
+  ${moveRow(1, pokemon["Golpe 1"], g1)}
+  ${moveRow(2, pokemon["Golpe 2"], g2)}
+</div>
 
       <div class="section-title">Atributos</div>
       <div class="base-stats">${statsHtml}</div>

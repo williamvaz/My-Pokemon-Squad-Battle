@@ -338,36 +338,39 @@ main {
   border-radius:12px; padding:10px; margin-top:4px;
 }
 
-/* DETALHES: header e linhas com o MESMO grid (alinhamento 1:1) */
-.moves-row,
-.moves-row.moves-head{
+/* GOLPES: header e linhas com o MESMO grid (alinhamento perfeito) */
+/* ícone | nome | modo | dano | speed | botão  */
+.moves-head,
+.moves-row{
   display: grid;
-  /* ícone | nome | modo | dano | speed | botão */
-  grid-template-columns: 28px minmax(0,1fr) 68px 56px 56px auto;
+  grid-template-columns: 28px minmax(0,1fr) 68px 54px 54px auto;
   gap: 6px;
   align-items: center;
 }
 
-/* centraliza os “pills” e ancora o botão à direita */
-.moves-row .pill{ justify-self: center; }
-.moves-row .btn-mini{ justify-self: end; }
-
-/* estilo do cabeçalho */
-.moves-row.moves-head{
-  font-size: .85rem;
-  font-weight: 700;
-  opacity: .9;
+/* cabeçalho */
+.moves-head{
+  font-weight: 900;
+  opacity: .85;
+  font-size: .82rem;
   margin-bottom: 6px;
 }
 
-/* reserva colunas no header para bater com as linhas */
-.moves-row.moves-head > :first-child{ width: 28px; }     /* ícone */
-.moves-row.moves-head > :last-child{ visibility: hidden; } /* espaço do botão */
-.moves-row.moves-head > div:nth-child(2){ text-align: left; }  /* nome */
-.moves-row.moves-head > div:not(:nth-child(2)){ text-align: center; }
-.moves .pill{
-  padding:2px 8px; border-radius:999px; background:rgba(0,0,0,.25);
-  border:1px solid rgba(255,255,255,.2); font-weight:700;
+/* centraliza os pills e ancora o botão à direita */
+.moves-row .pill{ justify-self: center; }
+.moves-row .btn-mini{ justify-self: end; }
+
+/* reserva colunas 'vazias' no header para bater com as linhas */
+.moves-head > :first-child{ width: 28px; }           /* ícone */
+.moves-head > :last-child{ visibility: hidden; }     /* espaço do botão */
+
+/* evita quebra feia do nome do golpe */
+.moves-head > :nth-child(2),
+.moves-row  > :nth-child(2){
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* TROCAR O GOLPE */
