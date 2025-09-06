@@ -375,10 +375,15 @@ async function openDetails(pokemon) {
         </div>
       </div>
 
-      <div class="section-title">Golpes</div>
+<div class="section-title">Golpes</div>
 <div class="moves">
-  <div class="moves-row moves-head">
-    <div>Tp</div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div>Ação</div>
+  <div class="moves-head">
+    <div>Tp</div>
+    <div>Golpe</div>
+    <div><span class="pill">Modo</span></div>
+    <div><span class="pill">Dano</span></div>
+    <div><span class="pill">Speed</span></div>
+    <div>Ação</div>
   </div>
   ${moveRow(1, pokemon["Golpe 1"], g1)}
   ${moveRow(2, pokemon["Golpe 2"], g2)}
@@ -491,9 +496,15 @@ function openMovePicker(pokemon, slot) {
   picker.innerHTML = `
     <h3>Trocar Golpe ${slot}</h3>
     <input class="move-search" type="text" placeholder="Buscar golpe...">
-    <div class="move-head">
-      <div>Tp</div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div>Valor</div><div>Ação</div>
-    </div>
+<div class="move-head">
+  <div>Tp</div>
+  <div>Golpe</div>
+  <div><span class="pill">Modo</span></div>
+  <div><span class="pill">Dano</span></div>
+  <div><span class="pill">Speed</span></div>
+  <div><span class="price-pill">Valor</span></div>
+  <div>Ação</div>
+</div>
     <div class="move-list"></div>
     <div class="picker-actions">
       <button class="btn btn-gray" id="picker-cancel">Cancelar</button>

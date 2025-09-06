@@ -556,3 +556,15 @@ main {
 .move-option > :nth-child(4) .pill      { width: 54px; justify-content: center; } /* Dano  */
 .move-option > :nth-child(5) .pill      { width: 54px; justify-content: center; } /* Speed */
 .move-option > :nth-child(6) .price-pill{ width: 58px; justify-content: center; display:flex; }
+
+/* === Header com pills do mesmo tamanho das colunas === */
+/* Card de detalhes (grid: 28 | 1fr | 68 | 54 | 54 | auto) */
+.moves-head > :nth-child(3) .pill { width: 68px; display:flex; justify-content:center; }
+.moves-head > :nth-child(4) .pill,
+.moves-head > :nth-child(5) .pill { width: 54px; display:flex; justify-content:center; }
+
+/* Picker (grid: 28 | 1fr | 70 | 54 | 54 | 58 | auto) */
+.move-head > :nth-child(3) .pill { width: 70px; display:flex; justify-content:center; }
+.move-head > :nth-child(4) .pill,
+.move-head > :nth-child(5) .pill { width: 54px; display:flex; justify-content:center; }
+.move-head > :nth-child(6) .price-pill { width: 58px; display:flex; justify-content:center; }
