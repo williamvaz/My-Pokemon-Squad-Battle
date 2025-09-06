@@ -544,3 +544,15 @@ main {
 }
 .confirm-card p{ margin:6px 0 12px; }
 .confirm-actions{ display:flex; gap:8px; justify-content:center; }
+
+/* === Alinhamento fino: garantir largura fixa por coluna === */
+/* CARD (Golpes dentro do modal) — grid: 28 | 1fr | 68 | 54 | 54 | auto */
+.moves-row > :nth-child(3) .pill { width: 68px;  justify-content: center; } /* Modo  */
+.moves-row > :nth-child(4) .pill { width: 54px;  justify-content: center; } /* Dano  */
+.moves-row > :nth-child(5) .pill { width: 54px;  justify-content: center; } /* Speed */
+
+/* PICKER (Trocar Golpe) — grid: 28 | 1fr | 70 | 54 | 54 | 58 | auto */
+.move-option > :nth-child(3) .pill      { width: 70px; justify-content: center; } /* Modo  */
+.move-option > :nth-child(4) .pill      { width: 54px; justify-content: center; } /* Dano  */
+.move-option > :nth-child(5) .pill      { width: 54px; justify-content: center; } /* Speed */
+.move-option > :nth-child(6) .price-pill{ width: 58px; justify-content: center; display:flex; }
