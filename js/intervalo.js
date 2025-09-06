@@ -295,7 +295,7 @@ const continueBtn = document.getElementById("continue-btn");
 if (continueBtn) {
   continueBtn.addEventListener("click", () => {
     const rodadas = parseInt(localStorage.getItem("rodadas_finalizadas")) || 0;
-    if (rodadas > 19) window.location.href = "time.html";
+    if (rodadas > 19) window.location.href = "equipe.html";
     else window.location.href = "explorar.html";
   });
 }
