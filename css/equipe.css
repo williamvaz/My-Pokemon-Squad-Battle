@@ -42,7 +42,7 @@ body {
   background: rgba(0,0,0,.35);
   border: 1px solid rgba(255,255,255,.25);
   border-radius: 12px;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
@@ -96,7 +96,7 @@ body {
   background: rgba(0,0,0,.35);
   border: 1px solid rgba(255,255,255,.25);
   border-radius: 12px;
-  height: 220px; overflow: hidden; padding: 6px; text-align: center;
+  height: 250px; overflow: hidden; padding: 6px; text-align: center;
   box-shadow: 0 2px 6px rgba(0,0,0,.35);
 }
 .inv-card img { width: 100%; max-height: 120px; object-fit: contain; margin-bottom: 4px; }
