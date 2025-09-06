@@ -332,51 +332,51 @@ main {
   text-shadow:1px 1px 0 #134; opacity:.95;
 }
 
-/* TABELA DE GOLPES (container) */
+/* container */
 .moves{
   background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.25);
   border-radius:12px; padding:10px; margin-top:4px;
 }
 
-/* GOLPES: header e linhas com o MESMO grid (alinhamento perfeito) */
-/* ícone | nome | modo | dano | speed | botão  */
+/* MESMO grid para header e linhas */
 .moves-head,
 .moves-row{
-  display: grid;
-  grid-template-columns: 28px minmax(0,1fr) 68px 54px 54px auto;
-  gap: 6px;
-  align-items: center;
+  display:grid;
+  grid-template-columns: 28px minmax(0,1fr) 68px 54px 54px auto; /* Tp | Golpe | Modo | Dano | Speed | Ação */
+  gap:6px; align-items:center;
 }
 
-/* cabeçalho */
-.moves-head{
-  font-weight: 900;
-  opacity: .85;
-  font-size: .82rem;
-  margin-bottom: 6px;
-}
+/* header visual */
+.moves-head{ font-weight:900; opacity:.85; font-size:.82rem; margin-bottom:6px; }
 
-/* centraliza os pills e ancora o botão à direita */
-.moves-row .pill{ justify-self: center; }
-.moves-row .btn-mini{ justify-self: end; }
+/* centralizações das células */
+.moves-row .pill     { justify-self:center; }
+.moves-row .btn-mini { justify-self:end; }
 
-/* HEADER do card: alinhar por flex para bater com as pills das linhas */
-.moves-head > *{ display:flex; align-items:center; } /* base */
+/* header alinhado por flex p/ bater com as pills */
+.moves-head > *{ display:flex; align-items:center; }
 .moves-head > :first-child{ justify-content:center; width:28px; } /* Tp */
-.moves-head > :nth-child(2){ justify-content:flex-start; }        /* Golpe (esq.) */
+.moves-head > :nth-child(2){ justify-content:flex-start; }        /* Golpe */
 .moves-head > :nth-child(3),
 .moves-head > :nth-child(4),
 .moves-head > :nth-child(5){ justify-content:center; }            /* Modo/Dano/Speed */
-.moves-head > :last-child{ justify-content:flex-end; }            /* Ação (dir.) */
+.moves-head > :last-child{ justify-content:flex-end; }            /* Ação */
 
-/* evita quebra feia do nome do golpe */
+/* nome do golpe sem quebrar */
 .moves-head > :nth-child(2),
 .moves-row  > :nth-child(2){
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
+
+/* larguras idênticas dos pills no card */
+.moves-row  > :nth-child(3) .pill{ width:68px; justify-content:center; } /* Modo  */
+.moves-row  > :nth-child(4) .pill{ width:54px; justify-content:center; } /* Dano  */
+.moves-row  > :nth-child(5) .pill{ width:54px; justify-content:center; } /* Speed */
+
+.moves-head > :nth-child(3) .pill{ width:68px; display:flex; justify-content:center; }
+.moves-head > :nth-child(4) .pill,
+.moves-head > :nth-child(5) .pill{ width:54px; display:flex; justify-content:center; }
+
 
 /* TROCAR O GOLPE */
 .btn-mini{
@@ -403,46 +403,54 @@ main {
 }
 
 /* Cabeçalho da tabela do seletor */
+/* header do picker */
 .move-head{
   display:grid;
-  /* icon | nome flex | modo | dano | speed | valor | botão */
   grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto;
-  gap:6px;
-  align-items:center;
-  font-weight:900;
-  font-size:.82rem;
-  color:#2b4d7a;
-  opacity:.9;
-  margin:4px 0 6px;
+  gap:6px; align-items:center;
+  font-weight:900; font-size:.82rem; color:#2b4d7a; opacity:.9; margin:4px 0 6px;
 }
 
-/* Lista de opções */
-.move-list{ max-height:340px; overflow-y:auto; overflow-x:hidden; display:grid; gap:6px; }
-
-/* Linha de opção */
+/* linhas do picker */
 .move-option{
   display:grid;
   grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto;
   gap:6px; align-items:center;
   background:#fff; border:1px solid #cfe1ff; border-radius:12px; padding:8px 10px;
-  transition:transform .08s ease, box-shadow .15s ease;
 }
-.move-option:hover{ transform:translateY(-1px);background:#5da6fa; box-shadow:0 6px 14px rgba(0,0,0,.15); }
 
-/* MUITO IMPORTANTE: permitir o nome encolher sem criar scroll horizontal */
+/* centralizações e larguras */
+.move-option > :nth-child(3) .pill      { width:70px; justify-content:center; } /* Modo  */
+.move-option > :nth-child(4) .pill      { width:54px; justify-content:center; } /* Dano  */
+.move-option > :nth-child(5) .pill      { width:54px; justify-content:center; } /* Speed */
+.move-option > :nth-child(6) .price-pill{ width:58px; justify-content:center; display:flex; }
+.move-option .btn-mini{ justify-self:end; }
+
+/* header do picker com o mesmo alinhamento */
+.move-head > *{ display:flex; align-items:center; }
+.move-head > :first-child{ justify-content:center; width:28px; }  /* Tp */
+.move-head > :nth-child(2){ justify-content:flex-start; }         /* Golpe */
+.move-head > :nth-child(3),
+.move-head > :nth-child(4),
+.move-head > :nth-child(5),
+.move-head > :nth-child(6){ justify-content:center; }             /* Modo/Dano/Speed/Valor */
+.move-head > :last-child{ justify-content:flex-end; }             /* Ação */
+
+/* nome do golpe sem quebrar */
 .move-option > :nth-child(2),
 .move-head   > :nth-child(2){
-  min-width:0;                 /* libera o encurtamento */
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 
-.move-option .type-icon{ width:24px; height:24px; border-radius:50%; }
-.move-option .pill{ padding:2px 8px; border-radius:999px; background:#eef; font-weight:700; white-space:nowrap; font-size:.82rem; }
-.price-pill{ padding:2px 8px; border-radius:999px; background:rgba(255,215,0,.25); border:1px solid gold; font-weight:900; color:#7a5a00; white-space:nowrap; }
-.btn-mini{ padding:6px 10px; border-radius:999px; border:none; cursor:pointer; font-weight:900; font-size:.8rem; background:#2d6cdf; color:#ffd700; box-shadow:0 2px 0 rgba(0,0,0,.35); }
-
+/* responsivo estreito */
+@media (max-width:360px){
+  .move-head, .move-option{
+    grid-template-columns: 24px minmax(0,1fr) 64px 48px 48px 54px auto;
+    gap:4px;
+  }
+  .move-option .pill, .price-pill{ font-size:.78rem; padding:2px 6px; }
+  .btn-mini{ padding:5px 9px; font-size:.76rem; }
+}
 
 /* feedback de falta de moedas */
 .move-select.deny{ animation: shake .35s linear; }
