@@ -427,7 +427,7 @@ main {
   background:#fff; border:1px solid #cfe1ff; border-radius:12px; padding:8px 10px;
   transition:transform .08s ease, box-shadow .15s ease;
 }
-.move-option:hover{ transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,0,0,.15); }
+.move-option:hover{ transform:translateY(-1px);background:#5da6fa; box-shadow:0 6px 14px rgba(0,0,0,.15); }
 
 /* MUITO IMPORTANTE: permitir o nome encolher sem criar scroll horizontal */
 .move-option > :nth-child(2),
