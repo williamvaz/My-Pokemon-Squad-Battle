@@ -161,11 +161,17 @@ function renderInventory() {
     const card = document.createElement("div");
     card.className = "inv-card";
     card.innerHTML = `
-      <img src="${pokeImg(p)}" alt="${p.Name}">
-      <div class="inv-name">${p.Name}</div>
-      <div class="inv-meta">CP: ${p.CP} • ${Math.round((p.IV||0)*100)}%</div>
-      <button class="add-btn">Adicionar</button>
-    `;
+  <img src="${pokeImg(p)}" alt="${p.Name}">
+  <div class="inv-name">${p.Name}</div>
+
+  <!-- Tipos (agora aparece no inventário também) -->
+  <div class="card-types">
+    ${typeIcons(p)}
+  </div>
+
+  <div class="inv-meta">CP: ${p.CP} • ${Math.round((p.IV||0)*100)}%</div>
+  <button class="add-btn">Adicionar</button>
+`;
     const btn = card.querySelector(".add-btn");
     btn.disabled = teamIds.length >= TEAM_SIZE;
     btn.onclick = () => {
