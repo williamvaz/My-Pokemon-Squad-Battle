@@ -378,7 +378,7 @@ async function openDetails(pokemon) {
       <div class="section-title">Golpes</div>
 <div class="moves">
   <div class="moves-row moves-head">
-    <div></div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div></div>
+    <div>Tp</div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div>Ação</div>
   </div>
   ${moveRow(1, pokemon["Golpe 1"], g1)}
   ${moveRow(2, pokemon["Golpe 2"], g2)}
@@ -492,7 +492,7 @@ function openMovePicker(pokemon, slot) {
     <h3>Trocar Golpe ${slot}</h3>
     <input class="move-search" type="text" placeholder="Buscar golpe...">
     <div class="move-head">
-      <div></div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div>Valor</div><div></div>
+      <div>Tp</div><div>Golpe</div><div>Modo</div><div>Dano</div><div>Speed</div><div>Valor</div><div>Ação</div>
     </div>
     <div class="move-list"></div>
     <div class="picker-actions">

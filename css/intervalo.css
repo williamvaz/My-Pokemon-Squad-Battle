@@ -361,8 +361,16 @@ main {
 .moves-row .btn-mini{ justify-self: end; }
 
 /* reserva colunas 'vazias' no header para bater com as linhas */
-.moves-head > :first-child{ width: 28px; }           /* ícone */
-.moves-head > :last-child{ visibility: hidden; }     /* espaço do botão */
+/* 1ª coluna (Tp) centralizada e com largura do ícone */
+.moves-head > :first-child{ width: 28px; justify-self: center; }
+
+/* última coluna (Ação) visível e alinhada com o botão das linhas */
+.moves-head > :last-child{ justify-self: end; visibility: visible; }
+
+/* numéricos do cabeçalho centralizados */
+.moves-head > :nth-child(3),
+.moves-head > :nth-child(4),
+.moves-head > :nth-child(5){ text-align: center; }
 
 /* evita quebra feia do nome do golpe */
 .moves-head > :nth-child(2),
@@ -402,8 +410,13 @@ main {
   display:grid;
   /* icon | nome flex | modo | dano | speed | valor | botão */
   grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto;
-  gap:6px; align-items:center;
-  font-weight:900; font-size:.82rem; color:#2b4d7a; opacity:.9; margin:4px 0 6px;
+  gap:6px;
+  align-items:center;
+  font-weight:900;
+  font-size:.82rem;
+  color:#2b4d7a;
+  opacity:.9;
+  margin:4px 0 6px;
 }
 
 /* Lista de opções */
@@ -511,8 +524,14 @@ main {
 .move-option .btn-mini{ justify-self: end; }
 
 /* reservar colunas “sem conteúdo” no cabeçalho */
-.move-head > :first-child{ width: 28px; }          /* ícone */
-.move-head > :last-child{ visibility: hidden; }    /* espaço do botão */
+.move-head > :first-child{ width: 28px; justify-self: center; } /* “Tp” centralizado */
+.move-head > :last-child{ justify-self: end; visibility: visible; } /* “Ação” visível e à direita */
+
+/* centraliza os pill numéricos no cabeçalho */
+.move-head > :nth-child(3),
+.move-head > :nth-child(4),
+.move-head > :nth-child(5),
+.move-head > :nth-child(6){ text-align: center; }
 
 /* alinhamento de textos no header */
 .move-head > div:nth-child(2){ text-align: left; } /* nome */
