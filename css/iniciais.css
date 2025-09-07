@@ -1,15 +1,16 @@
-/* Evitar scroll horizontal e vertical */
+/* Reset total para impedir scroll */
 html, body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* sem rolagem */
+  touch-action: none; /* previne arrastar na tela */
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: url("../background/inicial.webp") no-repeat center center fixed, 
+  background: url("../background/inicial.webp") no-repeat center center fixed,
               linear-gradient(180deg, #c1f2e9, #a3e0ff);
   background-size: cover;
   background-position: center;
@@ -18,51 +19,52 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  align-items: center;
 }
 
-/* Container principal */
+/* Container ocupa 100% da tela */
 .container {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  height: 100%;
   padding: 2%;
   box-sizing: border-box;
-  height: 100%;
 }
 
-/* Área dos pokémons */
+/* Grid dos cards (2 em cima, 1 centralizado embaixo) */
 .pokemon-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 por linha */
-  gap: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
   width: 100%;
+  height: 70%; /* cards ocupam 70% da tela */
   max-width: 500px;
   margin: auto;
 }
 
-/* Forçar 3º card centralizado mas do mesmo tamanho */
+/* Forçar último card centralizado */
 .pokemon-container > :last-child:nth-child(odd) {
   grid-column: span 2;
   justify-self: center;
-  width: 45%; /* mesmo tamanho dos outros */
+  width: 45%;
 }
 
-/* Cards */
+/* Cards iguais e responsivos */
 .pokemon-card {
-  text-align: center;
   background-color: rgba(255,255,255,0.1);
   border-radius: 12px;
-  padding: 8px;
   border: 2px solid white;
   transition: transform 0.2s ease;
-  box-sizing: border-box;
-  height: 180px; /* altura fixa para padronizar */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%; /* ocupa espaço da célula */
 }
 
 .pokemon-card:hover {
@@ -70,29 +72,29 @@ body {
 }
 
 .pokemon-card img {
-  width: 75%;
-  max-height: 80px;
+  width: 60%;
+  max-height: 60%;
   object-fit: contain;
-  margin: 0 auto;
+  margin: auto;
 }
 
-/* Nome */
+/* Nome maior */
 .pokemon-name {
   font-weight: bold;
-  font-size: clamp(14px, 2.5vw, 18px); /* maior */
-  margin-top: 4px;
+  font-size: clamp(14px, 2vw, 18px);
+  margin: 4px 0;
 }
 
-/* Tipos */
+/* Tipos maiores */
 .pokemon-types {
   display: flex;
   justify-content: center;
   gap: 6px;
-  margin-top: 4px;
+  margin-bottom: 6px;
 }
 
 .type-icon {
-  width: 28px;  /* maior */
+  width: 28px;
   height: 28px;
   object-fit: contain;
 }
@@ -116,7 +118,7 @@ body {
   100% { transform: scale(1); }
 }
 
-/* Botão Prosseguir */
+/* Botão fixo embaixo */
 #proceedBtn {
   display: none;
   margin-bottom: 10px;
