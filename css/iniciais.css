@@ -86,8 +86,8 @@ body {
 }
 
 .type-icon {
-  width: clamp(84px, 4vw, 120px);
-  height: clamp(84px, 4vw, 120px);
+  width: clamp(36px, 5vw, 60px);
+  height: clamp(36px, 5vw, 60px);
   object-fit: contain;
 }
 
