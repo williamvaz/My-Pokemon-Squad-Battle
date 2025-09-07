@@ -1,38 +1,55 @@
-body {
+/* Evitar scroll horizontal e garantir largura total */
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
   font-family: 'Segoe UI', sans-serif;
-  background: url("../background/inicial.webp") no-repeat center center fixed, linear-gradient(180deg, #c1f2e9, #a3e0ff);
+  background: url("../background/inicial.webp") no-repeat center center fixed, 
+              linear-gradient(180deg, #c1f2e9, #a3e0ff);
   background-size: cover;
   background-position: center;
   height: 100vh;
   color: white;
   text-align: center;
-  overflow: hidden;
+  overflow-y: auto; /* permitir rolagem vertical se necessário */
 }
 
+/* Container principal */
 .container {
-  padding: 30px;
-  border-radius: 20px;
-  width: 90%;
-  max-width: 900px;
-  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2%;
+  box-sizing: border-box;
 }
 
+/* Área dos pokémons */
 .pokemon-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
+  max-width: 900px;
 }
 
+/* Cards responsivos */
 .pokemon-card {
-  width: 120px;
+  width: 28vw;
+  max-width: 150px;
+  min-width: 100px;
   text-align: center;
   background-color: rgba(255,255,255,0.1);
   border-radius: 15px;
   padding: 10px;
   border: 2px solid white;
+  transition: transform 0.2s ease;
 }
 
 .pokemon-card:hover {
@@ -40,15 +57,20 @@ body {
 }
 
 .pokemon-card img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+  object-fit: contain;
 }
 
+/* Nome */
 .pokemon-name {
   font-weight: bold;
   margin-top: 10px;
+  font-size: clamp(12px, 2vw, 16px);
 }
 
+/* Tipos */
 .pokemon-types {
   display: flex;
   justify-content: center;
@@ -57,12 +79,13 @@ body {
 }
 
 .type-icon {
-  width: 24px !important;
-  height: 24px !important;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
   image-rendering: auto;
 }
 
+/* Label Shiny */
 .shiny-label {
   background: gold;
   color: black;
@@ -73,6 +96,7 @@ body {
   display: inline-block;
   box-shadow: 0 0 8px yellow;
   animation: pulse 1s infinite;
+  font-size: clamp(10px, 2vw, 14px);
 }
 
 @keyframes pulse {
@@ -81,11 +105,12 @@ body {
   100% { transform: scale(1); }
 }
 
+/* Botão Prosseguir */
 #proceedBtn {
   display: none;
   margin-top: 30px;
   padding: 10px 30px;
-  font-size: 18px;
+  font-size: clamp(14px, 3vw, 18px);
   font-weight: bold;
   background-color: #0184C4;
   color: #FFD700;
@@ -103,7 +128,23 @@ body {
   box-shadow: 0 0 15px #FFD700;
 }
 
+/* Card selecionado */
 .pokemon-card.selected {
   border: 3px solid gold;
   box-shadow: 0 0 15px yellow;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .pokemon-card {
+    width: 40vw;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-card {
+    width: 80vw;
+    max-width: none;
+  }
 }
