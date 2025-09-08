@@ -1,10 +1,20 @@
+:root{
+  /* ajuste fino rápido */
+  --hud-top: 3dvh;            /* ~2–8% */
+  --grid-top: 20dvh;          /* início da área dos cards */
+  --grid-bottom: 12dvh;       /* deixa espaço pro rodapé/botão */
+  --side-pad: 5vw;            /* 5% esquerda/direita */
+  --col-gap: 4vw;             /* separação entre colunas (5–48% | 52–95%) */
+  --footer-bottom: 5dvh;      /* 92–98% da página */
+}
+
 html, body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100dvh;              /* altura visível real */
+  height: 100dvh;                 /* altura visível real */
   height: -webkit-fill-available; /* fallback iOS */
-  overflow: hidden;            /* sem rolagem */
+  overflow: hidden;               /* sem rolagem */
   font-family: 'Segoe UI', sans-serif;
   background: url("../background/exploration.webp") no-repeat center center fixed;
   background-size: cover;
@@ -12,24 +22,10 @@ html, body {
   text-align: center;
 }
 
-#loading-screen {
-  position: fixed;
-  inset: 0;
-  background-color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-#loading-screen img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
+/* ========= HUD (2–8%) ========= */
 .hud {
   position: absolute;
-  top: 10px;
+  top: var(--hud-top);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -38,159 +34,109 @@ html, body {
 }
 
 .resource {
-  background-color: rgba(255,255,255,0.8);
+  background-color: rgba(255,255,255,0.85);
   color: #0c1e33;
   border-radius: 20px;
-  padding: 5px 12px;
+  padding: 6px 14px;
   display: flex;
   align-items: center;
   font-weight: bold;
 }
+.resource img { height: 24px; margin-right: 6px; }
 
-.resource img {
-  height: 24px;
-  margin-right: 6px;
-}
-
-.container {
-  margin-top: 100px;
-}
-
+/* ========= TÍTULO proporcional (entre HUD e cards) ========= */
+.container { position: relative; }
 .container h2 {
-  font-size: clamp(18px, 4vw, 28px);
-  margin: 16px 0 12px;
+  position: absolute;
+  top: calc(var(--grid-top) - 10dvh);  /* fica antes da grade */
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: clamp(18px, 5.2vw, 32px);
+  line-height: 1.1;
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+  pointer-events: none;
 }
 
-/* grade com 2 colunas × 3 linhas fixas */
+/* ========= ÁREA DOS CARDS (20–88% da tela) ========= */
 .rewards-container {
+  position: absolute;
+  top: var(--grid-top);
+  bottom: var(--grid-bottom);        /* deixa espaço pro rodapé/botão */
+  left: 0; right: 0;
+
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* duas colunas “5–48%” e “52–95%”:
+     padding lateral de 5vw + gap central de 4vw + cada coluna com ~43% */
+  grid-template-columns: 43% 43%;
   grid-template-rows: repeat(3, 1fr);
+  column-gap: var(--col-gap);
+  row-gap: 2dvh;
+
+  padding: 0 var(--side-pad);
   justify-items: center;
   align-items: stretch;
-  gap: 14px;
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
-  height: calc(100dvh - 25%); /* reserva HUD + rodapé */
-  padding: 0 12px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* base para TODOS os cards (pokémon e itens) */
+/* ========= CARD ========= */
 .reward {
   position: relative;
   overflow: hidden;
-  background: rgba(0,0,0,.30);
-  border-radius: 12px;
-  padding: 6px;
 
-  width: 90%;
-  aspect-ratio: 3 / 4; /* mais alto que largo */
+  background: rgba(0,0,0,.28);
+  border-radius: 14px;
+  padding: 8px;
+
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between;  /* garante blocos top/bottom */
   align-items: center;
   gap: 6px;
-
-  box-shadow: 0 6px 18px rgba(0,0,0,.18);
 }
 
-/* imagem */
+/* Topo do card = arte do pokémon/ícone (até 50% da altura do card) */
 .reward img {
-  max-width: 70%;
-  max-height: 55%;
+  max-width: 76%;
+  max-height: 50%;   /* <= pedido: imagem até 50% do card */
   object-fit: contain;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
-/* nome centralizado e responsivo */
+/* Nome no meio (responsivo) */
 .reward .label {
   word-break: break-word;
   max-width: 90%;
   text-align: center;
-  font-size: clamp(12px, 2.5vw, 16px);
+  font-size: clamp(13px, 2.8vw, 18px);
   font-weight: bold;
   line-height: 1.2;
-  margin: 4px 0;
+  margin: 2px 0 0;
   flex-shrink: 0;
 }
 
-/* Tipos */
+/* Linha “tipos” + espaço pro shiny abaixo (altura constante) */
 .reward .pokemon-types {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;
-  height: 34px; /* altura fixa para uniformizar */
+  gap: 8px;
+  height: 34px;     /* fixa pra não variar c/ 1 ou 2 ícones */
+  margin-bottom: 2px;
 }
-
 .reward .type-icon {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
+  width: 26px; height: 26px; object-fit: contain; flex-shrink: 0;
 }
 
-/* botão fixo embaixo com rodapé proporcional */
-#proceedBtn {
-  position: absolute;
-  bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 28px;
-  background-color: #0078d4;
-  color: yellow;
-  font-weight: bold;
-  border-radius: 10px;
-  font-size: 18px;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 0 8px black;
-  z-index: 20;
-}
-
-/* Cobertura total para o GIF de carregamento */
-#loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100dvh;
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-#loading-screen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Efeito visual especial para Pokémon shiny */
+/* SHINY dentro do card (parte inferior) */
 .reward.shiny {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
   box-shadow: 0 0 15px 6px gold;
 }
-
-.reward.shiny::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    130deg,
-    rgba(255, 255, 200, 0.2) 0%,
-    rgba(255, 255, 150, 0.5) 50%,
-    rgba(255, 255, 200, 0.2) 100%
-  );
-  animation: shineMove 2s linear infinite;
-  z-index: 1;
-}
-
 .reward.shiny::after {
   content: "✨ SHINY ✨";
   position: absolute;
@@ -203,18 +149,25 @@ html, body {
   text-shadow: 0 0 6px black;
   z-index: 2;
 }
-
+.reward.shiny::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(130deg,
+    rgba(255, 255, 200, 0.16) 0%,
+    rgba(255, 255, 150, 0.35) 50%,
+    rgba(255, 255, 200, 0.16) 100%);
+  animation: shineMove 2s linear infinite;
+  z-index: 1;
+}
 @keyframes shineMove {
   0% { transform: translateX(-100%) rotate(25deg); }
   100% { transform: translateX(100%) rotate(25deg); }
 }
 
-/* badge Tier no topo direito */
+/* Badge Tier (topo direito) */
 .reward .tag {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 2;
+  top: 8px; right: 8px;
   padding: 4px 8px;
   border-radius: 8px;
   background: rgba(0,0,0,.55);
@@ -222,5 +175,37 @@ html, body {
   font-size: .75rem;
   font-weight: 700;
   line-height: 1;
+  z-index: 2;
   pointer-events: none;
+}
+
+/* ========= BOTÃO (rodapé 92–98%) ========= */
+#proceedBtn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--footer-bottom) + env(safe-area-inset-bottom));
+  padding: 12px 28px;
+  background-color: #0078d4;
+  color: #FFD700;
+  font-weight: 800;
+  border-radius: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 10px #00000080;
+  z-index: 20;
+}
+
+/* ========= TELA DE CARREGAMENTO ========= */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw; height: 100dvh;
+  background-color: #000;
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999;
+}
+#loading-screen img {
+  width: 100%; height: 100%; object-fit: cover;
 }
