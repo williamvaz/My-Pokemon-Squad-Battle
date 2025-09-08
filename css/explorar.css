@@ -31,7 +31,6 @@ body {
   object-fit: contain;  /* mantém proporção da arte do "Wait" */
 }
 
-
 /* 🪙 HUD no topo (pokémoedas/mega rocks) */
 .hud {
   position: absolute;
@@ -59,7 +58,7 @@ body {
 
 /* 🔳 Container geral (abaixo do HUD) */
 .container {
-  margin-top: 10%;
+  margin-top: 15%;
 }
 
 /* 📦 Grid de recompensas (2 colunas) */
