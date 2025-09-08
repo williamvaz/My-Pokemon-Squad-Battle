@@ -102,7 +102,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 4px;              /* espaço entre ícones */
-  margin-bottom: 6px;
+  margin-bottom: 0px;
 }
 
 /* ✨ Label shiny */
