@@ -63,12 +63,12 @@ html, body {
   grid-template-rows: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
-  height: calc(100dvh - 140px); /* HUD em cima, botão fixo embaixo */
+  height: calc(100dvh - 200px); /* HUD em cima + respiro pro botão */
   max-width: 600px;
   margin: auto;
-  padding-bottom: 60px; /* espaço de respiro pro botão */
+  padding-bottom: 20px;
 }
 
 /* base para TODOS os cards (pokémon e itens) */
@@ -82,14 +82,14 @@ html, body {
   padding: 6px;
 
   /* tamanho responsivo */
-  width: min(40vw, 150px); /* nunca maior que 150px */
-  aspect-ratio: 1 / 1;     /* mantém quadrado */
+  width: min(42vw, 160px);
+  aspect-ratio: 3 / 4; /* mais alto que largo */
 
   /* layout interno */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 6px;
 
   /* sombra */
@@ -99,7 +99,30 @@ html, body {
 .reward img {
   width: 70%;
   height: auto;
-  max-height: 70%;
+  max-height: 55%;
+  object-fit: contain;
+}
+
+.reward .label {
+  word-break: break-word;
+  max-width: 90%;
+  text-align: center;
+  font-size: clamp(12px, 2vw, 14px);
+  line-height: 1.2;
+}
+
+/* Tipos dentro do card */
+.reward .pokemon-types {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  height: 36px; /* altura fixa */
+}
+
+.reward .type-icon {
+  width: clamp(22px, 5vw, 28px);
+  height: clamp(22px, 5vw, 28px);
   object-fit: contain;
 }
 
@@ -109,12 +132,12 @@ html, body {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 22px;
+  padding: 10px 26px;
   background-color: #0078d4;
   color: yellow;
   font-weight: bold;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 18px;
   cursor: pointer;
   border: none;
   box-shadow: 0 0 8px black;
@@ -141,14 +164,6 @@ html, body {
   object-fit: cover;
 }
 
-/* Nome longo do Pokémon quebra em várias linhas */
-.reward .label {
-  word-break: break-word;
-  max-width: 140px;
-  text-align: center;
-  line-height: 1.2;
-}
-
 /* Efeito visual especial para Pokémon shiny */
 .reward.shiny {
   position: relative;
@@ -157,7 +172,6 @@ html, body {
   box-shadow: 0 0 15px 6px gold;
 }
 
-/* Camada de brilho animado */
 .reward.shiny::before {
   content: "";
   position: absolute;
@@ -172,14 +186,13 @@ html, body {
   z-index: 1;
 }
 
-/* Texto “SHINY” */
 .reward.shiny::after {
   content: "✨ SHINY ✨";
   position: absolute;
-  top: 5px;
+  bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   color: gold;
   text-shadow: 0 0 6px black;
