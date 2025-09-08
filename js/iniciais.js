@@ -46,7 +46,8 @@ function createCard(pokemon, shiny) {
 
   // Cria o container do card
   const card = document.createElement("div");
-  card.className = "pokemon-card";
+  card.className = shiny ? "pokemon-card shiny-card" : "pokemon-card";
+
 
   // Monta o HTML interno do card
   card.innerHTML = `
