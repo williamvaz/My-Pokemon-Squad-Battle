@@ -53,66 +53,12 @@ html, body {
 }
 
 .container {
-  margin-top: 120px;
+  margin-top: 100px;
 }
 
-/* grade com 2 colunas × 3 linhas fixas */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100vw;
-  height: 100dvh;              /* altura visível real */
-  height: -webkit-fill-available; /* fallback iOS */
-  overflow: hidden;            /* sem rolagem */
-  font-family: 'Segoe UI', sans-serif;
-  background: url("../background/exploration.webp") no-repeat center center fixed;
-  background-size: cover;
-  color: white;
-  text-align: center;
-}
-
-#loading-screen {
-  position: fixed;
-  inset: 0;
-  background-color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-#loading-screen img {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.hud {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 20px;
-  z-index: 10;
-}
-
-.resource {
-  background-color: rgba(255,255,255,0.8);
-  color: #0c1e33;
-  border-radius: 20px;
-  padding: 5px 12px;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-}
-
-.resource img {
-  height: 24px;
-  margin-right: 6px;
-}
-
-.container {
-  margin-top: 120px;
+.container h2 {
+  font-size: clamp(18px, 4vw, 28px);
+  margin: 16px 0 12px;
 }
 
 /* grade com 2 colunas × 3 linhas fixas */
@@ -126,8 +72,8 @@ html, body {
   width: 100%;
   max-width: 600px;
   margin: auto;
-  height: calc(100dvh - 200px); /* área central para os 5 cards */
-  padding-bottom: 20px;
+  height: calc(100dvh - 25%); /* reserva HUD + rodapé */
+  padding: 0 12px;
 }
 
 /* base para TODOS os cards (pokémon e itens) */
@@ -136,11 +82,10 @@ html, body {
   overflow: hidden;
   background: rgba(0,0,0,.30);
   border-radius: 12px;
-  padding: 8px;
+  padding: 6px;
 
-  /* ocupa toda a célula */
   width: 90%;
-  height: 100%;
+  aspect-ratio: 3 / 4; /* mais alto que largo */
 
   display: flex;
   flex-direction: column;
@@ -154,8 +99,9 @@ html, body {
 /* imagem */
 .reward img {
   max-width: 70%;
-  max-height: 50%;
+  max-height: 55%;
   object-fit: contain;
+  margin-top: 4px;
 }
 
 /* nome centralizado e responsivo */
@@ -163,9 +109,10 @@ html, body {
   word-break: break-word;
   max-width: 90%;
   text-align: center;
-  font-size: clamp(13px, 2.5vw, 18px); /* cresce em telas maiores */
+  font-size: clamp(12px, 2.5vw, 16px);
   font-weight: bold;
-  margin: 6px 0;
+  line-height: 1.2;
+  margin: 4px 0;
   flex-shrink: 0;
 }
 
@@ -175,19 +122,19 @@ html, body {
   justify-content: center;
   align-items: center;
   gap: 6px;
-  height: 36px; /* altura fixa para uniformizar */
+  height: 34px; /* altura fixa para uniformizar */
 }
 
 .reward .type-icon {
-  width: clamp(22px, 4vw, 28px);
-  height: clamp(22px, 4vw, 28px);
+  width: 26px;
+  height: 26px;
   object-fit: contain;
 }
 
-/* botão fixo embaixo */
+/* botão fixo embaixo com rodapé proporcional */
 #proceedBtn {
   position: absolute;
-  bottom: 20px;
+  bottom: 8%;
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 28px;
