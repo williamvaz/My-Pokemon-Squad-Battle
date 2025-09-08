@@ -86,12 +86,12 @@ body {
   align-items: center;
   gap: 8px;
   margin-bottom: 6px;
-  height: 60px; /* altura maior e fixa */
+  height: 60px; /* altura fixa para todos */
 }
 
 .type-icon {
-  width: clamp(36px, 5vw, 40px);
-  height: clamp(36px, 5vw, 40px);
+  width: 60px;   /* tamanho absoluto */
+  height: 60px;  /* não muda entre 1 ou 2 */
   object-fit: contain;
   flex-shrink: 0;
 }
