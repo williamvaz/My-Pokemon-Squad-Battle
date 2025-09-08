@@ -96,6 +96,7 @@ body {
   justify-content: center;
   gap: 6px;
   line-height: 1;
+  margin-bottom: 5px;   /* 👈 afasta dos limites do card */
 }
 
 /* Ícones de tipo (não sofrem com a regra da arte) */
@@ -184,6 +185,6 @@ body {
 }
 
 @keyframes pulseShiny {
-  from { transform: scale(1); opacity: 0.6; }
-  to   { transform: scale(1.08); opacity: 1; }
+  from { transform: scale(1); opacity: 0.2; }
+  to   { transform: scale(1.08); opacity: 0.8; }
 }
