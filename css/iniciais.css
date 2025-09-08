@@ -84,16 +84,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 4px;              /* diminui o espaço entre ícones */
   margin-bottom: 6px;
-  height: 60px; /* altura maior e fixa */
 }
 
 .type-icon {
-  width: clamp(36px, 5vw, 40px);
-  height: clamp(36px, 5vw, 40px);
+  width: 50px;           /* força tamanho fixo, menor */
+  height: 50px;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
 .shiny-label {
