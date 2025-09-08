@@ -71,7 +71,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
   box-sizing: border-box;
   height: 100%;
 }
@@ -81,12 +80,32 @@ body {
   transform: scale(1.05);
 }
 
-/* 🖼 Imagem do pokémon */
-.pokemon-card img {
+/* Só a imagem grande do Pokémon */
+.pokemon-card > img {
   width: 60%;
   max-height: 60%;
   object-fit: contain;
   margin: auto;
+  display: block;
+}
+
+/* Linha de tipos */
+.pokemon-card .pokemon-types {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  line-height: 1;
+}
+
+/* Ícones de tipo (não sofrem com a regra da arte) */
+.pokemon-card .pokemon-types .type-icon {
+  width: 30px;           /* ajuste se quiser 24/28/32/50 */
+  height: 30px;
+  flex: 0 0 30px;        /* impede esticar/encolher no flex */
+  margin: 0;             /* cancela o margin:auto herdado */
+  object-fit: contain;
+  display: block;
 }
 
 /* 📝 Nome do pokémon */
@@ -94,15 +113,6 @@ body {
   font-weight: bold;
   font-size: clamp(14px, 2vw, 18px); /* responsivo */
   margin: 4px 0;
-}
-
-/* 🔖 Tipos */
-.pokemon-types {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0px;              /* espaço entre ícones */
-  margin-bottom: 0px;
 }
 
 /* ✨ Label shiny */
@@ -153,13 +163,6 @@ body {
 .pokemon-card.selected {
   border: 3px solid gold;
   box-shadow: 0 0 12px yellow;
-}
-
-/* 🟡 Ícones de tipo (⚠ tamanho fixo, pode dar problema em telas pequenas) */
-.type-icon {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
 }
 
 /* ✨ Fundo pulsando dourado para shiny */
