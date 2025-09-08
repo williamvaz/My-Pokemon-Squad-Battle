@@ -65,9 +65,10 @@ html, body {
   align-items: center;
   gap: 12px;
   width: 100%;
-  height: calc(100dvh - 180px); /* 100% da tela menos HUD + botão */
+  height: calc(100dvh - 140px); /* HUD em cima, botão fixo embaixo */
   max-width: 600px;
   margin: auto;
+  padding-bottom: 60px; /* espaço de respiro pro botão */
 }
 
 /* base para TODOS os cards (pokémon e itens) */
@@ -102,9 +103,12 @@ html, body {
   object-fit: contain;
 }
 
+/* botão fixo embaixo */
 #proceedBtn {
-  margin-top: 20px;
-  margin-bottom: 10px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 10px 22px;
   background-color: #0078d4;
   color: yellow;
@@ -114,6 +118,7 @@ html, body {
   cursor: pointer;
   border: none;
   box-shadow: 0 0 8px black;
+  z-index: 20;
 }
 
 /* Cobertura total para o GIF de carregamento */
