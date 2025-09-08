@@ -57,17 +57,76 @@ html, body {
 }
 
 /* grade com 2 colunas × 3 linhas fixas */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100dvh;              /* altura visível real */
+  height: -webkit-fill-available; /* fallback iOS */
+  overflow: hidden;            /* sem rolagem */
+  font-family: 'Segoe UI', sans-serif;
+  background: url("../background/exploration.webp") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
+}
+
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#loading-screen img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.hud {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 10;
+}
+
+.resource {
+  background-color: rgba(255,255,255,0.8);
+  color: #0c1e33;
+  border-radius: 20px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.resource img {
+  height: 24px;
+  margin-right: 6px;
+}
+
+.container {
+  margin-top: 120px;
+}
+
+/* grade com 2 colunas × 3 linhas fixas */
 .rewards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   justify-items: center;
-  align-items: center;
+  align-items: stretch;
   gap: 14px;
   width: 100%;
-  height: calc(100dvh - 200px); /* HUD em cima + respiro pro botão */
   max-width: 600px;
   margin: auto;
+  height: calc(100dvh - 200px); /* área central para os 5 cards */
   padding-bottom: 20px;
 }
 
@@ -75,54 +134,53 @@ html, body {
 .reward {
   position: relative;
   overflow: hidden;
-
-  /* fundo de vidro */
   background: rgba(0,0,0,.30);
   border-radius: 12px;
-  padding: 6px;
+  padding: 8px;
 
-  /* tamanho responsivo */
-  width: min(42vw, 160px);
-  aspect-ratio: 3 / 4; /* mais alto que largo */
+  /* ocupa toda a célula */
+  width: 90%;
+  height: 100%;
 
-  /* layout interno */
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   gap: 6px;
 
-  /* sombra */
   box-shadow: 0 6px 18px rgba(0,0,0,.18);
 }
 
+/* imagem */
 .reward img {
-  width: 70%;
-  height: auto;
-  max-height: 55%;
+  max-width: 70%;
+  max-height: 50%;
   object-fit: contain;
 }
 
+/* nome centralizado e responsivo */
 .reward .label {
   word-break: break-word;
   max-width: 90%;
   text-align: center;
-  font-size: clamp(12px, 2vw, 14px);
-  line-height: 1.2;
+  font-size: clamp(13px, 2.5vw, 18px); /* cresce em telas maiores */
+  font-weight: bold;
+  margin: 6px 0;
+  flex-shrink: 0;
 }
 
-/* Tipos dentro do card */
+/* Tipos */
 .reward .pokemon-types {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 6px;
-  height: 36px; /* altura fixa */
+  height: 36px; /* altura fixa para uniformizar */
 }
 
 .reward .type-icon {
-  width: clamp(22px, 5vw, 28px);
-  height: clamp(22px, 5vw, 28px);
+  width: clamp(22px, 4vw, 28px);
+  height: clamp(22px, 4vw, 28px);
   object-fit: contain;
 }
 
@@ -132,7 +190,7 @@ html, body {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px 26px;
+  padding: 12px 28px;
   background-color: #0078d4;
   color: yellow;
   font-weight: bold;
