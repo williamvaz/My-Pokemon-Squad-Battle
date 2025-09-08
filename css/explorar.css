@@ -82,7 +82,7 @@ body {
   border-radius: 12px;
   padding: 8px;
 
-  /* tamanho fixo (⚠ não responsivo) */
+  /* tamanho do card*/
   width: 45%;
   height: 23%;
 
@@ -91,7 +91,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 2%;
 
   /* sombra */
   box-shadow: 0 6px 18px rgba(0,0,0,.18);
@@ -99,7 +99,7 @@ body {
 
 /* Imagem do card */
 .reward img {
-  height: 100px;
+  height: 11%;
   max-width: 100%;
   object-fit: contain;
 }
