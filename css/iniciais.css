@@ -101,7 +101,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;              /* espaço entre ícones */
+  gap: 0px;              /* espaço entre ícones */
   margin-bottom: 0px;
 }
 
