@@ -12,7 +12,7 @@ body {
   overflow: hidden;
 }
 
-/* 🟦 Tela de carregamento inicial (overlay escuro) */
+/* 🟦 Tela de carregamento (overlay escuro) */
 #loading-screen {
   position: fixed;
   inset: 0;
@@ -20,14 +20,17 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999;
+  z-index: 10000;       /* acima de qualquer outro elemento */
+  pointer-events: auto; /* bloqueia cliques atrás do overlay */
 }
 
 /* Imagem dentro do loading */
 #loading-screen img {
   max-width: 100%;
   max-height: 100%;
+  object-fit: contain;  /* mantém proporção da arte do "Wait" */
 }
+
 
 /* 🪙 HUD no topo (pokémoedas/mega rocks) */
 .hud {
@@ -56,7 +59,7 @@ body {
 
 /* 🔳 Container geral (abaixo do HUD) */
 .container {
-  margin-top: 8%;
+  margin-top: 10%;
 }
 
 /* 📦 Grid de recompensas (2 colunas) */
@@ -115,28 +118,7 @@ body {
   cursor: pointer;
   border: none;
   box-shadow: 0 0 8px black;
-  z-index: 9999;            /* garante que fica por cima */
-}
-
-
-/* ⬛ ⚠️ DUPLICADO: Cobertura total do loading */
-#loading-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100dvh;
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-#loading-screen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  z-index: 500;            /* garante que fica por cima */
 }
 
 /* 📛 Nome longo do Pokémon quebra em várias linhas */
@@ -204,4 +186,9 @@ body {
   font-weight: 700;
   line-height: 1;
   pointer-events: none;
+}
+
+/* Esconde o botão enquanto estiver no estado de loading */
+body.is-loading #proceedBtn {
+  display: none !important;
 }
