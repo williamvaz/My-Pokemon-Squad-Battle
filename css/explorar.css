@@ -1,3 +1,4 @@
+/* 🌌 Estilo base do body (fundo, fonte, etc) */
 body {
   margin: 0;
   padding: 0;
@@ -11,6 +12,7 @@ body {
   overflow: hidden;
 }
 
+/* 🟦 Tela de carregamento inicial (overlay escuro) */
 #loading-screen {
   position: fixed;
   inset: 0;
@@ -21,11 +23,13 @@ body {
   z-index: 9999;
 }
 
+/* Imagem dentro do loading */
 #loading-screen img {
   max-width: 100%;
   max-height: 100%;
 }
 
+/* 🪙 HUD no topo (pokémoedas/mega rocks) */
 .hud {
   position: absolute;
   top: 10px;
@@ -35,6 +39,7 @@ body {
   gap: 20px;
 }
 
+/* Estilo de cada recurso (caixinhas HUD) */
 .resource {
   background-color: rgba(255,255,255,0.8);
   color: #0c1e33;
@@ -44,16 +49,17 @@ body {
   align-items: center;
   font-weight: bold;
 }
-
 .resource img {
   height: 24px;
   margin-right: 6px;
 }
 
+/* 🔳 Container geral (abaixo do HUD) */
 .container {
   margin-top: 120px;
 }
 
+/* 📦 Grid de recompensas (2 colunas) */
 .rewards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -62,17 +68,17 @@ body {
   margin-top: 20px;
 }
 
-/* base para TODOS os cards (pokémon e itens) */
+/* 🎴 Base dos cards (pokémons e itens) */
 .reward{
   position: relative;
   overflow: hidden;
 
-  /* “vidro” escuro */
+  /* estilo de fundo “vidro” */
   background: rgba(0,0,0,.30);
   border-radius: 12px;
   padding: 8px;
 
-  /* tamanho/coordenadas padrões */
+  /* tamanho fixo (⚠ não responsivo) */
   width: 180px;
   height: 180px;
 
@@ -83,17 +89,18 @@ body {
   justify-content: center;
   gap: 6px;
 
-  /* leve sombra */
+  /* sombra */
   box-shadow: 0 6px 18px rgba(0,0,0,.18);
 }
 
-
+/* Imagem do card */
 .reward img {
   height: 100px;
   max-width: 100%;
   object-fit: contain;
 }
 
+/* 🟡 Botão “Prosseguir” */
 #proceedBtn {
   margin-top: 40px;
   padding: 12px 24px;
@@ -107,20 +114,19 @@ body {
   box-shadow: 0 0 8px black;
 }
 
-/* ⬛ Cobertura total para o GIF de carregamento */
+/* ⬛ ⚠️ DUPLICADO: Cobertura total do loading */
 #loading-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* ⚠️ diferente do primeiro (#loading-screen usa 100dvh lá em cima) */
   background-color: #000;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
 }
-
 #loading-screen img {
   width: 100%;
   height: 100%;
@@ -135,7 +141,7 @@ body {
   line-height: 1.2;
 }
 
-/* Efeito visual especial para Pokémon shiny */
+/* ✨ Estado shiny */
 .reward.shiny {
   position: relative;
   overflow: hidden;
@@ -143,7 +149,7 @@ body {
   box-shadow: 0 0 15px 6px gold;
 }
 
-/* Camada de brilho animado */
+/* Camada de brilho shiny */
 .reward.shiny::before {
   content: "";
   position: absolute;
@@ -172,15 +178,16 @@ body {
   z-index: 2;
 }
 
+/* Animação do brilho shiny */
 @keyframes shineMove {
   0% { transform: translateX(-100%) rotate(25deg); }
   100% { transform: translateX(100%) rotate(25deg); }
 }
 
-/* badge Tier no topo direito */
+/* 🏷 Badge de Tier no topo direito */
 .reward .tag{
   position: absolute;
-  top: 8px;     /* <- trocado de bottom para top */
+  top: 8px;     /* <- antes estava bottom */
   right: 8px;
   z-index: 2;
   padding: 4px 8px;
@@ -192,5 +199,3 @@ body {
   line-height: 1;
   pointer-events: none;
 }
-
-

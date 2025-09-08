@@ -84,20 +84,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 6px;              
+  gap: 4px;              /* diminui o espaço entre ícones */
   margin-bottom: 6px;
 }
 
 .type-icon {
-  width: 60px;              /* mantém o tamanho externo */
-  height: 60px;             /* mantém o tamanho externo */
-  aspect-ratio: 1 / 1;      /* garante quadrado perfeito */
-  box-sizing: border-box;   /* padding conta no 60px */
-  padding: 6px;             /* normaliza o “tamanho visual” do conteúdo */
-  border-radius: 50%;       /* círculo consistente (opcional, mas ajuda) */
-  object-fit: contain;      /* encaixa sem distorcer */
-  display: block;           /* evita comportamento inline estranho */
-  flex: 0 0 auto;           /* não cresce, não encolhe no flex */
+  width: 50px;           /* força tamanho fixo, menor */
+  height: 50px;
+  object-fit: contain;
 }
 
 .shiny-label {
