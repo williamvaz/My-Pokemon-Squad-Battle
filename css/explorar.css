@@ -1,12 +1,15 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
+  width: 100vw;
+  height: 100dvh;              /* altura visível real */
+  height: -webkit-fill-available; /* fallback iOS */
+  overflow: hidden;            /* sem rolagem */
   font-family: 'Segoe UI', sans-serif;
   background: url("../background/exploration.webp") no-repeat center center fixed;
   background-size: cover;
   color: white;
   text-align: center;
-  overflow: hidden;
 }
 
 #loading-screen {
@@ -31,6 +34,7 @@ body {
   transform: translateX(-50%);
   display: flex;
   gap: 20px;
+  z-index: 10;
 }
 
 .resource {
@@ -52,27 +56,33 @@ body {
   margin-top: 120px;
 }
 
+/* grade com 2 colunas × 3 linhas fixas */
 .rewards-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   justify-items: center;
-  gap: 10px;
-  margin-top: 20px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: calc(100dvh - 180px); /* 100% da tela menos HUD + botão */
+  max-width: 600px;
+  margin: auto;
 }
 
 /* base para TODOS os cards (pokémon e itens) */
-.reward{
+.reward {
   position: relative;
   overflow: hidden;
 
-  /* “vidro” escuro */
+  /* fundo de vidro */
   background: rgba(0,0,0,.30);
   border-radius: 12px;
-  padding: 8px;
+  padding: 6px;
 
-  /* tamanho/coordenadas padrões */
-  width: 180px;
-  height: 180px;
+  /* tamanho responsivo */
+  width: min(40vw, 150px); /* nunca maior que 150px */
+  aspect-ratio: 1 / 1;     /* mantém quadrado */
 
   /* layout interno */
   display: flex;
@@ -81,37 +91,38 @@ body {
   justify-content: center;
   gap: 6px;
 
-  /* leve sombra */
+  /* sombra */
   box-shadow: 0 6px 18px rgba(0,0,0,.18);
 }
 
-
 .reward img {
-  height: 100px;
-  max-width: 100%;
+  width: 70%;
+  height: auto;
+  max-height: 70%;
   object-fit: contain;
 }
 
 #proceedBtn {
-  margin-top: 40px;
-  padding: 12px 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 10px 22px;
   background-color: #0078d4;
   color: yellow;
   font-weight: bold;
   border-radius: 10px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   border: none;
   box-shadow: 0 0 8px black;
 }
 
-/* ⬛ Cobertura total para o GIF de carregamento */
+/* Cobertura total para o GIF de carregamento */
 #loading-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   background-color: #000;
   display: flex;
   justify-content: center;
@@ -125,7 +136,7 @@ body {
   object-fit: cover;
 }
 
-/* 📛 Nome longo do Pokémon quebra em várias linhas */
+/* Nome longo do Pokémon quebra em várias linhas */
 .reward .label {
   word-break: break-word;
   max-width: 140px;
@@ -176,9 +187,9 @@ body {
 }
 
 /* badge Tier no topo direito */
-.reward .tag{
+.reward .tag {
   position: absolute;
-  top: 8px;     /* <- trocado de bottom para top */
+  top: 8px;
   right: 8px;
   z-index: 2;
   padding: 4px 8px;
@@ -190,5 +201,3 @@ body {
   line-height: 1;
   pointer-events: none;
 }
-
-
