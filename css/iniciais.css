@@ -47,6 +47,7 @@ body {
 .pokemon-container > :last-child:nth-child(odd) {
   grid-column: span 2;
   justify-self: center;
+  width: 45%;
 }
 
 .pokemon-card {
@@ -85,11 +86,12 @@ body {
   align-items: center;
   gap: 8px;
   margin-bottom: 6px;
-  }
+  height: 60px; /* altura maior e fixa */
+}
 
 .type-icon {
-  width: 60px;   /* tamanho absoluto */
-  height: 60px;  /* não muda entre 1 ou 2 */
+  width: clamp(36px, 5vw, 40px);
+  height: clamp(36px, 5vw, 40px);
   object-fit: contain;
   flex-shrink: 0;
 }
