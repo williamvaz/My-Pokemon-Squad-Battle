@@ -1,354 +1,333 @@
-/* CORPO DA TELA */
+/* CORPO DA TELA — define o plano de fundo e layout vertical da página */
 body {
-  margin: 0;
-  padding: 0;
-  overflow: auto;
-  height: 100vh;
-  display: flex;
+  margin: 0;                           /* remove espaços padrões do navegador */
+  padding: 0;                          /* idem */
+  overflow: auto;                      /* permite rolagem se o conteúdo passar */
+  height: 100dvh;                       /* altura da viewport para layout base */
+  display: flex;                       /* empilha header/main/footer verticalmente */
   flex-direction: column;
-  background: url("../background/pokedex.webp") no-repeat center center fixed;
-  background-size: cover;
-  color: white;
+  background: url("../background/pokedex.webp") no-repeat center center fixed; /* imagem fixa centralizada */
+  background-size: cover;              /* cobre a tela mantendo proporção */
+  color: white;                        /* cor de texto padrão */
 }
 
-/* ALÉM DA TELA (ROLAGEM) */
+/* ALÉM DA TELA (ROLAGEM) — área principal rolável */
 main {
-  flex: 1;
-  overflow-y: auto;
+  flex: 1;                             /* ocupa o espaço disponível entre topo/rodapé */
+  overflow-y: auto;                    /* rolagem vertical apenas dentro do main */
 }
 
-/* BARRA SUPERIOR DE MOEDAS */
+/* BARRA SUPERIOR DE MOEDAS (HUD) — barra central com os contadores */
 .hud {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  background: #333;
-  color: white;
-  padding: 10px 0;
+  display: flex;                       /* itens lado a lado */
+  justify-content: center;             /* centraliza no eixo X */
+  gap: 20px;                           /* espaço entre os itens */
+  background: #333;                    /* faixa escura de fundo */
+  color: white;                        /* texto claro */
+  padding: 10px 0;                     /* altura da barra */
 }
 
-/* ICONES DA BARRA SUPERIOR DE MOEDAS */
+/* ÍCONES DA BARRA SUPERIOR — tamanho e alinhamento dos ícones do HUD */
 .hud-item img {
-  width: 24px;
-  vertical-align: middle;
-  margin-right: 5px;
+  width: 24px;                         /* tamanho do ícone */
+  vertical-align: middle;              /* alinha com o texto na mesma linha */
+  margin-right: 5px;                   /* respiro entre ícone e número */
 }
 
-/* TÍTULO DA PÁGINA*/
+/* TÍTULO DA PÁGINA — estilo da headline da tela */
 .title {
-  text-align: center;
-  font-size: 2rem;
-  margin: 10px 0;
-  font-weight: bold;
-  text-shadow: 2px 2px 3px #000;
+  text-align: center;                  /* centraliza título */
+  font-size: 2rem;                     /* tamanho grande de fonte */
+  margin: 10px 0;                      /* respiro vertical */
+  font-weight: bold;                   /* destaque */
+  text-shadow: 2px 2px 3px #000;     /* legibilidade sobre fundos claros */
 }
 
-/* CONTAINER DE FILTROS*/
+/* CONTAINER DE FILTROS — bloco que contém filtros e ordenações */
 .filters {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 25px;
-  margin: 5px auto;
-  flex-wrap: wrap;
-  padding: 10px 15px;
-  background: rgba(0,0,0,0.5);  /* fundo translúcido */
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  display: flex;                       /* coloca controles lado a lado */
+  justify-content: center;             /* centraliza conjunto */
+  align-items: center;                 /* alinha verticalmente */
+  gap: 25px;                           /* espaço entre grupos de filtros */
+  margin: 5px auto;                    /* centralizado com respiro vertical */
+  flex-wrap: wrap;                     /* quebra linha em telas estreitas */
+  padding: 10px 15px;                  /* almofada interna */
+  background: rgba(0,0,0,0.5);         /* fundo “vidro” escuro translúcido */
+  border-radius: 12px;                 /* cantos arredondados */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);/* sombra leve */
 }
 
-/* FILTROS POR TIPO*/
+/* FILTROS POR TIPO — ícones clicáveis dos tipos */
 #type-filters img {
-  width: 36px;
-  height: 36px;
-  justify-content: center; 
-  cursor: pointer;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  transition: all 0.2s ease-in-out;
+  width: 36px; height: 36px;           /* tamanho dos ícones */
+  justify-content: center;             /* (não tem efeito no img, ok deixar) */
+  cursor: pointer;                     /* indica que é clicável */
+  border-radius: 50%;                  /* formato circular */
+  border: 2px solid transparent;       /* base p/ destacar quando selecionado */
+  transition: all 0.2s ease-in-out;    /* animações suaves de hover/seleção */
 }
 
-/* AO PASSAR O MOUSE SOBRE TIPO*/
+/* HOVER NO TIPO — efeito ao passar o mouse */
 #type-filters img:hover {
-  transform: scale(1.15);
+  transform: scale(1.15);              /* destaca levemente */
 }
 
-/* TIPO SELECIONADO*/
+/* TIPO SELECIONADO — feedback visual de seleção */
 #type-filters img.selected {
-  border-color: gold;
-  box-shadow: 0 0 6px gold;
+  border-color: gold;                   /* borda dourada */
+  box-shadow: 0 0 6px gold;            /* brilho sutil */
 }
 
-/* CONTAINER DA ORDENAÇÃO*/
+/* CONTAINER DA ORDENAÇÃO — agrupa rótulo + select */
 .sort-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: bold;
-  color: white;
-  text-shadow: 1px 1px 2px black;
+  display: flex; align-items: center; gap: 8px;
+  font-weight: bold; color: white;
+  text-shadow: 1px 1px 2px black;      /* legibilidade */
 }
 
-/* RÓTULO DA ORDENAÇÃO (ex: "Ordenar por:")*/
+/* RÓTULO DA ORDENAÇÃO — tamanho do texto “Ordenar por:” */
 .sort-container label {
   font-size: 0.9rem;
 }
 
-/* ESTILO DA ORDENAÇÃO (dropdown)*/
+/* ESTILO DO SELECT DE ORDENAÇÃO — aparência do dropdown */
 #sort-select {
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid #555;
-  background: rgba(255, 215, 0, 0.2); /* leve dourado */
-  color: rgb(21, 11, 75);
+  padding: 6px 12px;                   /* área clicável confortável */
+  border-radius: 8px;                  /* cantos arredondados */
+  border: 1px solid #555;              /* contorno discreto */
+  background: rgba(255, 215, 0, 0.2);  /* leve dourado de fundo */
+  color: rgb(21, 11, 75);              /* texto escuro para contraste */
   font-weight: bold;
-  outline: none;
+  outline: none;                       /* remove halo padrão do navegador */
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.2s;                    /* animações suaves */
 }
 
-/* AO PASSAR O MOUSE*/
+/* HOVER DO SELECT — feedback visual ao passar o mouse */
 #sort-select:hover {
   background: rgba(255, 215, 0, 0.35);
   border-color: gold;
 }
 
-/* CONTAINER PARA OS CARDS*/
+/* GRID DE CARDS — define 3 colunas responsivas */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 10px;
-  overflow-y: auto;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+  gap: 10px;                              /* espaço entre cards */
+  padding: 10px;                          /* respiro interno ao redor do grid */
+  overflow-y: auto;                        /* grid pode rolar se precisar */
 }
 
-/* ESTILO GERAL DOS CARDS*/
+/* CARD BASE — estrutura e estilo geral de cada card */
 .pokemon-card {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;                     /* permite posição absoluta de filhos (rodapé/tags) */
+  background-color: rgba(0, 0, 0, 0.4);   /* vidro escuro */
   border-radius: 12px;
   padding: 6px;
   text-align: center;
-  font-family: 'Arial Rounded MT Bold', sans-serif;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  min-width: 100px;
-  max-width: 110px;
-  word-break: break-word;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Arial Rounded MT Bold', sans-serif; /* tipografia do card */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* leve elevação */
+  min-width: 100px; max-width: 110px;    /* limitações para manter grade coesa */
+  word-break: break-word;                 /* evita overflow de nomes longos */
+  display: flex; flex-direction: column;  /* empilha conteúdo verticalmente */
   justify-content: flex-start;
-  height: 250px;
-  overflow: hidden;
+  height: 250px;                          /* altura consistente entre cards */
+  overflow: hidden;                       /* corta excedentes (badges etc.) */
 }
 
-/* ESTILO GERAL DOS CARDS SHINY*/
+/* CARD SHINY — variação de estilo quando é shiny */
 .pokemon-card.shiny-card {
-  background-color: rgba(218, 165, 32, 0.35);
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-  border: 1px solid gold;
+  background-color: rgba(218, 165, 32, 0.35); /* fundo com tom dourado */
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);/* brilho */
+  border: 1px solid gold;                    /* contorno dourado */
   display: inline-block;
-  animation: pulse 1s infinite;
+  animation: pulse 1s infinite;              /* efeito pulsante */
 }
 
-/* SHINY PULSAR*/
+/* ANIMAÇÃO SHINY — pulsar leve para chamar atenção */
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
 
-/* IMAGEM DOS POKEMONS NOS CARDS*/
+/* IMAGEM DO POKÉMON — capa do card */
 .pokemon-card img {
-  width: 100%;
-  max-height: 90px;
-  object-fit: contain;
-  margin-bottom: 4px;
+  width: 80%;                            /* ocupa largura do card */
+  max-height: clamp(60px, 12vw, 90px);   /* limita altura pra sobrar espaço p/ texto */
+  object-fit: contain;                   /* mantém proporção */
+  margin-bottom: 4px;                    /* separa da próxima seção */
 }
 
-/* NOME DOS POKEMONS NOS CARDS*/
+/* NOME NO CARD — estilo do nome do Pokémon */
 .pokemon-card .pokemon-name {
-  margin-bottom: 12px;
-  color: rgb(255, 255, 255);
+  margin-bottom: 12px;             /* separa do rodapé */
+  color: rgb(255, 255, 255);       /* cor padrão em card normal */
 }
 
-/* NOME DOS POKEMONS NOS CARDS SHINY*/
+/* NOME NO CARD SHINY — cor alternativa */
 .pokemon-card.shiny-card .pokemon-name {
-  color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);             /* melhora contraste no fundo dourado */
 }
 
-/* RODAPÉ DO CARD COM TIPO E CP DO POKEMON*/
+/* RODAPÉ DO CARD — bloco com tipos + CP ancorado ao fundo */
 .card-footer {
-  position: absolute;
-  bottom: 4px;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
+  position: absolute; bottom: 4px; left: 0; right: 0; /* fixa no rodapé do card */
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  gap: 2px;                           /* espaço entre linha de tipos e CP */
 }
 
-/* CONTAINER DOS TIPOS DO POKEMON*/
+/* LINHA DOS TIPOS — ícones lado a lado e centralizados */
 .types {
-  display: flex;
-  gap: 1px;
+  display: flex; gap: 1px;            /* pequeno espaço entre os tipos */
   width: 100%;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; align-items: center;
 }
 
-/* ICONE DOS TIPOS DO POKEMON*/
+/* ÍCONE DE TIPO — tamanho dos ícones de tipo no rodapé */
 .type-icon {
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
   object-fit: contain;
 }
 
-/* TEXTO DO CP*/
+/* CP (Combat Power) — destaque visual do valor */
 .cp-label {
-  font-size: 1.2rem;
-  color: white;
-  font-weight: bold;
-  text-shadow: 2px 2px 3px #000;
+  font-size: 1.2rem; color: white; font-weight: bold;
+  text-shadow: 2px 2px 3px #000;      /* legibilidade sobre fundo */
 }
 
-/* TEXTO DO CP SHINY*/
+/* CP NO CARD SHINY — contraste ajustado */
 .pokemon-card.shiny-card .cp-label {
   color: rgb(0, 0, 0);
   text-shadow: 2px 2px 3px #856010;
 }
 
-/* CONTAINER DO BOTÃO DE PROSSEGUIR*/
+/* CONTAINER DO BOTÃO CONTINUAR — centraliza o botão abaixo dos cards */
 .continue-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
+  display: flex; justify-content: center;
+  margin: 20px 0;                    /* respiro vertical */
 }
 
-/* BOTÃO PARA PROSSEGUIR*/
+/* BOTÃO CONTINUAR — estilo primário com borda dourada */
 #continue-btn {
-  background: #1E90FF;
-  color: #FFD700;
-  font-weight: bold;
-  font-size: 1.2rem;
-  padding: 12px 24px;
-  border: 3px solid #FFD700;
+  background: #1E90FF;               /* azul principal */
+  color: #FFD700;                    /* texto dourado */
+  font-weight: bold; font-size: 1.2rem;
+  padding: 12px 24px;                /* área clicável confortável */
+  border: 3px solid #FFD700;         /* borda dourada */
   border-radius: 12px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
-  text-shadow: 1px 1px 2px #000;
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4); /* elevação */
+  text-shadow: 1px 1px 2px #000;     /* contraste do texto */
+  transition: all 0.2s ease-in-out;  /* animação suave */
 }
 
-/* ANIMAÇÃO DO BOTÃO AO PASSAR O MOUSE */
+/* HOVER DO BOTÃO — feedback ao passar o mouse */
 #continue-btn:hover {
-  background: #4682B4;
-  transform: scale(1.05);
+  background: #4682B4;               /* azul mais escuro */
+  transform: scale(1.05);            /* leve aumento */
   box-shadow: 0 6px 10px rgba(0,0,0,0.6);
 }
 
-/* ----------- DETALHES -----------  */
+/* ----------- DETALHES (MODAL) -----------  */
 
-/* ----------- DETALHES -----------  */
-
-/* FUNDO (overlay escuro atrás do card) */
+/* OVERLAY DO MODAL — escurece o fundo e centraliza o card de detalhes */
 #details-screen{
   position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-  background:rgba(0,0,0,.7); z-index:1000;
+  background:rgba(0,0,0,.7); z-index:1000;  /* acima do conteúdo da página */
 }
-#details-screen.hidden{ display:none; }
+#details-screen.hidden{ display:none; }     /* esconde o modal */
 
-/* CARD / CONTAINER PRINCIPAL */
+/* CARD DE DETALHES — container principal dentro do modal */
 .details-card{
-  width:min(420px,94vw);
+  width:min(420px,94vw);                                /* responsivo */
   background:linear-gradient(180deg,#5aa0c2 0%, #4a88a6 100%);
   color:#fff; border-radius:16px; padding:18px 16px; text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,.5);
   border:2px solid rgba(255,255,255,.25);
-  animation:pop-in .18s ease-out;
+  animation:pop-in .18s ease-out;                        /* entrada rápida */
 }
 
-/* DESTAQUE SHINY (borda/brilho) */
-.details-card.shiny-card{ box-shadow:0 0 0 2px gold, 0 12px 30px rgba(0,0,0,.6); }
+/* VARIAÇÃO SHINY DO CARD DE DETALHES — brilho e borda */
+.details-card.shiny-card{ 
+  box-shadow:0 0 0 2px gold, 0 12px 30px rgba(0,0,0,.6);
+}
 
-/* NOME DO POKÉMON */
+/* NOME NO MODAL — título forte com leve sombra */
 .details-name{
   font-size:1.6rem; font-weight:900; letter-spacing:.5px; margin:2px 0 10px;
   text-shadow:2px 2px 0 #134, 0 0 6px rgba(0,0,0,.4);
 }
 
-/* GRID SUPERIOR (imagem à esquerda / CP/IV à direita) */
+/* TOPO DO MODAL — grid 2 colunas: imagem | chips CP/IV */
 .details-top{
   display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:center;
 }
 
-/* BOX DA IMAGEM */
+/* BOX DA IMAGEM — caixinha de fundo para a arte */
 .details-imgbox{
   background:rgba(0,0,0,.15); border-radius:12px; padding:10px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
 
-/* IMAGEM DO POKÉMON */
+/* IMAGEM PRINCIPAL NO MODAL */
 .details-image{ width:140px; max-width:100%; object-fit:contain; }
 
-/* TIPOS (abaixo da imagem) */
+/* TIPOS NO MODAL — ícones abaixo da imagem */
 .details-types{ display:flex; gap:6px; margin-top:8px; }
 .details-types img{ width:28px; height:28px; border-radius:50%; }
 
-/* COLUNA DE MINI-ESTATÍSTICAS (chips) */
+/* COLUNA DE MINI-ESTATÍSTICAS — lista de chips à direita */
 .mini-stats{ display:grid; gap:8px; }
 
-/* CHIP DE ESTATÍSTICA (CP/IV) */
+/* CHIP CP/IV — cartucho com rótulo à esquerda e valor à direita */
 .stat-chip{
   background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.25);
   border-radius:10px; padding:8px 10px; text-align:left;
   display:flex; align-items:baseline; justify-content:space-between; font-weight:800;
 }
-/* RÓTULO DO CHIP (ex: "CP") */
-.stat-chip span{ opacity:.9; font-size:.85rem; }
-/* VALOR DO CHIP (ex: "1354") */
-.stat-chip strong{ font-size:1.3rem; text-shadow:1px 1px 0 #134; }
+.stat-chip span{ opacity:.9; font-size:.85rem; }     /* rótulo */
+.stat-chip strong{ font-size:1.3rem; text-shadow:1px 1px 0 #134; } /* valor */
 
-/* AÇÕES (Evoluir / Mega Evoluir) */
+/* AÇÕES DO MODAL — botões Evoluir / Mega Evoluir */
 .details-actions{
   display:flex; gap:10px; justify-content:center; margin:12px 0 6px;
 }
 
-/* BOTÕES (estilo base) */
+/* BOTÕES GENÉRICOS — estilos base reutilizáveis */
 .btn{
   padding:10px 16px; border-radius:10px; border:none; cursor:pointer;
   font-weight:900; letter-spacing:.4px; box-shadow:0 3px 0 rgba(0,0,0,.35);
   transition:transform .08s ease, filter .15s ease;
 }
-.btn:active{ transform:translateY(1px); }
-.btn-blue{ background:#2d6cdf; color:#ffd700; }
-.btn-red{  background:#d94141; color:#fff; }
-.btn-gray{ background:#ececec; color:#222; }
+.btn:active{ transform:translateY(1px); }  /* clique “afunda” */
+.btn-blue{ background:#2d6cdf; color:#ffd700; } /* primário */
+.btn-red{  background:#d94141; color:#fff; }    /* perigo/negativo */
+.btn-gray{ background:#ececec; color:#222; }    /* neutro */
 
-/* TÍTULO DE SEÇÃO (Golpes, Atributos) */
+/* TÍTULOS DE SEÇÃO DENTRO DO MODAL (Golpes/Atributos) */
 .section-title{
   margin:10px 0 6px; font-weight:900; text-align:left;
   text-shadow:1px 1px 0 #134; opacity:.95;
 }
 
-/* TABELA DE GOLPES (container) */
+/* CONTAINER DA TABELA DE GOLPES — bloco com borda e raio */
 .moves{
   background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.25);
   border-radius:12px; padding:10px; margin-top:4px;
 }
 
-/* GOLPES: header e linhas com o MESMO grid (alinhamento perfeito) */
-/* ícone | nome | modo | dano | speed | botão  */
+/* GRID DAS LINHAS/HEADER DE GOLPES — colunas alinhadas */
 .moves-head,
 .moves-row{
   display: grid;
-  grid-template-columns: 28px minmax(0,1fr) 68px 54px 54px auto;
+  grid-template-columns: 28px minmax(0,1fr) 68px 54px 54px auto; /* ícone | nome flex | modo | dano | speed | ação */
   gap: 6px;
   align-items: center;
 }
 
-/* cabeçalho */
+/* CABEÇALHO DA TABELA DE GOLPES */
 .moves-head{
   font-weight: 900;
   opacity: .85;
@@ -356,20 +335,19 @@ main {
   margin-bottom: 6px;
 }
 
-/* centraliza os pills e ancora o botão à direita */
+/* ALINHAMENTOS ESPECÍFICOS EM CADA COLUNA */
 .moves-row .pill{ justify-self: center; }
 .moves-row .btn-mini{ justify-self: end; }
 
-/* HEADER do card: alinhar por flex para bater com as pills das linhas */
-.moves-head > *{ display:flex; align-items:center; } /* base */
-.moves-head > :first-child{ justify-content:center; width:28px; } /* Tp */
-.moves-head > :nth-child(2){ justify-content:flex-start; }        /* Golpe (esq.) */
+.moves-head > *{ display:flex; align-items:center; } /* base alinha verticalmente */
+.moves-head > :first-child{ justify-content:center; width:28px; } /* coluna do tipo */
+.moves-head > :nth-child(2){ justify-content:flex-start; }        /* nome do golpe */
 .moves-head > :nth-child(3),
 .moves-head > :nth-child(4),
-.moves-head > :nth-child(5){ justify-content:center; }            /* Modo/Dano/Speed */
-.moves-head > :last-child{ justify-content:flex-end; }            /* Ação (dir.) */
+.moves-head > :nth-child(5){ justify-content:center; }            /* modo/dano/speed */
+.moves-head > :last-child{ justify-content:flex-end; }            /* botão ação */
 
-/* evita quebra feia do nome do golpe */
+/* EVITA OVERFLOW DO NOME — elipses quando ficar longo */
 .moves-head > :nth-child(2),
 .moves-row  > :nth-child(2){
   min-width: 0;
@@ -378,7 +356,7 @@ main {
   white-space: nowrap;
 }
 
-/* TROCAR O GOLPE */
+/* BOTÃO MINI DENTRO DA LINHA DE GOLPES */
 .btn-mini{
   padding:6px 10px;
   border-radius:999px;
@@ -388,7 +366,7 @@ main {
   box-shadow:0 2px 0 rgba(0,0,0,.35);
 }
 
-/* MINI SELETOR DE GOLPES (popup dentro do modal) */
+/* POPUP DO SELETOR DE GOLPES — mini modal sobre o modal */
 .move-picker{
   position:fixed; z-index:1100; inset:0; margin:auto;
   width:min(460px,94vw); background:linear-gradient(180deg,#f8fbff, #eaf3ff);
@@ -397,16 +375,17 @@ main {
   padding:12px;
 }
 .move-picker h3{ margin:0 0 8px; font-weight:900; color:#1c3f6b; }
+
+/* BUSCA NO SELETOR — input estilizado */
 .move-search{
   width:100%; padding:8px 10px; border-radius:8px; border:1px solid #bcd; margin-bottom:8px;
   background:#fff;
 }
 
-/* Cabeçalho da tabela do seletor */
+/* CABEÇALHO DA LISTA DO SELETOR — define colunas */
 .move-head{
   display:grid;
-  /* icon | nome flex | modo | dano | speed | valor | botão */
-  grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto;
+  grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto; /* + coluna Valor */
   gap:6px;
   align-items:center;
   font-weight:900;
@@ -416,10 +395,10 @@ main {
   margin:4px 0 6px;
 }
 
-/* Lista de opções */
+/* LISTA SCROLLÁVEL DE OPÇÕES DE GOLPE */
 .move-list{ max-height:340px; overflow-y:auto; overflow-x:hidden; display:grid; gap:6px; }
 
-/* Linha de opção */
+/* LINHA DE OPÇÃO — mesma grade do header para alinhar colunas */
 .move-option{
   display:grid;
   grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto;
@@ -429,13 +408,10 @@ main {
 }
 .move-option:hover{ transform:translateY(-1px);background:#5da6fa; box-shadow:0 6px 14px rgba(0,0,0,.15); }
 
-/* MUITO IMPORTANTE: permitir o nome encolher sem criar scroll horizontal */
+/* PERMITE O NOME ENCOLHER SEM CRIAR SCROLL HORIZONTAL */
 .move-option > :nth-child(2),
 .move-head   > :nth-child(2){
-  min-width:0;                 /* libera o encurtamento */
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
 }
 
 .move-option .type-icon{ width:24px; height:24px; border-radius:50%; }
@@ -443,8 +419,7 @@ main {
 .price-pill{ padding:2px 8px; border-radius:999px; background:rgba(255,215,0,.25); border:1px solid gold; font-weight:900; color:#7a5a00; white-space:nowrap; }
 .btn-mini{ padding:6px 10px; border-radius:999px; border:none; cursor:pointer; font-weight:900; font-size:.8rem; background:#2d6cdf; color:#ffd700; box-shadow:0 2px 0 rgba(0,0,0,.35); }
 
-
-/* feedback de falta de moedas */
+/* FEEDBACK DE ERRO (sem moedas) — tremida no botão/linha */
 .move-select.deny{ animation: shake .35s linear; }
 @keyframes shake {
   0%,100% { transform: translateX(0); }
@@ -452,37 +427,28 @@ main {
   75%     { transform: translateX( 2px); }
 }
 
-
-/* ATRIBUTOS BASE (lista) */
+/* ATRIBUTOS BASE — lista com espaçamento */
 .base-stats{ margin-top:10px; display:grid; gap:6px; }
 
-/* LINHA DE ATRIBUTO (label, valor, botão +) */
+/* LINHA DE ATRIBUTO — label | valor | botão [+] */
 .stat-row{
   display:grid; grid-template-columns:1fr auto auto; gap:8px; align-items:center;
   background:rgba(0,0,0,.15); border:1px solid rgba(255,255,255,.25); border-radius:10px; padding:6px 8px;
 }
 .stat-label{ text-align:left; font-weight:800; }
-.stat-value { 
-  display: flex; 
-  align-items: center; 
-  gap: 4px; 
-  font-weight: 900; 
-}
-.stat-value .stat-max { 
-  opacity: .85; 
-  font-weight: 800; 
-}
+.stat-value { display: flex; align-items: center; gap: 4px; font-weight: 900; }
+.stat-value .stat-max { opacity: .85; font-weight: 800; }
 
-/* BOTÃO DE INCREMENTO (+) */
+/* BOTÃO + DE ATRIBUTO — ação de incremento */
 .stat-add{
   width:28px; height:28px; border-radius:999px; border:none; cursor:pointer;
   background:#2d6cdf; color:#ffd700; font-weight:900; box-shadow:0 2px 0 rgba(0,0,0,.35);
 }
 
-/* RODAPÉ (botão Voltar) */
+/* RODAPÉ DO MODAL — área com botão fechar/voltar */
 .details-footer{ margin-top:12px; display:flex; justify-content:center; }
 
-/* SELO SHINY */
+/* SELO SHINY — badge textual no modal */
 .shiny-label{
   background:gold; color:#000; font-weight:900; margin-top:6px; border-radius:6px;
   padding:3px 6px; display:inline-block; box-shadow:0 0 8px yellow; animation:pulse 1s infinite;
@@ -491,14 +457,14 @@ main {
 @keyframes pop-in{ from{ transform:scale(.92); opacity:0 } to{ transform:scale(1); opacity:1 } }
 @keyframes pulse{ 0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)} }
 
-/* DESABILITAR O + QUANDO ATRIBUTO MÁXIMO */
+/* ESTADO DESABILITADO DO BOTÃO + — aparência “inativa” */
 .stat-add[disabled]{
   filter: grayscale(1);
   opacity: .6;
   cursor: not-allowed;
 }
 
-/* NÃO TEM MOEDA PARA POWER UP */
+/* FEEDBACK DE NEGADO NO + — tremida curta */
 .stat-add.deny { animation: shake .35s linear; }
 @keyframes shake {
   0%,100% { transform: translateX(0); }
@@ -506,6 +472,7 @@ main {
   75%     { transform: translateX( 2px); }
 }
 
+/* RESPONSIVIDADE PARA TELAS MUITO ESTREITAS — ajusta grades e paddings */
 @media (max-width: 360px){
   .move-head, .move-option{
     grid-template-columns: 24px minmax(0,1fr) 64px 48px 48px 54px auto;
@@ -515,12 +482,12 @@ main {
   .btn-mini{ padding:5px 9px; font-size:.76rem; }
 }
 
-/* alinhar colunas do picker */
+/* ALINHAMENTO DAS COLUNAS NO PICKER — consistência horizontal */
 .move-option .pill,
 .price-pill{ justify-self: center; }
 .move-option .btn-mini{ justify-self: end; }
 
-/* HEADER do picker: mesma lógica de alinhamento */
+/* HEADER DO PICKER — mesma lógica de alinhamento do moves-head acima */
 .move-head > *{ display:flex; align-items:center; }               /* base */
 .move-head > :first-child{ justify-content:center; width:28px; }  /* Tp */
 .move-head > :nth-child(2){ justify-content:flex-start; }         /* Golpe (esq.) */
@@ -530,7 +497,7 @@ main {
 .move-head > :nth-child(6){ justify-content:center; }             /* Modo/Dano/Speed/Valor */
 .move-head > :last-child{ justify-content:flex-end; }             /* Ação (dir.) */
 
-/* POPUP DE EVOLUÇÃO E MEGA EVOLUÇÃO */
+/* POPUP DE CONFIRMAÇÃO (Evolução / Mega) — overlay leve + card */
 .confirm-box{
   position: fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:1100;
   background: rgba(0,0,0,.35);
@@ -545,7 +512,7 @@ main {
 .confirm-card p{ margin:6px 0 12px; }
 .confirm-actions{ display:flex; gap:8px; justify-content:center; }
 
-/* 🚫 Bloqueia seleção de texto */
+/* 🚫 BLOQUEAR SELEÇÃO DE TEXTO — evita copiar/selecionar */
 body {
   -webkit-user-select: none; /* Safari/Chrome */
   -moz-user-select: none;    /* Firefox */
@@ -553,7 +520,7 @@ body {
   user-select: none;         /* Padrão */
 }
 
-/* 🚫 Bloqueia arrastar imagens */
+/* 🚫 BLOQUEAR ARRASTAR IMAGENS — impede “segurar para baixar/arrastar” */
 img {
   -webkit-user-drag: none;  /* Safari/Chrome */
   user-drag: none;
