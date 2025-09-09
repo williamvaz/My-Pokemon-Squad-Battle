@@ -107,7 +107,7 @@ body {
 /* 🟡 Botão “Prosseguir” */
 #proceedBtn {
   position: fixed;          /* 👈 fixa em relação à viewport */
-  bottom: 10dvh;            /* 👈 10% acima do final da tela útil */
+  bottom: 5dvh;            /* 👈 10% acima do final da tela útil */
   left: 50%;                /* centraliza horizontalmente */
   transform: translateX(-50%); /* corrige o centro */
   padding: 12px 24px;
