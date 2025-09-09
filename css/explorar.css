@@ -99,7 +99,7 @@ body {
 
 /* Imagem do card */
 .reward img {
-  height: 11%;
+  height: 65%;
   max-width: 100%;
   object-fit: contain;
 }
