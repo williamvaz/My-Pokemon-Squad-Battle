@@ -4,6 +4,7 @@ body {
   padding: 0;                          /* idem */
   overflow: auto;                      /* permite rolagem se o conteúdo passar */
   height: 100dvh;                       /* altura da viewport para layout base */
+  width: 100vw;
   display: flex;                       /* empilha header/main/footer verticalmente */
   flex-direction: column;
   background: url("../background/pokedex.webp") no-repeat center center fixed; /* imagem fixa centralizada */
@@ -45,16 +46,18 @@ main {
 
 /* CONTAINER DE FILTROS — bloco que contém filtros e ordenações */
 .filters {
-  display: flex;                       /* coloca controles lado a lado */
-  justify-content: center;             /* centraliza conjunto */
-  align-items: center;                 /* alinha verticalmente */
-  gap: 25px;                           /* espaço entre grupos de filtros */
-  margin: 5px auto;                    /* centralizado com respiro vertical */
-  flex-wrap: wrap;                     /* quebra linha em telas estreitas */
-  padding: 10px 15px;                  /* almofada interna */
-  background: rgba(0,0,0,0.5);         /* fundo “vidro” escuro translúcido */
-  border-radius: 12px;                 /* cantos arredondados */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.4);/* sombra leve */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 5px auto;
+  flex-wrap: wrap;
+  padding: 10px 15px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  max-width: 100%;   /* ⬅️ garante que não ultrapasse a tela */
+  box-sizing: border-box; /* ⬅️ inclui padding/borda no cálculo */
 }
 
 #type-filters {
@@ -252,7 +255,8 @@ main {
 
 /* CARD DE DETALHES — container principal dentro do modal */
 .details-card{
-  width:min(420px,94vw);                                /* responsivo */
+  width: 90vw;             /* largura = 90% da tela (use 100vw se quiser total) */
+  height: 80dvh;           /* altura = 80% da área útil (viewport height dinâmica) */
   background:linear-gradient(180deg,#5aa0c2 0%, #4a88a6 100%);
   color:#fff; border-radius:16px; padding:18px 16px; text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,.5);
