@@ -4,6 +4,7 @@ body {
   padding: 0;                          /* idem */
   overflow: auto;                      /* permite rolagem se o conteúdo passar */
   height: 100dvh;                       /* altura da viewport para layout base */
+  overflow-x: hidden;   /* bloqueia arrasto horizontal */
   width: 100vw;
   display: flex;                       /* empilha header/main/footer verticalmente */
   flex-direction: column;
