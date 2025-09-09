@@ -143,3 +143,17 @@ body {
 }
 
 .drag-handle { display: none !important; }
+
+/* 🚫 Bloqueia seleção de texto */
+body {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Padrão */
+}
+
+/* 🚫 Bloqueia arrastar imagens */
+img {
+  -webkit-user-drag: none;  /* Safari/Chrome */
+  user-drag: none;
+}

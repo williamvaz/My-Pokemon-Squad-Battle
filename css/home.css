@@ -71,3 +71,17 @@ min-height: 100dvh;  /* Chrome/Android, iOS 16+ */
 @media (max-width: 768px){
   body{ background-attachment: scroll !important; }
 }
+
+/* 🚫 Bloqueia seleção de texto */
+body {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Padrão */
+}
+
+/* 🚫 Bloqueia arrastar imagens */
+img {
+  -webkit-user-drag: none;  /* Safari/Chrome */
+  user-drag: none;
+}

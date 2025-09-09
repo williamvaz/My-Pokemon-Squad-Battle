@@ -544,3 +544,17 @@ main {
 }
 .confirm-card p{ margin:6px 0 12px; }
 .confirm-actions{ display:flex; gap:8px; justify-content:center; }
+
+/* 🚫 Bloqueia seleção de texto */
+body {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Padrão */
+}
+
+/* 🚫 Bloqueia arrastar imagens */
+img {
+  -webkit-user-drag: none;  /* Safari/Chrome */
+  user-drag: none;
+}
