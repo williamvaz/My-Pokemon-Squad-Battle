@@ -83,8 +83,8 @@ body {
   padding: 8px;
 
   /* tamanho do card*/
-  width: 45%;
-  height: 23%;
+  width: 90%;
+  height: 90%;
 
   /* layout interno */
   display: flex;
