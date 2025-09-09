@@ -113,8 +113,8 @@ main {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
-  gap: 10px;                              /* espaço entre cards */
-  padding: 10px;                          /* respiro interno ao redor do grid */
+  gap: 1.65%;                              /* espaço entre cards */
+  padding: 1.65%;                          /* respiro interno ao redor do grid */
   overflow-y: auto;                        /* grid pode rolar se precisar */
 }
 
