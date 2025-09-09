@@ -127,7 +127,8 @@ main {
   text-align: center;
   font-family: 'Arial Rounded MT Bold', sans-serif; /* tipografia do card */
   box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* leve elevação */
-  min-width: 100px; max-width: 110px;    /* limitações para manter grade coesa */
+  min-width: 90%;
+  max-width: 100%;    /* limitações para manter grade coesa */
   word-break: break-word;                 /* evita overflow de nomes longos */
   display: flex; flex-direction: column;  /* empilha conteúdo verticalmente */
   justify-content: flex-start;
