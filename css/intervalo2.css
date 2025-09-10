@@ -9,8 +9,8 @@
 
 /* CARD DE DETALHES — container principal dentro do modal */
 .details-card{
-  width: 90vw;             /* largura = 90% da tela (use 100vw se quiser total) */
-  height: 80dvh;           /* altura = 80% da área útil (viewport height dinâmica) */
+  width: 90vw;             /* largura = 90% da tela */
+  height: 80dvh;           /* altura = 80% da área útil */
   background:linear-gradient(180deg,#5aa0c2 0%, #4a88a6 100%);
   color:#fff; border-radius:16px; padding:18px 16px; text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,.5);
@@ -25,43 +25,72 @@
 
 /* NOME NO MODAL — título forte com leve sombra */
 .details-name{
-  font-size:1.6rem; font-weight:900; letter-spacing:.5px; margin:2px 0 10px;
+  font-size:3.5vw;
+  font-weight:900;
+  letter-spacing:.115vw;
+  margin:0.466vw 0 2.33vw;
   text-shadow:2px 2px 0 #134, 0 0 6px rgba(0,0,0,.4);
 }
 
 /* TOPO DO MODAL — grid 2 colunas: imagem | chips CP/IV */
 .details-top{
-  display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:center;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.33vw;
+  align-items:center;
 }
 
 /* BOX DA IMAGEM — caixinha de fundo para a arte */
 .details-imgbox{
-  background:rgba(0,0,0,.15); border-radius:12px; padding:10px;
+  background:rgba(0,0,0,.15); border-radius:2.795vw; padding:2.33vw;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
 
 /* IMAGEM PRINCIPAL NO MODAL */
-.details-image{ width:140px; max-width:100%; object-fit:contain; }
+.details-image{ width:32.63vw; max-width:100%; object-fit:contain; }
 
 /* TIPOS NO MODAL — ícones abaixo da imagem */
-.details-types{ display:flex; gap:6px; margin-top:8px; }
-.details-types img{ width:28px; height:28px; border-radius:50%; }
+.details-types{
+    display:flex; 
+    gap:1.4vh; 
+    margin-top:1.866vw; }
+
+.details-types img{
+    width:6.533vw;
+    height:6.533vw;
+    border-radius:50%; }
 
 /* COLUNA DE MINI-ESTATÍSTICAS — lista de chips à direita */
-.mini-stats{ display:grid; gap:8px; }
+.mini-stats{
+    display:grid;
+    gap:1.865vw; }
 
 /* CHIP CP/IV — cartucho com rótulo à esquerda e valor à direita */
 .stat-chip{
-  background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.25);
-  border-radius:10px; padding:8px 10px; text-align:left;
-  display:flex; align-items:baseline; justify-content:space-between; font-weight:800;
+  background:rgba(0,0,0,.18);
+  border:0.233vw solid rgba(255,255,255,.25);
+  border-radius:2.33vw;
+  padding:1.865vw 2.33vw;
+  text-align:left;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  font-weight:800;
 }
-.stat-chip span{ opacity:.9; font-size:.85rem; }     /* rótulo */
-.stat-chip strong{ font-size:1.3rem; text-shadow:1px 1px 0 #134; } /* valor */
+.stat-chip span{
+    opacity:.9;
+    font-size:.85rem; }     /* rótulo */
+
+.stat-chip strong{
+    font-size:1.3rem;
+    text-shadow:0.233vw 0.233vw 0 #134; } /* valor */
 
 /* AÇÕES DO MODAL — botões Evoluir / Mega Evoluir */
 .details-actions{
-  display:flex; gap:10px; justify-content:center; margin:12px 0 6px;
+  display:flex;
+  gap:2.33vw;
+  justify-content:center;
+  margin:2.795vw 0 1.4vw;
 }
 
 /* BOTÕES GENÉRICOS — estilos base reutilizáveis */
