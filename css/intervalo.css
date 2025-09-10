@@ -129,11 +129,13 @@ main {
 /* GRID DE CARDS — define 3 colunas responsivas */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding: 8px;
+  grid-template-columns: repeat(3, 1fr); /* sempre 3 colunas fixas */
+  gap: 12px;               /* espaço fixo, não soma % */
+  padding: 12px;           /* respiro interno */
   width: 100%;
-  box-sizing: border-box;
+  max-width: 100vw;        /* nunca ultrapassa a tela */
+  box-sizing: border-box;  /* padding incluso no cálculo */
+  overflow-x: hidden;      /* garante que não cria scroll lateral */
 }
 
 /* CARD BASE — estrutura e estilo geral de cada card */
@@ -145,9 +147,9 @@ main {
   text-align: center;
   font-family: 'Arial Rounded MT Bold', sans-serif;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  width: 100%;        /* ocupa a célula inteira */
-  min-width: 0;       /* não força largura mínima */
-  max-width: 100%;    /* não passa da célula */
+  width: 100%;      /* ocupa só a célula do grid */
+  min-width: unset; /* deixa o grid mandar */
+  max-width: unset;
   word-break: break-word;
   display: flex;
   flex-direction: column;
