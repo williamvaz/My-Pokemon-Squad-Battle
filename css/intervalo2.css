@@ -204,39 +204,78 @@
 /* CABEÇALHO DA LISTA DO SELETOR — define colunas */
 .move-head{
   display:grid;
-  grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto; /* + coluna Valor */
-  gap:6px;
+  grid-template-columns: 6.525vw minmax(0,1fr) 16.3vw 12.58vw 12.58vw 13.515vw auto; /* + coluna Valor */
+  gap:1.4vw;
   align-items:center;
   font-weight:900;
   font-size:.82rem;
   color:#2b4d7a;
   opacity:.9;
-  margin:4px 0 6px;
+  margin:0.932vw 0 1.4vw;
 }
 
 /* LISTA SCROLLÁVEL DE OPÇÕES DE GOLPE */
-.move-list{ max-height:340px; overflow-y:auto; overflow-x:hidden; display:grid; gap:6px; }
+.move-list{
+    max-height:79.22vw;
+    overflow-y:auto;
+    overflow-x:hidden;
+    display:grid;
+    gap:1.4vw; }
 
 /* LINHA DE OPÇÃO — mesma grade do header para alinhar colunas */
 .move-option{
   display:grid;
-  grid-template-columns: 28px minmax(0,1fr) 70px 54px 54px 58px auto;
-  gap:6px; align-items:center;
-  background:#fff; border:1px solid #cfe1ff; border-radius:12px; padding:8px 10px;
+  grid-template-columns: 6.525vw minmax(0,1fr) 16.3vw 12.582vw 12.582vw 13.514vw auto;
+  gap:1.4vw; align-items:center;
+  background:#fff; border:0.233vw solid #cfe1ff; border-radius:2.796vw; padding:1.865vw 2.33vw;
   transition:transform .08s ease, box-shadow .15s ease;
 }
-.move-option:hover{ transform:translateY(-1px);background:#5da6fa; box-shadow:0 6px 14px rgba(0,0,0,.15); }
+.move-option:hover{
+    transform:translateY(-0.233vwx);
+    background:#5da6fa;
+    box-shadow:0 1.4vw 3.262vw rgba(0,0,0,.15); }
 
 /* PERMITE O NOME ENCOLHER SEM CRIAR SCROLL HORIZONTAL */
 .move-option > :nth-child(2),
 .move-head   > :nth-child(2){
-  min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
-.move-option .type-icon{ width:24px; height:24px; border-radius:50%; }
-.move-option .pill{ padding:2px 8px; border-radius:999px; background:#eef; font-weight:700; white-space:nowrap; font-size:.82rem; }
-.price-pill{ padding:2px 8px; border-radius:999px; background:rgba(255,215,0,.25); border:1px solid gold; font-weight:900; color:#7a5a00; white-space:nowrap; }
-.btn-mini{ padding:6px 10px; border-radius:999px; border:none; cursor:pointer; font-weight:900; font-size:.8rem; background:#2d6cdf; color:#ffd700; box-shadow:0 2px 0 rgba(0,0,0,.35); }
+.move-option .type-icon{
+    width:5.592vw;
+    height:5.592vw;
+    border-radius:50%; }
+
+.move-option .pill{
+    padding:0.466vw 1.865vw;
+    border-radius:232.767vw;
+    background:#eef;
+    font-weight:700;
+    white-space:nowrap;
+    font-size:.82rem; }
+
+.price-pill{
+    padding:2px 1.865vw;
+    border-radius:232.767vw;
+    background:rgba(255,215,0,.25);
+    border:0.233vw solid gold;
+    font-weight:900;
+    color:#7a5a00;
+    white-space:nowrap; }
+
+.btn-mini{
+    padding:1.4vw 2.33vw;
+    border-radius:232.767vw;
+    border:none;
+    cursor:pointer;
+    font-weight:900;
+    font-size:.8rem;
+    background:#2d6cdf;
+    color:#ffd700;
+    box-shadow:0 0.466vw 0 rgba(0,0,0,.35); }
 
 /* FEEDBACK DE ERRO (sem moedas) — tremida no botão/linha */
 .move-select.deny{ animation: shake .35s linear; }
@@ -247,30 +286,66 @@
 }
 
 /* ATRIBUTOS BASE — lista com espaçamento */
-.base-stats{ margin-top:10px; display:grid; gap:6px; }
+.base-stats{
+    margin-top:2.33vw;
+    display:grid;
+    gap:1.4vw; }
 
 /* LINHA DE ATRIBUTO — label | valor | botão [+] */
 .stat-row{
-  display:grid; grid-template-columns:1fr auto auto; gap:8px; align-items:center;
-  background:rgba(0,0,0,.15); border:1px solid rgba(255,255,255,.25); border-radius:10px; padding:6px 8px;
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:1.865vw;
+  align-items:center;
+  background:rgba(0,0,0,.15);
+  border:0.233vw solid rgba(255,255,255,.25);
+  border-radius:2.33vw;
+  padding:1.4vw 1.865vw;
 }
-.stat-label{ text-align:left; font-weight:800; }
-.stat-value { display: flex; align-items: center; gap: 4px; font-weight: 900; }
-.stat-value .stat-max { opacity: .85; font-weight: 800; }
+.stat-label{
+    text-align:left; 
+    font-weight:800; }
+
+.stat-value { 
+    display: flex; 
+    align-items: center; 
+    gap: 0.932vw; 
+    font-weight: 900; }
+
+.stat-value .stat-max {
+    opacity: .85;
+    font-weight: 800; }
 
 /* BOTÃO + DE ATRIBUTO — ação de incremento */
 .stat-add{
-  width:28px; height:28px; border-radius:999px; border:none; cursor:pointer;
-  background:#2d6cdf; color:#ffd700; font-weight:900; box-shadow:0 2px 0 rgba(0,0,0,.35);
+  width:6.525vw; 
+  height:6.525vw; 
+  border-radius:232.767vw; 
+  border:none; 
+  cursor:pointer;
+  background:#2d6cdf; 
+  color:#ffd700; 
+  font-weight:900; 
+  box-shadow:0 0.466vw 0 rgba(0,0,0,.35);
 }
 
 /* RODAPÉ DO MODAL — área com botão fechar/voltar */
-.details-footer{ margin-top:12px; display:flex; justify-content:center; }
+.details-footer{
+    margin-top:2.796vw;
+    display:flex;
+    justify-content:center; }
 
 /* SELO SHINY — badge textual no modal */
 .shiny-label{
-  background:gold; color:#000; font-weight:900; margin-top:6px; border-radius:6px;
-  padding:3px 6px; display:inline-block; box-shadow:0 0 8px yellow; animation:pulse 1s infinite;
+  background:gold;
+  color:#000;
+  font-weight:900;
+  margin-top:1.4vw;
+  border-radius:1.4vw;
+  padding:0.7vw 1.4vw;
+  display:inline-block;
+  box-shadow:0 0 1.865vw yellow;
+  animation:pulse 1s infinite;
 }
 
 @keyframes pop-in{ from{ transform:scale(.92); opacity:0 } to{ transform:scale(1); opacity:1 } }
@@ -287,18 +362,24 @@
 .stat-add.deny { animation: shake .35s linear; }
 @keyframes shake {
   0%,100% { transform: translateX(0); }
-  25%     { transform: translateX(-2px); }
-  75%     { transform: translateX( 2px); }
+  25%     { transform: translateX(-0.466vw); }
+  75%     { transform: translateX( 0.466vw); }
 }
 
 /* RESPONSIVIDADE PARA TELAS MUITO ESTREITAS — ajusta grades e paddings */
-@media (max-width: 360px){
+@media (max-width: 83.88vw){
   .move-head, .move-option{
-    grid-template-columns: 24px minmax(0,1fr) 64px 48px 48px 54px auto;
+    grid-template-columns: 5.592vw minmax(0,1fr) 14.912vw 11.184vw 11.184vw 12.582vw auto;
     gap:4px;
   }
-  .move-option .pill, .price-pill{ font-size:.78rem; padding:2px 6px; }
-  .btn-mini{ padding:5px 9px; font-size:.76rem; }
+
+  .move-option .pill, .price-pill{
+    font-size:.78rem;
+    padding:0.466vw 1.4vw; }
+
+  .btn-mini{
+    padding:1.165vw 2.097vw;
+    font-size:.76rem; }
 }
 
 /* ALINHAMENTO DAS COLUNAS NO PICKER — consistência horizontal */
@@ -322,14 +403,19 @@
   background: rgba(0,0,0,.35);
 }
 .confirm-card{
-  width:min(360px, 90vw);
-  background:#f7fbff; color:#123; border:2px solid #9ec3ff; border-radius:12px;
-  box-shadow:0 10px 25px rgba(0,0,0,.4);
-  padding:14px;
+  width:min(83.88vw, 90vw);
+  background:#f7fbff; color:#123; border:0.466vw solid #9ec3ff; border-radius:2.796vw;
+  box-shadow:0 2.33vw 5.825vw rgba(0,0,0,.4);
+  padding:3.262vw;
   text-align:center;
 }
-.confirm-card p{ margin:6px 0 12px; }
-.confirm-actions{ display:flex; gap:8px; justify-content:center; }
+.confirm-card p{
+    margin:1.4vw 0 2.796vw; }
+
+.confirm-actions{
+    display:flex;
+    gap:1.864vw;
+    justify-content:center; }
 
 /* 🚫 BLOQUEAR SELEÇÃO DE TEXTO — evita copiar/selecionar */
 body {
