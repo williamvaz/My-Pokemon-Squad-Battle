@@ -95,33 +95,41 @@
 
 /* BOTÕES GENÉRICOS — estilos base reutilizáveis */
 .btn{
-  padding:10px 16px; border-radius:10px; border:none; cursor:pointer;
-  font-weight:900; letter-spacing:.4px; box-shadow:0 3px 0 rgba(0,0,0,.35);
+  padding:2.33vw 3.733vw;
+  border-radius:2.33vw;
+  border:none;
+  cursor:pointer;
+  font-weight:900;
+  letter-spacing:.01vw;
+  box-shadow:0 3px 0 rgba(0,0,0,.35);
   transition:transform .08s ease, filter .15s ease;
 }
-.btn:active{ transform:translateY(1px); }  /* clique “afunda” */
+.btn:active{ transform:translateY(0.233vw); }  /* clique “afunda” */
 .btn-blue{ background:#2d6cdf; color:#ffd700; } /* primário */
 .btn-red{  background:#d94141; color:#fff; }    /* perigo/negativo */
 .btn-gray{ background:#ececec; color:#222; }    /* neutro */
 
 /* TÍTULOS DE SEÇÃO DENTRO DO MODAL (Golpes/Atributos) */
 .section-title{
-  margin:10px 0 6px; font-weight:900; text-align:left;
-  text-shadow:1px 1px 0 #134; opacity:.95;
+  margin:2.33vw 0 1.4vw; font-weight:900; text-align:left;
+  text-shadow:0.233vw 0.233vw 0 #134; opacity:.95;
 }
 
 /* CONTAINER DA TABELA DE GOLPES — bloco com borda e raio */
 .moves{
-  background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.25);
-  border-radius:12px; padding:10px; margin-top:4px;
+  background:rgba(0,0,0,.18);
+  border:0.233vw solid rgba(255,255,255,.25);
+  border-radius:2.795vw;
+  padding:2.33vw;
+  margin-top:0.932vw;
 }
 
 /* GRID DAS LINHAS/HEADER DE GOLPES — colunas alinhadas */
 .moves-head,
 .moves-row{
   display: grid;
-  grid-template-columns: 28px minmax(0,1fr) 68px 54px 54px auto; /* ícone | nome flex | modo | dano | speed | ação */
-  gap: 6px;
+  grid-template-columns: 6.525vw minmax(0,1fr) 15.85vw 12.58vw 12.58vw auto; /* ícone | nome flex | modo | dano | speed | ação */
+  gap: 1.4vw;
   align-items: center;
 }
 
@@ -130,7 +138,7 @@
   font-weight: 900;
   opacity: .85;
   font-size: .82rem;
-  margin-bottom: 6px;
+  margin-bottom: 1.4vw;
 }
 
 /* ALINHAMENTOS ESPECÍFICOS EM CADA COLUNA */
@@ -156,27 +164,40 @@
 
 /* BOTÃO MINI DENTRO DA LINHA DE GOLPES */
 .btn-mini{
-  padding:6px 10px;
-  border-radius:999px;
+  padding:1.4vw 2.33vw;
+  border-radius:232.77vw;
   border:none; cursor:pointer;
   font-weight:900; font-size:.8rem;
   background:#2d6cdf; color:#ffd700;
-  box-shadow:0 2px 0 rgba(0,0,0,.35);
+  box-shadow:0 0.466vw 0 rgba(0,0,0,.35);
 }
 
 /* POPUP DO SELETOR DE GOLPES — mini modal sobre o modal */
 .move-picker{
-  position:fixed; z-index:1100; inset:0; margin:auto;
-  width:min(460px,94vw); background:linear-gradient(180deg,#f8fbff, #eaf3ff);
-  color:#123; border:2px solid #9ec3ff; border-radius:12px;
-  box-shadow:0 12px 30px rgba(0,0,0,.5);
-  padding:12px;
+  position:fixed;
+  z-index:1100; 
+  inset:0; 
+  margin:auto;
+  width:min(107.18vw,94vw); 
+  background:linear-gradient(180deg,#f8fbff, #eaf3ff);
+  color:#123; 
+  border:0.466vw solid #9ec3ff; 
+  border-radius:2.796vw;
+  box-shadow:0 2.796vw 7vw rgba(0,0,0,.5);
+  padding:2.796vw;
 }
-.move-picker h3{ margin:0 0 8px; font-weight:900; color:#1c3f6b; }
+.move-picker h3{
+    margin:0 0 1.865vw;
+    font-weight:900;
+    color:#1c3f6b; }
 
 /* BUSCA NO SELETOR — input estilizado */
 .move-search{
-  width:100%; padding:8px 10px; border-radius:8px; border:1px solid #bcd; margin-bottom:8px;
+  width:100%;
+  padding:1.865vw 2.33vw;
+  border-radius:1.865vw;
+  border:0.233vw solid #bcd;
+  margin-bottom:1.865vw;
   background:#fff;
 }
 
