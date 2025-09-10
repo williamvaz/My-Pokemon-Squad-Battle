@@ -15,6 +15,7 @@ localStorage.removeItem("pokemons");
 localStorage.removeItem("rodadas_finalizadas");
 localStorage.removeItem("Pokemoedas");
 localStorage.removeItem("Mega Rock");
+localStorage.removeItem("equipe_ids");
 
 window.location.href = "iniciais.html";
     }
