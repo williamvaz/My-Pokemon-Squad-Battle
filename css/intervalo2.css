@@ -448,16 +448,22 @@
     gap:0.857dvh;
     justify-content:center; }
 
-/* 🚫 BLOQUEAR SELEÇÃO DE TEXTO — evita copiar/selecionar */
+/* 🚫 Bloqueia seleção de texto */
 body {
   -webkit-user-select: none; /* Safari/Chrome */
   -moz-user-select: none;    /* Firefox */
   -ms-user-select: none;     /* IE/Edge */
   user-select: none;         /* Padrão */
+  -webkit-user-drag: none;  /* Safari/Chrome */
+  user-drag: none;
 }
 
-/* 🚫 BLOQUEAR ARRASTAR IMAGENS — impede “segurar para baixar/arrastar” */
+/* 🚫 Bloqueia arrastar imagens */
 img {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Padrão */
   -webkit-user-drag: none;  /* Safari/Chrome */
   user-drag: none;
 }

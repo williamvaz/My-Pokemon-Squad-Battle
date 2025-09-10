@@ -245,3 +245,22 @@ main {
   box-shadow: 0 6px 10px rgba(0,0,0,0.6);
 }
 
+/* 🚫 Bloqueia seleção de texto */
+body {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Padrão */
+  -webkit-user-drag: none;  /* Safari/Chrome */
+  user-drag: none;
+}
+
+/* 🚫 Bloqueia arrastar imagens */
+img {
+  -webkit-user-select: none; /* Safari/Chrome */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Padrão */
+  -webkit-user-drag: none;  /* Safari/Chrome */
+  user-drag: none;
+}
