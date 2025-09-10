@@ -63,12 +63,15 @@ main {
 
 #type-filters {
   display: grid;
-  grid-template-columns: repeat(9, 1fr); /* 9 ícones por linha */
-  grid-template-rows: repeat(2, auto);   /* exatamente 2 linhas */
+  grid-template-columns: repeat(9, 1fr); /* 9 colunas fixas */
+  grid-template-rows: repeat(2, auto);   /* 2 linhas fixas */
   gap: 4px;
   justify-items: center;
   margin: 0 auto;
+  width: 100%;              /* ocupa toda a largura do container */
+  box-sizing: border-box;   /* respeita o padding do pai */
 }
+
 
 /* FILTROS POR TIPO — ícones clicáveis dos tipos */
 #type-filters img {
@@ -126,27 +129,31 @@ main {
 /* GRID DE CARDS — define 3 colunas responsivas */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
-  gap: 1.65%;                              /* espaço entre cards */
-  overflow-y: auto;                        /* grid pode rolar se precisar */
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
+  gap: 1.65%;
+  padding: 1.65%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* CARD BASE — estrutura e estilo geral de cada card */
 .pokemon-card {
-  position: relative;                     /* permite posição absoluta de filhos (rodapé/tags) */
-  background-color: rgba(0, 0, 0, 0.4);   /* vidro escuro */
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
   border-radius: 12px;
   padding: 6px;
   text-align: center;
-  font-family: 'Arial Rounded MT Bold', sans-serif; /* tipografia do card */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* leve elevação */
-  min-width: 90%;
-  max-width: 100%;    /* limitações para manter grade coesa */
-  word-break: break-word;                 /* evita overflow de nomes longos */
-  display: flex; flex-direction: column;  /* empilha conteúdo verticalmente */
+  font-family: 'Arial Rounded MT Bold', sans-serif;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  width: 100%;        /* ocupa a célula inteira */
+  min-width: 0;       /* não força largura mínima */
+  max-width: 100%;    /* não passa da célula */
+  word-break: break-word;
+  display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  height: 250px;                          /* altura consistente entre cards */
-  overflow: hidden;                       /* corta excedentes (badges etc.) */
+  height: 250px;
+  overflow: hidden;
 }
 
 /* CARD SHINY — variação de estilo quando é shiny */
