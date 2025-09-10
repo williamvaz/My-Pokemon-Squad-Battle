@@ -129,9 +129,9 @@ main {
 /* GRID DE CARDS — define 3 colunas responsivas */
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas fixas */
-  gap: 1.65%;
-  padding: 1.65%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -174,10 +174,10 @@ main {
 
 /* IMAGEM DO POKÉMON — capa do card */
 .pokemon-card img {
-  width: 80%;                            /* ocupa largura do card */
-  max-height: clamp(60px, 12vw, 90px);   /* limita altura pra sobrar espaço p/ texto */
-  object-fit: contain;                   /* mantém proporção */
-  margin-bottom: 4px;                    /* separa da próxima seção */
+  width: 100%;
+  max-height: clamp(100px, 22vw, 180px);  /* maior em todos dispositivos */
+  object-fit: contain;
+  margin-bottom: 6px;
 }
 
 /* NOME NO CARD — estilo do nome do Pokémon */
