@@ -65,15 +65,15 @@ main {
   display: grid;
   grid-template-columns: repeat(9, 1fr); /* 9 ícones por linha */
   grid-template-rows: repeat(2, auto);   /* exatamente 2 linhas */
-  gap: 6px;
+  gap: 4px;
   justify-items: center;
   margin: 0 auto;
 }
 
 /* FILTROS POR TIPO — ícones clicáveis dos tipos */
 #type-filters img {
-  width: clamp(28px, 5vw, 42px);
-  height: clamp(28px, 5vw, 42px);
+  width: clamp(28px, 5vw, 36px);
+  height: clamp(28px, 5vw, 36px);
   object-fit: contain;
   cursor: pointer;
   border-radius: 50%;
@@ -128,7 +128,6 @@ main {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
   gap: 1.65%;                              /* espaço entre cards */
-  padding: 1.65%;                          /* respiro interno ao redor do grid */
   overflow-y: auto;                        /* grid pode rolar se precisar */
 }
 
