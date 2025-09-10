@@ -9,7 +9,7 @@
 
 /* CARD DE DETALHES — container principal dentro do modal */
 .details-card{
-  width: 90vh;             /* largura = 90% da tela */
+  width: 90vw;             /* largura = 90% da tela */
   height: 80dvh;           /* altura = 80% da área útil */
   background:linear-gradient(180deg,#5aa0c2 0%, #4a88a6 100%);
   color:#fff; border-radius:16px; padding:18px 16px; text-align:center;
@@ -25,10 +25,10 @@
 
 /* NOME NO MODAL — título forte com leve sombra */
 .details-name{
-  font-size:3.5vh;
+  font-size:3.5vw;
   font-weight:900;
-  letter-spacing:.115vh;
-  margin:0.466vh 0 2.33vh;
+  letter-spacing:.115vw;
+  margin:0.466vw 0 2.33vw;
   text-shadow:2px 2px 0 #134, 0 0 6px rgba(0,0,0,.4);
 }
 
@@ -36,41 +36,41 @@
 .details-top{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:2.33vh;
+  gap:2.33vw;
   align-items:center;
 }
 
 /* BOX DA IMAGEM — caixinha de fundo para a arte */
 .details-imgbox{
-  background:rgba(0,0,0,.15); border-radius:2.795vh; padding:2.33vh;
+  background:rgba(0,0,0,.15); border-radius:2.795vw; padding:2.33vw;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
 }
 
 /* IMAGEM PRINCIPAL NO MODAL */
-.details-image{ width:32.63vh; max-width:100%; object-fit:contain; }
+.details-image{ width:32.63vw; max-width:100%; object-fit:contain; }
 
 /* TIPOS NO MODAL — ícones abaixo da imagem */
 .details-types{
     display:flex; 
     gap:1.4vh; 
-    margin-top:1.866vh; }
+    margin-top:1.866vw; }
 
 .details-types img{
-    width:6.533vh;
-    height:6.533vh;
+    width:6.533vw;
+    height:6.533vw;
     border-radius:50%; }
 
 /* COLUNA DE MINI-ESTATÍSTICAS — lista de chips à direita */
 .mini-stats{
     display:grid;
-    gap:1.865vh; }
+    gap:1.865vw; }
 
 /* CHIP CP/IV — cartucho com rótulo à esquerda e valor à direita */
 .stat-chip{
   background:rgba(0,0,0,.18);
-  border:0.233vh solid rgba(255,255,255,.25);
-  border-radius:2.33vh;
-  padding:1.865vh 2.33vh;
+  border:0.233vw solid rgba(255,255,255,.25);
+  border-radius:2.33vw;
+  padding:1.865vw 2.33vw;
   text-align:left;
   display:flex;
   align-items:baseline;
@@ -83,53 +83,53 @@
 
 .stat-chip strong{
     font-size:1.3rem;
-    text-shadow:0.233vh 0.233vh 0 #134; } /* valor */
+    text-shadow:0.233vw 0.233vw 0 #134; } /* valor */
 
 /* AÇÕES DO MODAL — botões Evoluir / Mega Evoluir */
 .details-actions{
   display:flex;
-  gap:2.33vh;
+  gap:2.33vw;
   justify-content:center;
-  margin:2.795vh 0 1.4vh;
+  margin:2.795vw 0 1.4vw;
 }
 
 /* BOTÕES GENÉRICOS — estilos base reutilizáveis */
 .btn{
-  padding:2.33vh 3.733vh;
-  border-radius:2.33vh;
+  padding:2.33vw 3.733vw;
+  border-radius:2.33vw;
   border:none;
   cursor:pointer;
   font-weight:900;
-  letter-spacing:.01vh;
+  letter-spacing:.01vw;
   box-shadow:0 3px 0 rgba(0,0,0,.35);
   transition:transform .08s ease, filter .15s ease;
 }
-.btn:active{ transform:translateY(0.233vh); }  /* clique “afunda” */
+.btn:active{ transform:translateY(0.233vw); }  /* clique “afunda” */
 .btn-blue{ background:#2d6cdf; color:#ffd700; } /* primário */
 .btn-red{  background:#d94141; color:#fff; }    /* perigo/negativo */
 .btn-gray{ background:#ececec; color:#222; }    /* neutro */
 
 /* TÍTULOS DE SEÇÃO DENTRO DO MODAL (Golpes/Atributos) */
 .section-title{
-  margin:2.33vh 0 1.4vh; font-weight:900; text-align:left;
-  text-shadow:0.233vh 0.233vh 0 #134; opacity:.95;
+  margin:2.33vw 0 1.4vw; font-weight:900; text-align:left;
+  text-shadow:0.233vw 0.233vw 0 #134; opacity:.95;
 }
 
 /* CONTAINER DA TABELA DE GOLPES — bloco com borda e raio */
 .moves{
   background:rgba(0,0,0,.18);
-  border:0.233vh solid rgba(255,255,255,.25);
-  border-radius:2.795vh;
-  padding:2.33vh;
-  margin-top:0.932vh;
+  border:0.233vw solid rgba(255,255,255,.25);
+  border-radius:2.795vw;
+  padding:2.33vw;
+  margin-top:0.932vw;
 }
 
 /* GRID DAS LINHAS/HEADER DE GOLPES — colunas alinhadas */
 .moves-head,
 .moves-row{
   display: grid;
-  grid-template-columns: 6.525vh minmax(0,1fr) 15.85vh 12.58vh 12.58vh auto; /* ícone | nome flex | modo | dano | speed | ação */
-  gap: 1.4vh;
+  grid-template-columns: 6.525vw minmax(0,1fr) 15.85vw 12.58vw 12.58vw auto; /* ícone | nome flex | modo | dano | speed | ação */
+  gap: 1.4vw;
   align-items: center;
 }
 
@@ -138,7 +138,7 @@
   font-weight: 900;
   opacity: .85;
   font-size: .82rem;
-  margin-bottom: 1.4vh;
+  margin-bottom: 1.4vw;
 }
 
 /* ALINHAMENTOS ESPECÍFICOS EM CADA COLUNA */
@@ -164,12 +164,12 @@
 
 /* BOTÃO MINI DENTRO DA LINHA DE GOLPES */
 .btn-mini{
-  padding:1.4vh 2.33vh;
-  border-radius:232.77vh;
+  padding:1.4vw 2.33vw;
+  border-radius:232.77vw;
   border:none; cursor:pointer;
   font-weight:900; font-size:.8rem;
   background:#2d6cdf; color:#ffd700;
-  box-shadow:0 0.466vh 0 rgba(0,0,0,.35);
+  box-shadow:0 0.466vw 0 rgba(0,0,0,.35);
 }
 
 /* POPUP DO SELETOR DE GOLPES — mini modal sobre o modal */
@@ -178,62 +178,62 @@
   z-index:1100; 
   inset:0; 
   margin:auto;
-  width:min(107.18vh,94vh); 
+  width:min(107.18vw,94vw); 
   background:linear-gradient(180deg,#f8fbff, #eaf3ff);
   color:#123; 
-  border:0.466vh solid #9ec3ff; 
-  border-radius:2.796vh;
-  box-shadow:0 2.796vh 7vh rgba(0,0,0,.5);
-  padding:2.796vh;
+  border:0.466vw solid #9ec3ff; 
+  border-radius:2.796vw;
+  box-shadow:0 2.796vw 7vw rgba(0,0,0,.5);
+  padding:2.796vw;
 }
 .move-picker h3{
-    margin:0 0 1.865vh;
+    margin:0 0 1.865vw;
     font-weight:900;
     color:#1c3f6b; }
 
 /* BUSCA NO SELETOR — input estilizado */
 .move-search{
   width:100%;
-  padding:1.865vh 2.33vh;
-  border-radius:1.865vh;
-  border:0.233vh solid #bcd;
-  margin-bottom:1.865vh;
+  padding:1.865vw 2.33vw;
+  border-radius:1.865vw;
+  border:0.233vw solid #bcd;
+  margin-bottom:1.865vw;
   background:#fff;
 }
 
 /* CABEÇALHO DA LISTA DO SELETOR — define colunas */
 .move-head{
   display:grid;
-  grid-template-columns: 6.525vh minmax(0,1fr) 16.3vh 12.58vh 12.58vh 13.515vh auto; /* + coluna Valor */
-  gap:1.4vh;
+  grid-template-columns: 6.525vw minmax(0,1fr) 16.3vw 12.58vw 12.58vw 13.515vw auto; /* + coluna Valor */
+  gap:1.4vw;
   align-items:center;
   font-weight:900;
   font-size:.82rem;
   color:#2b4d7a;
   opacity:.9;
-  margin:0.932vh 0 1.4vh;
+  margin:0.932vw 0 1.4vw;
 }
 
 /* LISTA SCROLLÁVEL DE OPÇÕES DE GOLPE */
 .move-list{
-    max-height:79.22vh;
+    max-height:79.22vw;
     overflow-y:auto;
     overflow-x:hidden;
     display:grid;
-    gap:1.4vh; }
+    gap:1.4vw; }
 
 /* LINHA DE OPÇÃO — mesma grade do header para alinhar colunas */
 .move-option{
   display:grid;
-  grid-template-columns: 6.525vh minmax(0,1fr) 16.3vh 12.582vh 12.582vh 13.514vh auto;
-  gap:1.4vh; align-items:center;
-  background:#fff; border:0.233vh solid #cfe1ff; border-radius:2.796vh; padding:1.865vh 2.33vh;
+  grid-template-columns: 6.525vw minmax(0,1fr) 16.3vw 12.582vw 12.582vw 13.514vw auto;
+  gap:1.4vw; align-items:center;
+  background:#fff; border:0.233vw solid #cfe1ff; border-radius:2.796vw; padding:1.865vw 2.33vw;
   transition:transform .08s ease, box-shadow .15s ease;
 }
 .move-option:hover{
-    transform:translateY(-0.233vhx);
+    transform:translateY(-0.233vwx);
     background:#5da6fa;
-    box-shadow:0 1.4vh 3.262vh rgba(0,0,0,.15); }
+    box-shadow:0 1.4vw 3.262vw rgba(0,0,0,.15); }
 
 /* PERMITE O NOME ENCOLHER SEM CRIAR SCROLL HORIZONTAL */
 .move-option > :nth-child(2),
@@ -245,37 +245,37 @@
 }
 
 .move-option .type-icon{
-    width:5.592vh;
-    height:5.592vh;
+    width:5.592vw;
+    height:5.592vw;
     border-radius:50%; }
 
 .move-option .pill{
-    padding:0.466vh 1.865vh;
-    border-radius:232.767vh;
+    padding:0.466vw 1.865vw;
+    border-radius:232.767vw;
     background:#eef;
     font-weight:700;
     white-space:nowrap;
     font-size:.82rem; }
 
 .price-pill{
-    padding:2px 1.865vh;
-    border-radius:232.767vh;
+    padding:2px 1.865vw;
+    border-radius:232.767vw;
     background:rgba(255,215,0,.25);
-    border:0.233vh solid gold;
+    border:0.233vw solid gold;
     font-weight:900;
     color:#7a5a00;
     white-space:nowrap; }
 
 .btn-mini{
-    padding:1.4vh 2.33vh;
-    border-radius:232.767vh;
+    padding:1.4vw 2.33vw;
+    border-radius:232.767vw;
     border:none;
     cursor:pointer;
     font-weight:900;
     font-size:.8rem;
     background:#2d6cdf;
     color:#ffd700;
-    box-shadow:0 0.466vh 0 rgba(0,0,0,.35); }
+    box-shadow:0 0.466vw 0 rgba(0,0,0,.35); }
 
 /* FEEDBACK DE ERRO (sem moedas) — tremida no botão/linha */
 .move-select.deny{ animation: shake .35s linear; }
@@ -287,20 +287,20 @@
 
 /* ATRIBUTOS BASE — lista com espaçamento */
 .base-stats{
-    margin-top:2.33vh;
+    margin-top:2.33vw;
     display:grid;
-    gap:1.4vh; }
+    gap:1.4vw; }
 
 /* LINHA DE ATRIBUTO — label | valor | botão [+] */
 .stat-row{
   display:grid;
   grid-template-columns:1fr auto auto;
-  gap:1.865vh;
+  gap:1.865vw;
   align-items:center;
   background:rgba(0,0,0,.15);
-  border:0.233vh solid rgba(255,255,255,.25);
-  border-radius:2.33vh;
-  padding:1.4vh 1.865vh;
+  border:0.233vw solid rgba(255,255,255,.25);
+  border-radius:2.33vw;
+  padding:1.4vw 1.865vw;
 }
 .stat-label{
     text-align:left; 
@@ -309,7 +309,7 @@
 .stat-value { 
     display: flex; 
     align-items: center; 
-    gap: 0.932vh; 
+    gap: 0.932vw; 
     font-weight: 900; }
 
 .stat-value .stat-max {
@@ -318,20 +318,20 @@
 
 /* BOTÃO + DE ATRIBUTO — ação de incremento */
 .stat-add{
-  width:6.525vh; 
-  height:6.525vh; 
-  border-radius:232.767vh; 
+  width:6.525vw; 
+  height:6.525vw; 
+  border-radius:232.767vw; 
   border:none; 
   cursor:pointer;
   background:#2d6cdf; 
   color:#ffd700; 
   font-weight:900; 
-  box-shadow:0 0.466vh 0 rgba(0,0,0,.35);
+  box-shadow:0 0.466vw 0 rgba(0,0,0,.35);
 }
 
 /* RODAPÉ DO MODAL — área com botão fechar/voltar */
 .details-footer{
-    margin-top:2.796vh;
+    margin-top:2.796vw;
     display:flex;
     justify-content:center; }
 
@@ -340,11 +340,11 @@
   background:gold;
   color:#000;
   font-weight:900;
-  margin-top:1.4vh;
-  border-radius:1.4vh;
-  padding:0.7vh 1.4vh;
+  margin-top:1.4vw;
+  border-radius:1.4vw;
+  padding:0.7vw 1.4vw;
   display:inline-block;
-  box-shadow:0 0 1.865vh yellow;
+  box-shadow:0 0 1.865vw yellow;
   animation:pulse 1s infinite;
 }
 
@@ -362,23 +362,23 @@
 .stat-add.deny { animation: shake .35s linear; }
 @keyframes shake {
   0%,100% { transform: translateX(0); }
-  25%     { transform: translateX(-0.466vh); }
-  75%     { transform: translateX( 0.466vh); }
+  25%     { transform: translateX(-0.466vw); }
+  75%     { transform: translateX( 0.466vw); }
 }
 
 /* RESPONSIVIDADE PARA TELAS MUITO ESTREITAS — ajusta grades e paddings */
-@media (max-width: 83.88vh){
+@media (max-width: 83.88vw){
   .move-head, .move-option{
-    grid-template-columns: 5.592vh minmax(0,1fr) 14.912vh 11.184vh 11.184vh 12.582vh auto;
+    grid-template-columns: 5.592vw minmax(0,1fr) 14.912vw 11.184vw 11.184vw 12.582vw auto;
     gap:4px;
   }
 
   .move-option .pill, .price-pill{
     font-size:.78rem;
-    padding:0.466vh 1.4vh; }
+    padding:0.466vw 1.4vw; }
 
   .btn-mini{
-    padding:1.165vh 2.097vh;
+    padding:1.165vw 2.097vw;
     font-size:.76rem; }
 }
 
@@ -403,18 +403,18 @@
   background: rgba(0,0,0,.35);
 }
 .confirm-card{
-  width:min(83.88vh, 90vh);
-  background:#f7fbff; color:#123; border:0.466vh solid #9ec3ff; border-radius:2.796vh;
-  box-shadow:0 2.33vh 5.825vh rgba(0,0,0,.4);
-  padding:3.262vh;
+  width:min(83.88vw, 90vw);
+  background:#f7fbff; color:#123; border:0.466vw solid #9ec3ff; border-radius:2.796vw;
+  box-shadow:0 2.33vw 5.825vw rgba(0,0,0,.4);
+  padding:3.262vw;
   text-align:center;
 }
 .confirm-card p{
-    margin:1.4vh 0 2.796vh; }
+    margin:1.4vw 0 2.796vw; }
 
 .confirm-actions{
     display:flex;
-    gap:1.864vh;
+    gap:1.864vw;
     justify-content:center; }
 
 /* 🚫 BLOQUEAR SELEÇÃO DE TEXTO — evita copiar/selecionar */
