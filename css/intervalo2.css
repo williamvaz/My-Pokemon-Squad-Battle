@@ -2,17 +2,26 @@
 
 /* OVERLAY DO MODAL — escurece o fundo e centraliza o card de detalhes */
 #details-screen{
-  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-  background:rgba(0,0,0,.7); z-index:1000;  /* acima do conteúdo da página */
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.7);
+  z-index:1000;  /* acima do conteúdo da página */
 }
-#details-screen.hidden{ display:none; }     /* esconde o modal */
+#details-screen.hidden{
+  display:none; }     /* esconde o modal */
 
 /* CARD DE DETALHES — container principal dentro do modal */
 .details-card{
   width: 90vw;             /* largura = 90% da tela */
   height: 80dvh;           /* altura = 80% da área útil */
   background:linear-gradient(180deg,#5aa0c2 0%, #4a88a6 100%);
-  color:#fff; border-radius:16px; padding:18px 16px; text-align:center;
+  color:#fff;
+  border-radius:16px;
+  padding:18px 16px;
+  text-align:center;
   box-shadow:0 10px 30px rgba(0,0,0,.5);
   border:2px solid rgba(255,255,255,.25);
   animation:pop-in .18s ease-out;                        /* entrada rápida */
@@ -25,10 +34,10 @@
 
 /* NOME NO MODAL — título forte com leve sombra */
 .details-name{
-  font-size:3.5vw;
+  font-size:1.61dvh;
   font-weight:900;
   letter-spacing:.115vw;
-  margin:0.466vw 0 2.33vw;
+  margin:0.214dvh 0 1.07dvh;
   text-shadow:2px 2px 0 #134, 0 0 6px rgba(0,0,0,.4);
 }
 
@@ -36,28 +45,36 @@
 .details-top{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:2.33vw;
+  gap:1.07dvh;
   align-items:center;
 }
 
 /* BOX DA IMAGEM — caixinha de fundo para a arte */
 .details-imgbox{
-  background:rgba(0,0,0,.15); border-radius:2.795vw; padding:2.33vw;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  background:rgba(0,0,0,.15);
+  border-radius:2.795vw;
+  padding:1.07dvh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 
 /* IMAGEM PRINCIPAL NO MODAL */
-.details-image{ width:32.63vw; max-width:100%; object-fit:contain; }
+.details-image{
+  width:32.63vw;
+  max-width:100%;
+  object-fit:contain; }
 
 /* TIPOS NO MODAL — ícones abaixo da imagem */
 .details-types{
     display:flex; 
     gap:1.4vh; 
-    margin-top:1.866vw; }
+    margin-top:0.857dvh; }
 
 .details-types img{
     width:6.533vw;
-    height:6.533vw;
+    height:3dvh;
     border-radius:50%; }
 
 /* COLUNA DE MINI-ESTATÍSTICAS — lista de chips à direita */
@@ -70,7 +87,7 @@
   background:rgba(0,0,0,.18);
   border:0.233vw solid rgba(255,255,255,.25);
   border-radius:2.33vw;
-  padding:1.865vw 2.33vw;
+  padding:0.857dvh 1.07dvh;
   text-align:left;
   display:flex;
   align-items:baseline;
@@ -90,12 +107,12 @@
   display:flex;
   gap:2.33vw;
   justify-content:center;
-  margin:2.795vw 0 1.4vw;
+  margin:1.284dvh 0 0.643dvh;
 }
 
 /* BOTÕES GENÉRICOS — estilos base reutilizáveis */
 .btn{
-  padding:2.33vw 3.733vw;
+  padding:1.07dvh 1.714dvh;
   border-radius:2.33vw;
   border:none;
   cursor:pointer;
@@ -111,7 +128,7 @@
 
 /* TÍTULOS DE SEÇÃO DENTRO DO MODAL (Golpes/Atributos) */
 .section-title{
-  margin:2.33vw 0 1.4vw; font-weight:900; text-align:left;
+  margin:1.07dvh 0 0.643dvh; font-weight:900; text-align:left;
   text-shadow:0.233vw 0.233vw 0 #134; opacity:.95;
 }
 
@@ -120,8 +137,8 @@
   background:rgba(0,0,0,.18);
   border:0.233vw solid rgba(255,255,255,.25);
   border-radius:2.795vw;
-  padding:2.33vw;
-  margin-top:0.932vw;
+  padding:1.07dvh;
+  margin-top:0.428dvh;
 }
 
 /* GRID DAS LINHAS/HEADER DE GOLPES — colunas alinhadas */
@@ -138,12 +155,15 @@
   font-weight: 900;
   opacity: .85;
   font-size: .82rem;
-  margin-bottom: 1.4vw;
+  margin-bottom: 0.643dvh;
 }
 
 /* ALINHAMENTOS ESPECÍFICOS EM CADA COLUNA */
-.moves-row .pill{ justify-self: center; }
-.moves-row .btn-mini{ justify-self: end; }
+.moves-row .pill{
+  justify-self: center; }
+
+.moves-row .btn-mini{
+  justify-self: end; }
 
 .moves-head > *{ display:flex; align-items:center; } /* base alinha verticalmente */
 .moves-head > :first-child{ justify-content:center; width:28px; } /* coluna do tipo */
@@ -164,7 +184,7 @@
 
 /* BOTÃO MINI DENTRO DA LINHA DE GOLPES */
 .btn-mini{
-  padding:1.4vw 2.33vw;
+  padding:0.643dvh 1.07dvh;
   border-radius:232.77vw;
   border:none; cursor:pointer;
   font-weight:900; font-size:.8rem;
@@ -184,20 +204,20 @@
   border:0.466vw solid #9ec3ff; 
   border-radius:2.796vw;
   box-shadow:0 2.796vw 7vw rgba(0,0,0,.5);
-  padding:2.796vw;
+  padding:1.284dvh;
 }
 .move-picker h3{
-    margin:0 0 1.865vw;
+    margin:0 0 0.857dvh;
     font-weight:900;
     color:#1c3f6b; }
 
 /* BUSCA NO SELETOR — input estilizado */
 .move-search{
   width:100%;
-  padding:1.865vw 2.33vw;
+  padding:0.857dvh 1.07dvh;
   border-radius:1.865vw;
   border:0.233vw solid #bcd;
-  margin-bottom:1.865vw;
+  margin-bottom:0.857dvh;
   background:#fff;
 }
 
@@ -211,12 +231,12 @@
   font-size:.82rem;
   color:#2b4d7a;
   opacity:.9;
-  margin:0.932vw 0 1.4vw;
+  margin:0.428dvh 0 0.643dvh;
 }
 
 /* LISTA SCROLLÁVEL DE OPÇÕES DE GOLPE */
 .move-list{
-    max-height:79.22vw;
+    max-height:36.38dvh;
     overflow-y:auto;
     overflow-x:hidden;
     display:grid;
@@ -227,7 +247,10 @@
   display:grid;
   grid-template-columns: 6.525vw minmax(0,1fr) 16.3vw 12.582vw 12.582vw 13.514vw auto;
   gap:1.4vw; align-items:center;
-  background:#fff; border:0.233vw solid #cfe1ff; border-radius:2.796vw; padding:1.865vw 2.33vw;
+  background:#fff;
+  border:0.233vw solid #cfe1ff;
+  border-radius:2.796vw;
+  padding:0.857dvh 1.07dvh;
   transition:transform .08s ease, box-shadow .15s ease;
 }
 .move-option:hover{
@@ -246,11 +269,11 @@
 
 .move-option .type-icon{
     width:5.592vw;
-    height:5.592vw;
+    height:2.568dvh;
     border-radius:50%; }
 
 .move-option .pill{
-    padding:0.466vw 1.865vw;
+    padding:0,214dvh 0.857dvh;
     border-radius:232.767vw;
     background:#eef;
     font-weight:700;
@@ -258,7 +281,7 @@
     font-size:.82rem; }
 
 .price-pill{
-    padding:2px 1.865vw;
+    padding:0.214dvh 0.857dvh;
     border-radius:232.767vw;
     background:rgba(255,215,0,.25);
     border:0.233vw solid gold;
@@ -267,7 +290,7 @@
     white-space:nowrap; }
 
 .btn-mini{
-    padding:1.4vw 2.33vw;
+    padding:0.643dvh 1.07dvh;
     border-radius:232.767vw;
     border:none;
     cursor:pointer;
@@ -287,7 +310,7 @@
 
 /* ATRIBUTOS BASE — lista com espaçamento */
 .base-stats{
-    margin-top:2.33vw;
+    margin-top:1.07dvh;
     display:grid;
     gap:1.4vw; }
 
@@ -300,7 +323,7 @@
   background:rgba(0,0,0,.15);
   border:0.233vw solid rgba(255,255,255,.25);
   border-radius:2.33vw;
-  padding:1.4vw 1.865vw;
+  padding:0.643dvh 0.857dvh;
 }
 .stat-label{
     text-align:left; 
@@ -319,7 +342,7 @@
 /* BOTÃO + DE ATRIBUTO — ação de incremento */
 .stat-add{
   width:6.525vw; 
-  height:6.525vw; 
+  height:3dvh; 
   border-radius:232.767vw; 
   border:none; 
   cursor:pointer;
@@ -331,7 +354,7 @@
 
 /* RODAPÉ DO MODAL — área com botão fechar/voltar */
 .details-footer{
-    margin-top:2.796vw;
+    margin-top:1.284dvh;
     display:flex;
     justify-content:center; }
 
@@ -340,9 +363,9 @@
   background:gold;
   color:#000;
   font-weight:900;
-  margin-top:1.4vw;
+  margin-top:0.643dvh;
   border-radius:1.4vw;
-  padding:0.7vw 1.4vw;
+  padding:0.321dvh 0.643dvh;
   display:inline-block;
   box-shadow:0 0 1.865vw yellow;
   animation:pulse 1s infinite;
@@ -375,10 +398,10 @@
 
   .move-option .pill, .price-pill{
     font-size:.78rem;
-    padding:0.466vw 1.4vw; }
+    padding:0,214dvh 0.643dvh; }
 
   .btn-mini{
-    padding:1.165vw 2.097vw;
+    padding:0.535dvh 0.963dvh;
     font-size:.76rem; }
 }
 
@@ -389,7 +412,7 @@
 
 /* HEADER DO PICKER — mesma lógica de alinhamento do moves-head acima */
 .move-head > *{ display:flex; align-items:center; }               /* base */
-.move-head > :first-child{ justify-content:center; width:28px; }  /* Tp */
+.move-head > :first-child{ justify-content:center; width:6.524vw; }  /* Tp */
 .move-head > :nth-child(2){ justify-content:flex-start; }         /* Golpe (esq.) */
 .move-head > :nth-child(3),
 .move-head > :nth-child(4),
@@ -399,22 +422,30 @@
 
 /* POPUP DE CONFIRMAÇÃO (Evolução / Mega) — overlay leve + card */
 .confirm-box{
-  position: fixed; inset:0; display:flex; align-items:center; justify-content:center; z-index:1100;
+  position: fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1100;
   background: rgba(0,0,0,.35);
 }
 .confirm-card{
   width:min(83.88vw, 90vw);
-  background:#f7fbff; color:#123; border:0.466vw solid #9ec3ff; border-radius:2.796vw;
+  background:#f7fbff;
+  color:#123;
+  border:0.466vw solid #9ec3ff;
+  border-radius:2.796vw;
   box-shadow:0 2.33vw 5.825vw rgba(0,0,0,.4);
-  padding:3.262vw;
+  padding:1.498dvh;
   text-align:center;
 }
 .confirm-card p{
-    margin:1.4vw 0 2.796vw; }
+    margin:0.643dvh 0 1.284dvh; }
 
 .confirm-actions{
     display:flex;
-    gap:1.864vw;
+    gap:0.857dvh;
     justify-content:center; }
 
 /* 🚫 BLOQUEAR SELEÇÃO DE TEXTO — evita copiar/selecionar */
