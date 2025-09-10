@@ -15,7 +15,7 @@
 
 /* CARD DE DETALHES — container principal dentro do modal */
 .details-card{
-  width: 90vw;             /* largura = 90% da tela */
+  width: clamp(320px, 90vw, 600px);
   height: 80dvh;           /* altura = 80% da área útil */
   background:linear-gradient(180deg,#5aa0c2 0%, #4a88a6 100%);
   color:#fff;
