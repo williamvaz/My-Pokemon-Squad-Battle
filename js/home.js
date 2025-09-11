@@ -16,6 +16,7 @@ localStorage.removeItem("rodadas_finalizadas");
 localStorage.removeItem("Pokemoedas");
 localStorage.removeItem("Mega Rock");
 localStorage.removeItem("equipe_ids");
+localStorage.removeItem("gymTower_v1");
 
 window.location.href = "iniciais.html";
     }
