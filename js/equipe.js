@@ -207,7 +207,11 @@ function init() {
     // Vai para batalha:
     window.location.href = "ginasios.html";
   };
-  backBtn.onclick = () => history.back();
+  backBtn.onclick = () => {
+    saveTeam();
+    // Vai para POWER UP:
+    window.location.href = "intervalo.html";
+  }
 }
 
 document.addEventListener("DOMContentLoaded", init);
