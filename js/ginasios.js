@@ -4,6 +4,8 @@
 
 const PATH_POKEMONS  = "JSON/pokemons.json";   // ajuste se seu caminho for diferente
 const PATH_INSIGNIAS = "JSON/insignias.json";  // já anexado por você
+const PATH_GOLPES    = "JSON/golpes.json"; // <-- novo
+const PROB_SHINY     = 0.01;               // 1% de chance
 const BADGE_IMG_PATH = "insignias/";           // 1.png ... 59.png
 
 const STORAGE_KEY   = "gymTower_v1";
@@ -32,6 +34,7 @@ const TYPE_FIX = new Map([
 let tower = null; // { levels: [ {level,badgeId,type,teamIds,avgCP,range}, ... , {boss:true,teamIds,...} ], current: 1..9 }
 let pokemons = [];
 let insignias = [];
+let golpesDB = []; // <- lista de golpes carregada do JSON
 
 /* Utilidades */
 const sleep = (ms) => new Promise(r => setTimeout(r, ms));
@@ -57,7 +60,59 @@ function avg(arr) {
   return arr.reduce((s,n) => s + n, 0) / (arr.length || 1);
 }
 
-function toBattlePokemon(p) {
+// ---- Aleatório / chances ----
+function chance(p) { return Math.random() < p; }
+function rand(min, max) { return min + Math.random() * (max - min); }
+
+// ---- Faixas de IV por estágio (0–1) ----
+const IV_TABLE = {
+  1: [0.35, 0.55],
+  2: [0.40, 0.60],
+  3: [0.45, 0.65],
+  4: [0.50, 0.70],
+  5: [0.55, 0.75],
+  6: [0.60, 0.80],
+  7: [0.65, 0.85],
+  8: [0.70, 0.90],
+  9: [0.85, 0.98], // Boss
+};
+function calcIVForStage(level) {
+  const [a, b] = IV_TABLE[level] || [0.5, 0.8];
+  return Number(rand(a, b).toFixed(2));
+}
+
+// ---- Normalizadores para golpes ----
+function moveType(m)  { return normType(m.Type || m["Tipo"] || m["Tp"] || ""); }
+function moveName(m)  { return String(m.Name || m["Golpe"] || m["Move"] || "").trim(); }
+
+// Escolhe 2 golpes: prioriza STAB; se faltar, completa com qualquer outro
+function pickMovesForPokemon(p, golpes) {
+  const t1 = normType(p["Type 1"] ?? "");
+  const t2 = normType(p["Type 2"] ?? "");
+  const valid = (golpes || []).filter(g => moveName(g));
+
+  const stab = valid.filter(g => {
+    const gt = moveType(g);
+    return gt && (gt === t1 || gt === t2);
+  });
+  const rest = valid.filter(g => !stab.includes(g));
+
+  let g1 = null, g2 = null;
+  if (stab.length) g1 = pickRandom(stab);
+  if (stab.length > 1) g2 = pickRandom(stab.filter(x => x !== g1));
+  if (!g2) g2 = rest.length ? pickRandom(rest) : g1;
+
+  return {
+    golpe1: moveName(g1 || {}),
+    golpe2: moveName(g2 || {})
+  };
+}
+
+function toBattlePokemon(p, level, golpes) {
+  const iv = calcIVForStage(level);                 // IV calculado pela dificuldade
+  const shiny = chance(PROB_SHINY) ? "Sim" : "Não"; // 1% de chance
+  const { golpe1, golpe2 } = pickMovesForPokemon(p, golpes);
+
   return {
     ID: p.ID ?? p.id ?? p.Pokedex,
     Pokedex: p.Pokedex ?? "",
@@ -65,21 +120,22 @@ function toBattlePokemon(p) {
     "Type 1": p["Type 1"] ?? "",
     "Type 2": p["Type 2"] ?? "",
     CP: getCP(p),
-    IV: p.IV ?? null,
-    Total: p.Total ?? null,
-    HP: p.HP ?? null,
-    Attack: p.Attack ?? null,
-    Defense: p.Defense ?? null,
-    "Sp. Atk": p["Sp. Atk"] ?? null,
-    "Sp. Def": p["Sp. Def"] ?? null,
-    Speed: p.Speed ?? null,
+    IV: iv,
+    Total: p.Total ? Number(p.Total) : null,
+    HP: p.HP ? Number(p.HP) : null,
+    Attack: p.Attack ? Number(p.Attack) : null,
+    Defense: p.Defense ? Number(p.Defense) : null,
+    "Sp. Atk": p["Sp. Atk"] ? Number(p["Sp. Atk"]) : null,
+    "Sp. Def": p["Sp. Def"] ? Number(p["Sp. Def"]) : null,
+    Speed: p.Speed ? Number(p.Speed) : null,
     Tierlist: p.Tierlist ?? null,
-    "Golpe 1": p["Golpe 1"] ?? "",
-    "Golpe 2": p["Golpe 2"] ?? "",
-    Shiny: p.Shiny ?? "Não",
+    "Golpe 1": golpe1,
+    "Golpe 2": golpe2,
+    Shiny: shiny,
     _uid: p._uid ?? null
   };
 }
+
 
 /* Seleciona um time de 6 Pokémon cujo CP médio caia no range
    - t: tipo (ou "All" para qualquer um)
@@ -140,20 +196,19 @@ async function initTower() {
     const { level, badgeId, type } = eight[i];
     const range = CP_RANGES[i];
     const team  = pickTeamByTypeAndRange(pokemons, type, range);
-    const teamFull = team.map(toBattlePokemon);
+    const teamFull = team.map(p => toBattlePokemon(p, level, golpesDB)); // <- passa level e golpes
     const avgCP    = Math.round(avg(teamFull.map(p => p.CP)));
-
     levels.push({ level, badgeId, type, range, team: teamFull, avgCP });
+
 
     }
 
     // Boss (sem tipo → All)
     {
       const team  = pickTeamByTypeAndRange(pokemons, "All", BOSS_RANGE);
-      const teamFull = team.map(toBattlePokemon);
-      const avgCP    = Math.round(avg(teamFull.map(p => p.CP)));
-
-      levels.push({ boss: true, level: 9, type: "All", range: BOSS_RANGE, team: teamFull, avgCP });
+    const teamFull = team.map(p => toBattlePokemon(p, 9, golpesDB)); // 9 = Boss
+    const avgCP    = Math.round(avg(teamFull.map(p => p.CP)));
+    levels.push({ boss: true, level: 9, type: "All", range: BOSS_RANGE, team: teamFull, avgCP });
 
     }
 
@@ -269,6 +324,7 @@ async function loadJSON(path) {
     [pokemons, insignias] = await Promise.all([
       loadJSON(PATH_POKEMONS),
       loadJSON(PATH_INSIGNIAS),
+      loadJSON(PATH_GOLPES),
     ]);
 
     // normaliza tipos das insígnias
