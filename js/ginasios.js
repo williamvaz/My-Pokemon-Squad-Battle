@@ -321,11 +321,12 @@ async function loadJSON(path) {
 /* Boot */
 (async function main() {
   try {
-    [pokemons, insignias] = await Promise.all([
-      loadJSON(PATH_POKEMONS),
-      loadJSON(PATH_INSIGNIAS),
-      loadJSON(PATH_GOLPES),
-    ]);
+    [pokemons, insignias, golpesDB] = await Promise.all([
+  loadJSON(PATH_POKEMONS),
+  loadJSON(PATH_INSIGNIAS),
+  loadJSON(PATH_GOLPES),
+]);
+
 
     // normaliza tipos das insígnias
     insignias = insignias.map(it => ({ ...it, Type: normType(it.Type) }));
