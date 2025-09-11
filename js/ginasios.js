@@ -169,9 +169,7 @@ function renderTower() {
 
     // Coluna 2: info
     const title = isBoss ? "TORNEIO POKEMON" : `Nível ${node.level} — ${levelsDesc[node.level-1] || ""}`;
-    const sub   = isBoss
-      ? `CP médio alvo: ${node.range.min}–${node.range.max}`
-      : `${node.type === "All" ? "Tipo livre" : `Tipo ${node.type}`} • CP médio alvo: ${node.range.min}–${node.range.max}`;
+    const sub = ""; // não mostra nada abaixo do título
 
     // Coluna 3: selo de estado
     const label = isBoss ? "BOSS" : `Lv ${node.level}`;
