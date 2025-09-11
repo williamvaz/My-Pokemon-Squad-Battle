@@ -57,6 +57,30 @@ function avg(arr) {
   return arr.reduce((s,n) => s + n, 0) / (arr.length || 1);
 }
 
+function toBattlePokemon(p) {
+  return {
+    ID: p.ID ?? p.id ?? p.Pokedex,
+    Pokedex: p.Pokedex ?? "",
+    Name: p.Name ?? "",
+    "Type 1": p["Type 1"] ?? "",
+    "Type 2": p["Type 2"] ?? "",
+    CP: getCP(p),
+    IV: p.IV ?? null,
+    Total: p.Total ?? null,
+    HP: p.HP ?? null,
+    Attack: p.Attack ?? null,
+    Defense: p.Defense ?? null,
+    "Sp. Atk": p["Sp. Atk"] ?? null,
+    "Sp. Def": p["Sp. Def"] ?? null,
+    Speed: p.Speed ?? null,
+    Tierlist: p.Tierlist ?? null,
+    "Golpe 1": p["Golpe 1"] ?? "",
+    "Golpe 2": p["Golpe 2"] ?? "",
+    Shiny: p.Shiny ?? "Não",
+    _uid: p._uid ?? null
+  };
+}
+
 /* Seleciona um time de 6 Pokémon cujo CP médio caia no range
    - t: tipo (ou "All" para qualquer um)
    - range: {min,max}
@@ -113,21 +137,24 @@ async function initTower() {
     // monta níveis
     const levels = [];
     for (let i=0; i<8; i++) {
-      const { level, badgeId, type } = eight[i];
-      const range = CP_RANGES[i];
-      const team  = pickTeamByTypeAndRange(pokemons, type, range);
-      const teamIds = team.map(p => p.ID ?? p.id ?? p.Pokedex ?? p.Name);
-      const avgCP   = Math.round(avg(team.map(getCP)));
+    const { level, badgeId, type } = eight[i];
+    const range = CP_RANGES[i];
+    const team  = pickTeamByTypeAndRange(pokemons, type, range);
+    const teamFull = team.map(toBattlePokemon);
+    const avgCP    = Math.round(avg(teamFull.map(p => p.CP)));
 
-      levels.push({ level, badgeId, type, range, teamIds, avgCP });
+    levels.push({ level, badgeId, type, range, team: teamFull, avgCP });
+
     }
 
     // Boss (sem tipo → All)
     {
       const team  = pickTeamByTypeAndRange(pokemons, "All", BOSS_RANGE);
-      const teamIds = team.map(p => p.ID ?? p.id ?? p.Pokedex ?? p.Name);
-      const avgCP   = Math.round(avg(team.map(getCP)));
-      levels.push({ boss: true, level: 9, type: "All", range: BOSS_RANGE, teamIds, avgCP });
+      const teamFull = team.map(toBattlePokemon);
+      const avgCP    = Math.round(avg(teamFull.map(p => p.CP)));
+
+      levels.push({ boss: true, level: 9, type: "All", range: BOSS_RANGE, team: teamFull, avgCP });
+
     }
 
     tower = { levels, current: 1 }; // current = 1º desafio ainda não vencido
