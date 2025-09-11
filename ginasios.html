@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ginásios — Torre</title>
+
+  <!-- SE você já tem um styles.css global, MANTENHA. 
+       DEPOIS do seu styles.css, COLOQUE esta linha: -->
+  <link rel="stylesheet" href="css/ginasios.css">
+</head>
+<body>
+  <!-- Fundo e trilha -->
+  <audio id="bgm" src="music/gym.mpeg" loop></audio>
+
+  <main class="page">
+    <header class="topbar">
+      <h1 class="title">TORRE DOS GINÁSIOS</h1>
+      <p class="subtitle">vença e suba até a grande batalha</p>
+    </header>
+
+    <!-- Torre -->
+    <section id="tower" class="tower">
+      <!-- Os 9 andares são renderizados via JS:
+           8 níveis + 1 Boss (no topo) -->
+    </section>
+
+    <!-- Botões -->
+    <footer class="actions">
+      <button id="btnStart"    class="btn btn-yellow" disabled>Iniciar batalha</button>
+      <button id="btnTeam"     class="btn"            >Mudar formação</button>
+      <button id="btnPowerUp"  class="btn"            >Fortalecer pokemons</button>
+    </footer>
+  </main>
+
+  <!-- COLOQUE este script ANTES de fechar o body -->
+  <script src="js/ginasios.js" defer></script>
+</body>
+</html>

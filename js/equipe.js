@@ -204,8 +204,8 @@ function init() {
 
   saveBtn.onclick = () => {
     saveTeam();
-    // volta para onde você quiser:
-    window.location.href = "intervalo.html";
+    // Vai para batalha:
+    window.location.href = "ginasios.html";
   };
   backBtn.onclick = () => history.back();
 }

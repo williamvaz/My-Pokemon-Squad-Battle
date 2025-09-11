@@ -1,0 +1,149 @@
+/* ===== Layout base ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  color: #fff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: url("background/insignias.webp") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.page { 
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4dvh;
+  padding: 2dvh 4vw 3dvh;
+  backdrop-filter: blur(1.2dvh);
+}
+
+/* ===== Topo ===== */
+.topbar { text-align: center; }
+.title {
+  margin: 0.6dvh 0 0.3dvh;
+  font-weight: 900;
+  letter-spacing: 0.3vw;
+  font-size: clamp(18px, 3.2dvh, 42px);
+  text-shadow: 0 0.25dvh 0.5dvh rgba(0,0,0,.6);
+}
+.subtitle {
+  margin: 0;
+  opacity: .9;
+  font-size: clamp(12px, 1.6dvh, 18px);
+}
+
+/* ===== Torre ===== */
+.tower {
+  flex: 1;
+  display: grid;
+  align-content: end;          /* cola a torre no rodapé visual */
+  gap: 1.6dvh;
+  padding: 1dvh 0;
+}
+
+/* Cada “andar” da torre */
+.stage {
+  position: relative;
+  margin: 0 auto;
+  width: min(86vw, 560px);
+  height: clamp(72px, 10.5dvh, 120px);
+  border-radius: 2.2dvh;
+  background: linear-gradient(180deg, rgba(40,85,110,.85), rgba(35,80,105,.85));
+  box-shadow: 0 0.9dvh 2dvh rgba(0,0,0,.45), inset 0 0 0 0.35dvh rgba(255,255,255,.15);
+  border: 0.25dvh solid rgba(255,255,255,.22);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 3vw;
+  padding: 1.2dvh 3.5vw;
+}
+
+/* Imagem da insígnia (oponentes 1–8); o Boss tem layout próprio */
+.badge {
+  width: clamp(36px, 7.5dvh, 78px);
+  aspect-ratio: 1/1;
+  border-radius: 1.2dvh;
+  display: grid; place-items: center;
+  background: rgba(0,0,0,.15);
+  box-shadow: inset 0 0 0 0.35dvh rgba(255,255,255,.14);
+}
+.badge img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  filter: drop-shadow(0 0.2dvh 0.3dvh rgba(0,0,0,.5));
+}
+
+/* Informações do andar */
+.info {
+  display: grid;
+  gap: 0.6dvh;
+}
+.level-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: .1vw;
+  font-size: clamp(14px, 2.1dvh, 22px);
+}
+.level-sub {
+  margin: 0;
+  opacity: .92;
+  font-size: clamp(12px, 1.7dvh, 18px);
+}
+
+/* Estado/ação do andar (selos) */
+.state {
+  justify-self: end;
+  padding: .6dvh 1.8vw;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: clamp(11px, 1.5dvh, 14px);
+  box-shadow: 0 .4dvh 0 rgba(0,0,0,.25);
+  border: .25dvh solid rgba(255,255,255,.22);
+}
+.state.locked  { background: #666;    color: #eee; }
+.state.current { background: #ffd54f; color: #2a2a2a; }
+.state.done    { background: #66bb6a; color: #102a10; }
+
+/* Boss (topo) — visual diferente */
+.stage.boss {
+  background: linear-gradient(180deg, rgba(110,80,30,.92), rgba(95,70,25,.9));
+  border: 0.3dvh solid rgba(255,215,80,.65);
+  box-shadow: 0 1.2dvh 2.4dvh rgba(0,0,0,.5), inset 0 0 0 0.4dvh rgba(255,215,80,.25);
+}
+.stage.boss .level-title { letter-spacing: .2vw; }
+.stage.boss .level-sub   { opacity: .95; }
+
+/* ===== Rodapé com botões ===== */
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3vw;
+  width: min(86vw, 560px);
+  margin: 0 auto;
+}
+.btn {
+  padding: 1.2dvh 2.5vw;
+  border-radius: 1.6dvh;
+  border: none;
+  cursor: pointer;
+  font-weight: 900;
+  letter-spacing: .1vw;
+  background: #ececec;
+  color: #222;
+  box-shadow: 0 .6dvh 0 rgba(0,0,0,.25);
+}
+.btn:disabled {
+  filter: grayscale(1) brightness(.85);
+  cursor: not-allowed;
+}
+.btn-yellow {
+  background: #2d6cdf;  /* azul base do teu projeto + texto dourado */
+  color: #ffd54f;
+}
+
+/* ===== Ajustes responsivos simples ===== */
+@media (max-width: 480px) {
+  .actions { grid-template-columns: 1fr; }
+}
