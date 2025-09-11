@@ -141,8 +141,8 @@ function renderTower() {
   el.innerHTML = "";
 
   const levelsDesc = [
-    "Iniciante", "Aprendiz", "Desafiante", "Avançado",
-    "Veterano", "Elite", "Mestre", "Campeão"
+    "1ª INSIGNIA", "2ª INSIGNIA", "3ª INSIGNIA", "4ª INSIGNIA",
+    "5ª INSIGNIA", "6ª INSIGNIA", "7ª INSIGNIA", "8ª INSIGNIA"
   ];
 
   tower.levels.forEach((node, idx) => {
@@ -168,7 +168,7 @@ function renderTower() {
     }
 
     // Coluna 2: info
-    const title = isBoss ? "BOSS FINAL" : `Nível ${node.level} — ${levelsDesc[node.level-1] || ""}`;
+    const title = isBoss ? "TORNEIO POKEMON" : `Nível ${node.level} — ${levelsDesc[node.level-1] || ""}`;
     const sub   = isBoss
       ? `CP médio alvo: ${node.range.min}–${node.range.max}`
       : `${node.type === "All" ? "Tipo livre" : `Tipo ${node.type}`} • CP médio alvo: ${node.range.min}–${node.range.max}`;
